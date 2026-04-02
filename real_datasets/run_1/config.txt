@@ -1,0 +1,7 @@
+numAS=5
+numLeadersPerAS=3
+partitionsPerLeader=3
+hostsPerPartition=4
+simTime=60
+topologies=star,hier,star,star,hier
+estimated_nodes=195

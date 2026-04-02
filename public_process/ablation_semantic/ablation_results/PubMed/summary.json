@@ -1,0 +1,47 @@
+{
+    "struct_only": {
+        "mean_spearman": 0.8697961835345552,
+        "std": 0.0033241790698347084,
+        "num_seeds": 5
+    },
+    "raw": {
+        "mean_spearman": 0.8545694044150837,
+        "std": 0.0012145247423156927,
+        "num_seeds": 5
+    },
+    "tfidf": {
+        "mean_spearman": 0.8506200099426022,
+        "std": 0.002698653198547671,
+        "num_seeds": 5
+    },
+    "tfidf_svd": {
+        "mean_spearman": 0.8593290384908656,
+        "std": 0.003852552434372722,
+        "num_seeds": 5
+    },
+    "tfidf_svd_bridge_dim16": {
+        "mean_spearman": 0.8686184337794739,
+        "std": 0.0033159954770886273,
+        "num_seeds": 5
+    },
+    "tfidf_svd_bridge_dim32": {
+        "mean_spearman": 0.8665666754647854,
+        "std": 0.0022020287762355125,
+        "num_seeds": 5
+    },
+    "tfidf_svd_bridge_dim64": {
+        "mean_spearman": 0.8655582688952759,
+        "std": 0.0031341008838631523,
+        "num_seeds": 5
+    },
+    "tfidf_svd_bridge_dim128": {
+        "mean_spearman": 0.8593266597117287,
+        "std": 0.0036736022202840794,
+        "num_seeds": 5
+    },
+    "tfidf_svd_bridge_dim256": {
+        "mean_spearman": 0.8558439851184947,
+        "std": 0.004787170611349789,
+        "num_seeds": 5
+    }
+}

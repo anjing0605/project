@@ -1,0 +1,15 @@
+fig_ablation_progressive:
+Performance of progressively enhanced models from L0 to L5. Each stage introduces additional components including graph modeling, ranking supervision, and multi-β training.
+
+fig_ablation_modal:
+Contribution of structural and semantic features. Combining both modalities achieves the best performance.
+
+fig_ablation_stacked:
+Incremental contribution of each component in the progressive ablation setting.
+
+fig_ablation_gain:
+Performance improvement relative to the baseline model (L0).
+
+fig_ablation_heatmap:
+Heatmap visualization of ablation performance across different configurations.
+

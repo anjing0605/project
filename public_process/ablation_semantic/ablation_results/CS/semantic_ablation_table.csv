@@ -1,0 +1,10 @@
+,mean_spearman,std,num_seeds
+struct_only,0.9458,0.0014,5
+raw,0.9308,0.0014,5
+tfidf,0.9301,0.0005,5
+tfidf_svd,0.9379,0.0011,5
+tfidf_svd_bridge_dim16,0.9438,0.0017,5
+tfidf_svd_bridge_dim32,0.9415,0.0009,5
+tfidf_svd_bridge_dim64,0.9393,0.0003,5
+tfidf_svd_bridge_dim128,0.9381,0.0012,5
+tfidf_svd_bridge_dim256,0.9349,0.0018,5

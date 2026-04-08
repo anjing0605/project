@@ -1,0 +1,91 @@
+seed: 42
+dataset:
+  family: Planetoid
+  name: Pubmed
+  root: D:/project/keynode/project/public_datasets/Planetoid
+  importance_path: D:/project/keynode/project/public_process/extract/PubMed_struct/gnn_node_scores_mean.csv
+  node_features_path: D:/project/keynode/project/public_process/extract/PubMed_struct/node_features.csv
+  old_id_col_in_node_features: node
+  community_mode: louvain
+  strict_importance_alignment: true
+  importance_fill_value: 0.0
+  verbose: true
+keynode:
+  mode: topk
+  k: 30
+  min_shortest_len: 2
+  max_pairs: 200
+paths:
+  k_shortest: 3
+  max_hops: 8
+  delta: 2
+  top_q: 10
+  overlap_threshold: 0.6
+  top_m_for_fragility: 1
+fragility:
+  lambda_E: 0.4
+  lambda_LCC: 0.4
+  lambda_ASP: 0.2
+baselines:
+  k_candidates: 5
+  random_num_trials: 30
+  random_num_samples: 5
+  random_seed: 42
+  use_internal_node_importance: false
+rl:
+  reward_mode: hybrid
+  eval_reward_mode: fragility
+  embedding_dim: 64
+  gnn_hidden_dim: 128
+  gnn_epochs: 120
+  gnn_lr: 0.01
+  max_hops: 8
+  hidden_dim: 128
+  lr: 0.0001
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_eps: 0.2
+  ppo_epochs: 4
+  epochs: 80
+  entropy_coef: 0.01
+  value_coef: 0.5
+  importance_bias: 0.0
+  num_samples_per_task: 10
+  reward:
+    lambda_E: 0.4
+    lambda_LCC: 0.4
+    lambda_ASP: 0.2
+    node_bonus_weight: 0.1
+    bridge_bonus_weight: 0.1
+    cross_comm_bonus_weight: 0.05
+    step_cost: 0.05
+    reach_bonus: 1.0
+    fail_penalty: 1.0
+    repeat_penalty: 0.3
+    hybrid_alpha: 0.7
+    normalize_fragility: true
+    normalize_surrogate: true
+    surrogate_weights:
+      avg_node_importance: 0.35
+      avg_edge_bc: 0.25
+      cross_comm_ratio: 0.15
+      path_length: 0.25
+tensorboard:
+  enabled: true
+  log_root: outputs/tb
+  run_name: pubmed_rl_hybrid
+scorer:
+  fragility_gate: 0.5
+  gate_penalty: 0.08
+output:
+  embedding_ckpt: outputs/checkpoints/pubmed_node_embeddings.pt
+  rl_ckpt: outputs/checkpoints/pubmed_ppo_agent.pt
+  train_log_json: outputs/logs/pubmed_rl_train_log.json
+  train_summary_json: outputs/logs/pubmed_rl_train_summary.json
+  rl_eval_metrics_json: outputs/metrics/pubmed_rl_eval_metrics.json
+  rl_eval_paths_json: outputs/paths/pubmed_rl_eval_paths.json
+  k_list:
+  - 1
+  - 3
+  - 5
+  - 10

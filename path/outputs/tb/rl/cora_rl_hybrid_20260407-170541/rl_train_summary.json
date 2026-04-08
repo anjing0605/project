@@ -1,0 +1,215 @@
+{
+  "dataset": {
+    "name": "Cora",
+    "num_nodes": 2708,
+    "num_edges": 5278,
+    "community_mode": "louvain",
+    "importance_alignment": {
+      "mode": "direct",
+      "score_path": "D:/project/keynode/project/public_process/extract/Cora_struct/gnn_node_scores_mean.csv",
+      "node_features_path": null,
+      "score_node_col": "node",
+      "score_col": "gnn_score",
+      "num_nodes": 2708,
+      "loaded_rows": 2708,
+      "missing_old_ids": [],
+      "missing_count": 0,
+      "filled_missing": false,
+      "fill_value": null,
+      "new_id_start": null
+    }
+  },
+  "key_nodes": {
+    "count": 30,
+    "preview": [
+      1779,
+      1757,
+      1787,
+      1346,
+      68,
+      1709,
+      2045,
+      519,
+      308,
+      1805,
+      153,
+      1733,
+      1762,
+      139,
+      2080,
+      289,
+      341,
+      1661,
+      1620,
+      236
+    ]
+  },
+  "tasks": {
+    "count": 200,
+    "preview": [
+      {
+        "source": 1779,
+        "target": 1757,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.7070073366165162
+      },
+      {
+        "source": 1779,
+        "target": 1787,
+        "shortest_len": 2,
+        "same_community": true,
+        "pair_score": 1.7058832168579103
+      },
+      {
+        "source": 1779,
+        "target": 1346,
+        "shortest_len": 2,
+        "same_community": true,
+        "pair_score": 1.7028188109397888
+      },
+      {
+        "source": 1757,
+        "target": 1787,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.702242636680603
+      },
+      {
+        "source": 1779,
+        "target": 68,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.6996210336685182
+      },
+      {
+        "source": 1757,
+        "target": 1346,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.6991782307624816
+      },
+      {
+        "source": 1787,
+        "target": 1346,
+        "shortest_len": 2,
+        "same_community": true,
+        "pair_score": 1.6980541110038758
+      },
+      {
+        "source": 1779,
+        "target": 1709,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.6972440958023072
+      },
+      {
+        "source": 1779,
+        "target": 2045,
+        "shortest_len": 2,
+        "same_community": true,
+        "pair_score": 1.6970636010169984
+      },
+      {
+        "source": 1757,
+        "target": 68,
+        "shortest_len": 2,
+        "same_community": false,
+        "pair_score": 1.6959804534912108
+      },
+      {
+        "source": 1787,
+        "target": 68,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.694856333732605
+      },
+      {
+        "source": 1779,
+        "target": 519,
+        "shortest_len": 2,
+        "same_community": true,
+        "pair_score": 1.6946762800216675
+      },
+      {
+        "source": 1757,
+        "target": 1709,
+        "shortest_len": 2,
+        "same_community": true,
+        "pair_score": 1.693603515625
+      },
+      {
+        "source": 1779,
+        "target": 308,
+        "shortest_len": 2,
+        "same_community": true,
+        "pair_score": 1.6935130834579468
+      },
+      {
+        "source": 1757,
+        "target": 2045,
+        "shortest_len": 3,
+        "same_community": false,
+        "pair_score": 1.6934230208396912
+      },
+      {
+        "source": 1787,
+        "target": 1709,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.692479395866394
+      },
+      {
+        "source": 1346,
+        "target": 68,
+        "shortest_len": 3,
+        "same_community": false,
+        "pair_score": 1.6917919278144837
+      },
+      {
+        "source": 1779,
+        "target": 1805,
+        "shortest_len": 2,
+        "same_community": true,
+        "pair_score": 1.6915508627891542
+      },
+      {
+        "source": 1757,
+        "target": 519,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.6910356998443603
+      },
+      {
+        "source": 1779,
+        "target": 153,
+        "shortest_len": 2,
+        "same_community": true,
+        "pair_score": 1.6909746885299684
+      }
+    ]
+  },
+  "rl_train": {
+    "state_dim": 133,
+    "action_dim": 197,
+    "embedding_ckpt": "D:\\project\\keynode\\project\\path\\outputs\\checkpoints\\cora_node_embeddings.pt",
+    "rl_ckpt": "D:\\project\\keynode\\project\\path\\outputs\\checkpoints\\cora_ppo_agent.pt",
+    "seed": 42,
+    "tensorboard_log_dir": "D:\\project\\keynode\\project\\path\\outputs\\tb\\rl\\cora_rl_hybrid_20260407-170541",
+    "reward_mode": "hybrid",
+    "eval_reward_mode": "fragility",
+    "hybrid_alpha": 0.7,
+    "normalize_fragility": true,
+    "normalize_surrogate": true,
+    "num_epochs": 80,
+    "last_avg_reward": -0.37437179604047416,
+    "best_avg_reward": -0.3240569464042877,
+    "last_arrival_rate": 0.06,
+    "best_arrival_rate": 0.115,
+    "last_avg_steps": 7.82,
+    "best_avg_steps": 6.995,
+    "last_policy_loss": -0.018344411734386768,
+    "last_value_loss": 0.11392617619589146,
+    "last_entropy": 0.29936685285530984
+  }
+}

@@ -1,0 +1,2618 @@
+{
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 289, 1358, 1757], \"source\": 1779, \"target\": 1757, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.001506657231657188,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0006026628926628753
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 1787], \"source\": 1779, \"target\": 1787, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 1787], \"source\": 1779, \"target\": 1787, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.001493698662448556,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.1484689512882449,
+    "fragility_score": 0.0302912697226284
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 1624, 1787], \"source\": 1779, \"target\": 1787, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0013682879620381116,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0005473151848152446
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 1346], \"source\": 1779, \"target\": 1346, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0005049610112109748,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.25865539452495945,
+    "fragility_score": 0.051933063309476286
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 1346], \"source\": 1779, \"target\": 1346, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0022204609500802164,
+    "fragility_score": 0.0004440921900160433
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 306, 1346], \"source\": 1779, \"target\": 1346, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 1.6702047951566712e-05,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.18012781803542666,
+    "fragility_score": 0.03603224442626596
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 289, 109, 1787], \"source\": 1757, \"target\": 1787, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0021806381118881224,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.000872255244755249
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 289, 1358, 68], \"source\": 1779, \"target\": 68, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002586296342546035,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.02165735708534644,
+    "fragility_score": 0.005365989954087702
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 289, 109, 1346], \"source\": 1757, \"target\": 1346, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 1346], \"source\": 1787, \"target\": 1346, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 1346], \"source\": 1787, \"target\": 1346, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0004511634199132475,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.000180465367965299
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 306, 1346], \"source\": 1787, \"target\": 1346, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0004434718059714293,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00017738872238857173
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 289, 1358, 1709], \"source\": 1779, \"target\": 1709, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0033863490675989927,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.16406879025764898,
+    "fragility_score": 0.034168297678569395
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 2045], \"source\": 1779, \"target\": 2045, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.05042270531401005,
+    "fragility_score": 0.01008454106280201
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 2045], \"source\": 1779, \"target\": 2045, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.18531099033816378,
+    "fragility_score": 0.03706219806763276
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 133, 2045], \"source\": 1779, \"target\": 2045, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 68], \"source\": 1757, \"target\": 68, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 957, 1358, 68], \"source\": 1757, \"target\": 68, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.027243105877616358,
+    "fragility_score": 0.005448621175523272
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 289, 1358, 68], \"source\": 1787, \"target\": 68, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 519], \"source\": 1779, \"target\": 519, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.00368993992118985,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00147597596847594
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 519], \"source\": 1779, \"target\": 519, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 306, 519], \"source\": 1779, \"target\": 519, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0015931505994003503,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0006372602397601402
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 1709], \"source\": 1757, \"target\": 1709, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0017247342934844645,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0006898937173937859
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 957, 1358, 1709], \"source\": 1757, \"target\": 1709, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.23188405797101463,
+    "fragility_score": 0.04637681159420293
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 1738, 1709], \"source\": 1757, \"target\": 1709, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.22212157809983868,
+    "fragility_score": 0.044424315619967736
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 308], \"source\": 1779, \"target\": 308, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0007309211621710499,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.12810109702093353,
+    "fragility_score": 0.025912587869055127
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 306, 308], \"source\": 1779, \"target\": 308, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0031548805361305277,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0012619522144522112
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 350, 308], \"source\": 1779, \"target\": 308, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.10214749396135225,
+    "fragility_score": 0.02042949879227045
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 341, 2045], \"source\": 1757, \"target\": 2045, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.003301819708069864,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.3255900261674718,
+    "fragility_score": 0.0664387331167223
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 289, 1358, 1709], \"source\": 1787, \"target\": 1709, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 519, 1986, 68], \"source\": 1346, \"target\": 68, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 1805], \"source\": 1779, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 1805], \"source\": 1779, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.13185009057970998,
+    "fragility_score": 0.026370018115941998
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 306, 1805], \"source\": 1779, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0017935543623040784,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.025720863526569993,
+    "fragility_score": 0.00586159445023563
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 289, 109, 519], \"source\": 1757, \"target\": 519, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.004147093878343722,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.016392411433172605,
+    "fragility_score": 0.004937319837972009
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 153], \"source\": 1779, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 153], \"source\": 1779, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.2656879025764898,
+    "fragility_score": 0.05313758051529796
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 1623, 153], \"source\": 1779, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 519], \"source\": 1787, \"target\": 519, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 519], \"source\": 1787, \"target\": 519, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.12004327697262518,
+    "fragility_score": 0.024008655394525038
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 2045, 519], \"source\": 1787, \"target\": 519, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.04610129830917842,
+    "fragility_score": 0.009220259661835683
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 1072, 306, 308], \"source\": 1757, \"target\": 308, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0023573933011431236,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.06053743961352609,
+    "fragility_score": 0.013050445243162467
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 1072, 1733], \"source\": 1779, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0015424547674543765,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.03701816626409027,
+    "fragility_score": 0.008020615159799805
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 519, 1986, 1709], \"source\": 1346, \"target\": 1709, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.29498163244766484,
+    "fragility_score": 0.05899632648953297
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 2045], \"source\": 1346, \"target\": 2045, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.23639417270531382,
+    "fragility_score": 0.04727883454106277
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 2045], \"source\": 1346, \"target\": 2045, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 519, 2045], \"source\": 1346, \"target\": 2045, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0001609189421687418,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 6.436757686749673e-05
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 289, 1358, 1762], \"source\": 1779, \"target\": 1762, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.22029740338164228,
+    "fragility_score": 0.04405948067632846
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 139], \"source\": 1779, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.003756978438228309,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.003403029388083567,
+    "fragility_score": 0.002183397252908037
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 1623, 139], \"source\": 1779, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 103, 139], \"source\": 1779, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 2080], \"source\": 1779, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.27867099436392895,
+    "fragility_score": 0.055734198872785794
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 306, 2080], \"source\": 1779, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 112, 2080], \"source\": 1779, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 289], \"source\": 1779, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 109, 289], \"source\": 1779, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0013719336219331912,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0005487734487732765
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 1624, 109, 289], \"source\": 1779, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.09465579710144922,
+    "fragility_score": 0.018931159420289848
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 2045, 341], \"source\": 1779, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.00028742021867006473,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00011496808746802589
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 2045, 341], \"source\": 1779, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0008308254245754099,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00033233016983016397
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 308], \"source\": 1787, \"target\": 308, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0014026096860651205,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.007938305152978664,
+    "fragility_score": 0.002148704905021781
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 2045, 308], \"source\": 1787, \"target\": 308, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 350, 308], \"source\": 1787, \"target\": 308, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002832122738372439,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.15939512882447637,
+    "fragility_score": 0.033011874860244254
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 1661], \"source\": 1779, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.003213155594405659,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0012852622377622636
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 109, 1661], \"source\": 1779, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 1624, 109, 1661], \"source\": 1779, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.1499471618357484,
+    "fragility_score": 0.029989432367149682
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 1072, 1805], \"source\": 1757, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.1247987117552336,
+    "fragility_score": 0.024959742351046723
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 289, 109, 153], \"source\": 1757, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0014366466866463645,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0005746586746585459
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 1483, 1620], \"source\": 1779, \"target\": 1620, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.001905948067633112,
+    "fragility_score": 0.0003811896135266224
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 236], \"source\": 1779, \"target\": 236, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0023262688700188827,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0009305075480075531
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 236], \"source\": 1779, \"target\": 236, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.3421774355877618,
+    "fragility_score": 0.06843548711755236
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 153, 236], \"source\": 1779, \"target\": 236, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.1955137882447664,
+    "fragility_score": 0.03910275764895328
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 1805], \"source\": 1787, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.00021797369297341107,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 8.718947718936443e-05
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 1805], \"source\": 1787, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0012650890775890433,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0005060356310356174
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 306, 1805], \"source\": 1787, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0008481837606835463,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.24565343196457334,
+    "fragility_score": 0.04946995989718809
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 426], \"source\": 1779, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 426], \"source\": 1779, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.04528356481481488,
+    "fragility_score": 0.009056712962962976
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 306, 426], \"source\": 1779, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.22524154589372003,
+    "fragility_score": 0.04504830917874401
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 1772], \"source\": 1779, \"target\": 1772, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.004533601814851768,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.19245672302737482,
+    "fragility_score": 0.040304785331415675
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 1772], \"source\": 1779, \"target\": 1772, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0477304750402574,
+    "fragility_score": 0.00954609500805148
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 1623, 1772], \"source\": 1779, \"target\": 1772, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 7.616480741476361e-05,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 3.0465922965905445e-05
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 1709], \"source\": 68, \"target\": 1709, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0017679383116878389,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.02222977053140074,
+    "fragility_score": 0.005153129430955284
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1986, 1709], \"source\": 68, \"target\": 1709, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.028086000402576694,
+    "fragility_score": 0.005617200080515339
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 1738, 1709], \"source\": 68, \"target\": 1709, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.14105902777777768,
+    "fragility_score": 0.02821180555555554
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 153], \"source\": 1787, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0004811362248860751,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.10739356884058004,
+    "fragility_score": 0.02167116825807044
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 153], \"source\": 1787, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.003128886391386365,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.12159068035426746,
+    "fragility_score": 0.02556969062740804
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 2045, 153], \"source\": 1787, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 341, 2045], \"source\": 68, \"target\": 2045, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.16179800724637694,
+    "fragility_score": 0.03235960144927539
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1986, 215, 2045], \"source\": 68, \"target\": 2045, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.1694532508051525,
+    "fragility_score": 0.0338906501610305
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1986, 519, 2045], \"source\": 68, \"target\": 2045, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0008973769286268196,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.19819972826086918,
+    "fragility_score": 0.039998896423624565
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 1733], \"source\": 1757, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 957, 1358, 1733], \"source\": 1757, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0001377351814850769,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.26270632045088593,
+    "fragility_score": 0.05259635816277122
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 831, 1733], \"source\": 1757, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.11565267713365568,
+    "fragility_score": 0.023130535426731137
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 289, 1358, 758], \"source\": 1779, \"target\": 758, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0020967400654899326,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.06972121578099877,
+    "fragility_score": 0.014782939182395727
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 308], \"source\": 1346, \"target\": 308, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 1670, 308], \"source\": 1346, \"target\": 308, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.001155969724719652,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00046238788988786086
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 350, 308], \"source\": 1346, \"target\": 308, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.31553190418679566,
+    "fragility_score": 0.06310638083735913
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 1762], \"source\": 1757, \"target\": 1762, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.030539200885668194,
+    "fragility_score": 0.006107840177133639
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 957, 1358, 1762], \"source\": 1757, \"target\": 1762, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.21820274758454072,
+    "fragility_score": 0.04364054951690815
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 111, 1762], \"source\": 1757, \"target\": 1762, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.003279586385836253,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.20798736916264104,
+    "fragility_score": 0.04290930838686271
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 1072, 306, 139], \"source\": 1757, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0029189553502051158,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.08497509057970998,
+    "fragility_score": 0.018162600256024043
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 1072, 306, 2080], \"source\": 1757, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 289], \"source\": 1757, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.08393090780998413,
+    "fragility_score": 0.016786181561996828
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 957, 1358, 289], \"source\": 1757, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.05355525362318847,
+    "fragility_score": 0.010711050724637695
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 1722, 289], \"source\": 1757, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.10475166062801922,
+    "fragility_score": 0.020950332125603845
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 341], \"source\": 1757, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0014086212398708997,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0005634484959483599
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 957, 1358, 341], \"source\": 1757, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 6.905802530768335e-05,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 2.762321012307334e-05
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 613, 341], \"source\": 1757, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.00036927621861149174,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0001477104874445967
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 289, 109, 1661], \"source\": 1757, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0004012494449991688,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00016049977799966755
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 1072, 1733], \"source\": 1787, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.003270852758352677,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.02193412842189968,
+    "fragility_score": 0.005695166787721007
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 289, 1358, 1762], \"source\": 1787, \"target\": 1762, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.004751400682650758,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.2812185487117551,
+    "fragility_score": 0.05814427001541133
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 139], \"source\": 1787, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.09781350644122355,
+    "fragility_score": 0.01956270128824471
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 2045, 139], \"source\": 1787, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002192530386280256,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.040962157809984134,
+    "fragility_score": 0.00906944371650893
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 103, 139], \"source\": 1787, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002507075563325495,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.001002830225330198
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 289, 1358, 326], \"source\": 1779, \"target\": 326, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.003294023337773233,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.20787414452495945,
+    "fragility_score": 0.04289243824010119
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 2080], \"source\": 1787, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.14802863325281823,
+    "fragility_score": 0.029605726650563647
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 306, 2080], \"source\": 1787, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.000610809329559342,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.11363979468598995,
+    "fragility_score": 0.02297228266902173
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 112, 2080], \"source\": 1787, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0010550789488285583,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.04682467793880818,
+    "fragility_score": 0.009786967167293058
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 289], \"source\": 1787, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0004636093073593084,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00018544372294372337
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 109, 289], \"source\": 1787, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.07013008252818054,
+    "fragility_score": 0.014026016505636108
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 1624, 109, 289], \"source\": 1787, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002897854229104241,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.11993005233494358,
+    "fragility_score": 0.025145152158630415
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 2045, 341], \"source\": 1787, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002768315018315287,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.3008630233494367,
+    "fragility_score": 0.06127993067721346
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 2045, 341], \"source\": 1787, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 2045, 341], \"source\": 1787, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0012348332223328928,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0004939332889331571
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 1804, 1546], \"source\": 1779, \"target\": 1546, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.008177334943638925,
+    "fragility_score": 0.001635466988727785
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 1661], \"source\": 1787, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.2675686896135261,
+    "fragility_score": 0.05351373792270522
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 109, 1661], \"source\": 1787, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0002474060661560029,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.07272166867954866,
+    "fragility_score": 0.014643296162372133
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 1624, 109, 1661], \"source\": 1787, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 1805], \"source\": 1346, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0002767454767454991,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00011069819069819964
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 1805], \"source\": 1346, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0019712322399819127,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.06782155797101463,
+    "fragility_score": 0.014352804490195692
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 306, 1805], \"source\": 1346, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002090522671772427,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.06764543075684415,
+    "fragility_score": 0.0143652952200778
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 341, 2045], \"source\": 1709, \"target\": 2045, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0011697850760349071,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.15692934782608692,
+    "fragility_score": 0.031853783595631346
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1986, 215, 2045], \"source\": 1709, \"target\": 2045, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.013329055958132052,
+    "fragility_score": 0.0026658111916264106
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1986, 519, 2045], \"source\": 1709, \"target\": 2045, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.005321602702852507,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.002128641081141003
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1986, 519], \"source\": 68, \"target\": 519, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.08390574677938822,
+    "fragility_score": 0.016781149355877645
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 391, 1986, 519], \"source\": 68, \"target\": 519, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0008243249805748865,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.44806763285024154,
+    "fragility_score": 0.08994325656227826
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1986, 1574, 519], \"source\": 68, \"target\": 519, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.001129555860805681,
+    "delta_LCC": 0.0007385524372229835,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0007472433192114659
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 1620], \"source\": 1757, \"target\": 1620, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0024318140193136106,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.10353764090177098,
+    "fragility_score": 0.02168025378807964
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 957, 1358, 1620], \"source\": 1757, \"target\": 1620, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 1483, 1620], \"source\": 1757, \"target\": 1620, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.18010265700483075,
+    "fragility_score": 0.03602053140096615
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 1072, 236], \"source\": 1757, \"target\": 236, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0007028533966032813,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.21680631038647302,
+    "fragility_score": 0.043642403435935916
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 153], \"source\": 1346, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.07745823268921104,
+    "fragility_score": 0.015491646537842208
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 153], \"source\": 1346, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.001629205312661225,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.048158212560386104,
+    "fragility_score": 0.010283324637141713
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 236, 153], \"source\": 1346, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0008330676268174242,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0003332270507269697
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 289, 109, 426], \"source\": 1757, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0020461018148519305,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0008184407259407723
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 289, 109, 1772], \"source\": 1757, \"target\": 1772, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.1958283011272144,
+    "fragility_score": 0.03916566022544288
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1986, 476, 306, 308], \"source\": 68, \"target\": 308, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 1483, 1620], \"source\": 1787, \"target\": 1620, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0018946588134086118,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.09134712157809943,
+    "fragility_score": 0.019027287840983332
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 289, 1358, 1568], \"source\": 1779, \"target\": 1568, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.07757145732689175,
+    "fragility_score": 0.01551429146537835
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 236], \"source\": 1787, \"target\": 236, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.15571532809983868,
+    "fragility_score": 0.031143065619967738
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 236], \"source\": 1787, \"target\": 236, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0004643446830944198,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00018573787323776793
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 2045, 236], \"source\": 1787, \"target\": 236, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002213922882672331,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.07797403381642543,
+    "fragility_score": 0.01648037591635402
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 758], \"source\": 1757, \"target\": 758, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.001846860778110776,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.005642361111110716,
+    "fragility_score": 0.0018672165334664538
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 957, 1358, 758], \"source\": 1757, \"target\": 758, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0026325889388386092,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.38028381642512077,
+    "fragility_score": 0.0771097988605596
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 111, 758], \"source\": 1757, \"target\": 758, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 1072, 1733], \"source\": 1346, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 426], \"source\": 1787, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.00315197094572095,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.28976071859903385,
+    "fragility_score": 0.05921293209809515
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 426], \"source\": 1787, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0017379682817179887,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.15604242149758463,
+    "fragility_score": 0.03190367161220412
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 306, 426], \"source\": 1787, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.005032897657897634,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.11814361916264104,
+    "fragility_score": 0.025641882895687265
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 1772], \"source\": 1787, \"target\": 1772, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.07274682971014457,
+    "fragility_score": 0.014549365942028915
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 1772], \"source\": 1787, \"target\": 1772, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 2045, 1772], \"source\": 1787, \"target\": 1772, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 289, 1358, 1762], \"source\": 1346, \"target\": 1762, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.004467350011100102,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.04410099637681153,
+    "fragility_score": 0.010607139279802348
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 139], \"source\": 1346, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0012777534965031923,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0005111013986012769
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 306, 139], \"source\": 1346, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.00042991661116623114,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00017196664446649247
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 103, 139], \"source\": 1346, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002746991203241095,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.3783401268115938,
+    "fragility_score": 0.07676682184361519
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1986, 519], \"source\": 1709, \"target\": 519, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.1669119867149762,
+    "fragility_score": 0.033382397342995244
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1986, 1574, 519], \"source\": 1709, \"target\": 519, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0007385524372229835,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0002954209748891934
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1986, 1998, 519], \"source\": 1709, \"target\": 519, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0044142295204792625,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0017656918081917052
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 2080], \"source\": 1346, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.004071481990231912,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.001628592796092765
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 306, 2080], \"source\": 1346, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.003679800724637694,
+    "fragility_score": 0.0007359601449275388
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 112, 2080], \"source\": 1346, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0013006417193916486,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.15618709742351022,
+    "fragility_score": 0.031757676172458706
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 289], \"source\": 1346, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.27756390901771333,
+    "fragility_score": 0.05551278180354267
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 109, 289], \"source\": 1346, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002700688894438835,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.05891455314009697,
+    "fragility_score": 0.012863186185794928
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 519, 109, 289], \"source\": 1346, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 289, 1358, 758], \"source\": 1787, \"target\": 758, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0012986575924075483,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.003805605877616358,
+    "fragility_score": 0.0012805842124862911
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 2045, 341], \"source\": 1346, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 2045, 341], \"source\": 1346, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0003968806928363322,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.10733695652173925,
+    "fragility_score": 0.021626143581482384
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 519, 2045, 341], \"source\": 1346, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.004094442363192341,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.09553643317230254,
+    "fragility_score": 0.020745063579737447
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 1661], \"source\": 1346, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.11019902375201251,
+    "fragility_score": 0.022039804750402504
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 109, 1661], \"source\": 1346, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 519, 109, 1661], \"source\": 1346, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002265271534021146,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.18131667673107899,
+    "fragility_score": 0.03716944395982426
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 326], \"source\": 1757, \"target\": 326, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0007692821067819822,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0003077128427127929
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 957, 1358, 326], \"source\": 1757, \"target\": 326, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.019493508454106134,
+    "fragility_score": 0.003898701690821227
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 154, 326], \"source\": 1757, \"target\": 326, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.09971316425120769,
+    "fragility_score": 0.01994263285024154
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 289, 1358, 173], \"source\": 1779, \"target\": 173, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 1072, 1805], \"source\": 68, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 1546], \"source\": 1757, \"target\": 1546, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.08042723429951693,
+    "fragility_score": 0.016085446859903384
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 957, 1358, 1546], \"source\": 1757, \"target\": 1546, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002521536102785743,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0010086144411142973
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 341, 1546], \"source\": 1757, \"target\": 1546, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.08118206521739157,
+    "fragility_score": 0.016236413043478316
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 126], \"source\": 1779, \"target\": 126, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.30012077294686,
+    "fragility_score": 0.060024154589372006
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 1623, 126], \"source\": 1779, \"target\": 126, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0024349116161613282,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0009739646464645313
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 236, 126], \"source\": 1779, \"target\": 126, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1986, 476, 306, 308], \"source\": 1709, \"target\": 308, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0008880057442556821,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.06326112117552363,
+    "fragility_score": 0.013007426532806999
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 289, 109, 153], \"source\": 68, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 289, 1358, 326], \"source\": 1787, \"target\": 326, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0010102071539570823,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.12307518115941996,
+    "fragility_score": 0.025019119093466824
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 1483, 1620], \"source\": 1346, \"target\": 1620, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 2045, 341, 1546], \"source\": 1787, \"target\": 1546, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0020951948786505914,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0008380779514602366
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 1804, 1546], \"source\": 1787, \"target\": 1546, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0002686056998554842,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00010744227994219369
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 236], \"source\": 1346, \"target\": 236, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 236], \"source\": 1346, \"target\": 236, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 153, 236], \"source\": 1346, \"target\": 236, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.03515625,
+    "fragility_score": 0.00703125
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 1245], \"source\": 1779, \"target\": 1245, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.00035737387612375104,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.21734727254428332,
+    "fragility_score": 0.04361240405930617
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 109, 306, 1245], \"source\": 1779, \"target\": 1245, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0030609286546783576,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.42122710346215797,
+    "fragility_score": 0.08546979215430295
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 542, 1245], \"source\": 1779, \"target\": 1245, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 1568], \"source\": 1757, \"target\": 1568, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0022236562049061936,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.029979367954910963,
+    "fragility_score": 0.00688533607294467
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 957, 1358, 1568], \"source\": 1757, \"target\": 1568, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0002905407092905765,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.05338541666666696,
+    "fragility_score": 0.010793299617049622
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 154, 1568], \"source\": 1757, \"target\": 1568, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.01702772745571668,
+    "fragility_score": 0.003405545491143336
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 1733], \"source\": 68, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.2824199879227054,
+    "fragility_score": 0.05648399758454108
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 831, 1733], \"source\": 68, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0019306485181483368,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.29306310386473466,
+    "fragility_score": 0.05938488018020627
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 1072, 1733], \"source\": 68, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.10271361714975846,
+    "fragility_score": 0.020542723429951695
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 426], \"source\": 1346, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 426], \"source\": 1346, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0006308587246086905,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.19628748993558798,
+    "fragility_score": 0.03950984147696107
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 306, 426], \"source\": 1346, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002854987373737322,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0002704810789051493,
+    "fragility_score": 0.0011960911652759588
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 1772], \"source\": 1346, \"target\": 1772, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 1772], \"source\": 1346, \"target\": 1772, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.02074526972624824,
+    "fragility_score": 0.004149053945249648
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 306, 1772], \"source\": 1346, \"target\": 1772, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 1762], \"source\": 68, \"target\": 1762, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.16474184782608692,
+    "fragility_score": 0.032948369565217385
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 111, 1762], \"source\": 68, \"target\": 1762, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.15846417069243124,
+    "fragility_score": 0.031692834138486246
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 758, 1762], \"source\": 68, \"target\": 1762, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.004216251110000874,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.04577420491143336,
+    "fragility_score": 0.01084134142628702
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1986, 476, 306, 139], \"source\": 68, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.06862671095008022,
+    "fragility_score": 0.013725342190016044
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 1072, 1805], \"source\": 1709, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.003252847846597573,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0013011391386390293
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1986, 476, 306, 2080], \"source\": 68, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 109, 1805], \"source\": 2045, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 306, 1805], \"source\": 2045, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0036539842102343845,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.07572841183574841,
+    "fragility_score": 0.016607276051243437
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 109, 306, 1805], \"source\": 2045, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 289, 1358, 758], \"source\": 1346, \"target\": 758, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0014198641636138376,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0753887379227054,
+    "fragility_score": 0.015645693249986613
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 289], \"source\": 68, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0046117014929512035,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.07884837962962976,
+    "fragility_score": 0.017614356523106434
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 1722, 289], \"source\": 68, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.11123062600644129,
+    "fragility_score": 0.02224612520128826
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 341], \"source\": 68, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.000248287823287785,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 9.9315129315114e-05
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 613, 341], \"source\": 68, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0006432158119658027,
+    "delta_LCC": 0.00036927621861149174,
+    "delta_ASP": 0.1118122582392802,
+    "fragility_score": 0.02276744846008696
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 1389, 341], \"source\": 68, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.3330251107085349,
+    "fragility_score": 0.06660502214170698
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 289, 1358, 1568], \"source\": 1787, \"target\": 1568, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0012204219391718507,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.06453804347826075,
+    "fragility_score": 0.013395777471320891
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 289, 109, 153], \"source\": 1709, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0009710768398266401,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00038843073593065603
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 289, 109, 1661], \"source\": 68, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.135750050322061,
+    "fragility_score": 0.0271500100644122
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 306, 308], \"source\": 519, \"target\": 308, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 1670, 308], \"source\": 519, \"target\": 308, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0010855748418245603,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.17642914653784203,
+    "fragility_score": 0.03572005924429823
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 2045, 308], \"source\": 519, \"target\": 308, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0007120317182813529,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.04868659420289845,
+    "fragility_score": 0.010022131527892232
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1779, 306, 1483, 754], \"source\": 1779, \"target\": 754, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.004141185897435756,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0016564743589743026
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 173], \"source\": 1757, \"target\": 173, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0035655504218003176,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.001426220168720127
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 957, 1358, 173], \"source\": 1757, \"target\": 173, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 687, 173], \"source\": 1757, \"target\": 173, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 289, 1358, 326], \"source\": 1346, \"target\": 326, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.060757598631240306,
+    "fragility_score": 0.012151519726248061
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 1072, 236, 126], \"source\": 1757, \"target\": 126, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0003272040459535719,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.24192330917874383,
+    "fragility_score": 0.0485155434541302
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 1733], \"source\": 1709, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.28842089371980695,
+    "fragility_score": 0.057684178743961395
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1738, 1358, 1733], \"source\": 1709, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 4.3457237206695476e-05,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 1.738289488267819e-05
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 831, 1733], \"source\": 1709, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.004839371739371406,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0019357486957485627
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 1804, 1546], \"source\": 1346, \"target\": 1546, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0019494748307245513,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0007797899322898206
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 1620], \"source\": 68, \"target\": 1620, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002444094100343769,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0009776376401375076
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 1483, 1620], \"source\": 68, \"target\": 1620, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 236, 1072, 1733], \"source\": 2045, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.2392184983896941,
+    "fragility_score": 0.04784369967793883
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 306, 1072, 1733], \"source\": 2045, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.00929071054750441,
+    "fragility_score": 0.0018581421095008822
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 1784, 1072, 1733], \"source\": 2045, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 1072, 236], \"source\": 68, \"target\": 236, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002057418276168288,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0726210245571659,
+    "fragility_score": 0.015347172221900497
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 1762], \"source\": 1709, \"target\": 1762, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1738, 1358, 1762], \"source\": 1709, \"target\": 1762, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 111, 1762], \"source\": 1709, \"target\": 1762, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.000369701825951807,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0001478807303807228
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1986, 476, 306, 139], \"source\": 1709, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 289, 1358, 173], \"source\": 1787, \"target\": 173, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.004401889776889767,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0017607559107559068
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1986, 476, 306, 2080], \"source\": 1709, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.00020939407814382638,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 8.375763125753056e-05
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 341, 1358, 1762], \"source\": 2045, \"target\": 1762, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.003968738899988944,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0015874955599955777
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 109, 1805], \"source\": 519, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 306, 1805], \"source\": 519, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0006687180874679066,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00026748723498716266
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 109, 306, 1805], \"source\": 519, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.001214669358419157,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00048586774336766285
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 306, 2080], \"source\": 2045, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.004805425130424978,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0019221700521699914
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 109, 306, 2080], \"source\": 2045, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.003650602175601758,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0014602408702407033
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 306, 112, 2080], \"source\": 2045, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0018686417748915163,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.10838113929146509,
+    "fragility_score": 0.022423684568249627
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 289], \"source\": 1709, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1738, 1358, 289], \"source\": 1709, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002074631618381284,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0008298526473525137
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 1722, 289], \"source\": 1709, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0008510454822954483,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.14038597020933974,
+    "fragility_score": 0.02841761223478613
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 1072, 306, 1245], \"source\": 1757, \"target\": 1245, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0026460088522585468,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0010584035409034187
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 126], \"source\": 1787, \"target\": 126, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.008089271336554127,
+    "fragility_score": 0.0016178542673108256
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 2045, 126], \"source\": 1787, \"target\": 126, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002247243728493664,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.05661860909822902,
+    "fragility_score": 0.01222261931104327
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 236, 126], \"source\": 1787, \"target\": 126, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0015735583860582436,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0737344001610305,
+    "fragility_score": 0.015376303386629398
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 289, 109, 426], \"source\": 68, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0007535873848373564,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.09911558977455748,
+    "fragility_score": 0.02012455290884644
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 341], \"source\": 1709, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0011403247487804247,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.04786886070853491,
+    "fragility_score": 0.010029902041219152
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1738, 1358, 341], \"source\": 1709, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 613, 341], \"source\": 1709, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.00036927621861149174,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0001477104874445967
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 109, 289], \"source\": 2045, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.15167069243156206,
+    "fragility_score": 0.030334138486312414
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 133, 109, 289], \"source\": 2045, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0017576819014316902,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0007030727605726761
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 153, 109, 289], \"source\": 2045, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0007478583916082082,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.07737016908212535,
+    "fragility_score": 0.015773177173068354
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 289, 109, 1772], \"source\": 68, \"target\": 1772, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0002862345987346415,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00011449383949385661
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 289, 109, 1661], \"source\": 1709, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0009089514652015629,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.14380787037037024,
+    "fragility_score": 0.029125154660154674
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 109, 153], \"source\": 519, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.00124438825063794,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.22953779186795487,
+    "fragility_score": 0.046405313673846156
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 306, 153], \"source\": 519, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0007813790376291208,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00031255161505164833
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 2045, 153], \"source\": 519, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.3394977858293071,
+    "fragility_score": 0.06789955716586142
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 109, 1661], \"source\": 2045, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 1013, 1661], \"source\": 2045, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002364457070706788,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.18370068438003173,
+    "fragility_score": 0.03768591970428906
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 133, 109, 1661], \"source\": 2045, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 758], \"source\": 68, \"target\": 758, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 111, 758], \"source\": 68, \"target\": 758, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0012766656954155409,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0005106662781662164
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 1762, 758], \"source\": 68, \"target\": 758, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0009915584415583212,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.1602443136070857,
+    "fragility_score": 0.03244548609804047
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 289, 1358, 1568], \"source\": 1346, \"target\": 1568, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 1072, 1358, 1568], \"source\": 1346, \"target\": 1568, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.004183590714840674,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.007875402576489776,
+    "fragility_score": 0.0032485168012342247
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 1483, 1358, 1568], \"source\": 1346, \"target\": 1568, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 306, 1805], \"source\": 308, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0005690941003438921,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00022763764013755683
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 350, 306, 1805], \"source\": 308, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.000638152819402632,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.23880334138486337,
+    "fragility_score": 0.048015929404733725
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 306, 109, 1805], \"source\": 308, \"target\": 1805, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 1245], \"source\": 1787, \"target\": 1245, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0018221764346762481,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.26478839573268953,
+    "fragility_score": 0.05368654972040841
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 109, 306, 1245], \"source\": 1787, \"target\": 1245, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0015333277833273762,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.19275236513687588,
+    "fragility_score": 0.03916380414070613
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 542, 1245], \"source\": 1787, \"target\": 1245, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0017678633866130833,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.01497710346215797,
+    "fragility_score": 0.0037025660470768277
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 306, 153], \"source\": 308, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0006800588300588384,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00027202353202353534
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 2045, 153], \"source\": 308, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.003524835581085267,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.001409934232434107
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 306, 109, 153], \"source\": 308, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0029101925851925114,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.12947237318840532,
+    "fragility_score": 0.02705855167175807
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 1620], \"source\": 1709, \"target\": 1620, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1738, 1358, 1620], \"source\": 1709, \"target\": 1620, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.05166188607085331,
+    "fragility_score": 0.010332377214170664
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 1483, 1620], \"source\": 1709, \"target\": 1620, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0022664065101561937,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.033690619967793545,
+    "fragility_score": 0.007644686597621187
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 306, 1072, 1733], \"source\": 519, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0003979048729048362,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0018996578099841344,
+    "fragility_score": 0.0005390935111587614
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 1072, 236], \"source\": 1709, \"target\": 236, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.061034369967793545,
+    "fragility_score": 0.01220687399355871
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 341, 1358, 1620], \"source\": 2045, \"target\": 1620, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 5.020188145182791e-05,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 2.0080752580731167e-05
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 306, 1483, 1620], \"source\": 2045, \"target\": 1620, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0013791423853920237,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0005516569541568095
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 754], \"source\": 1757, \"target\": 754, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.19004755434782616,
+    "fragility_score": 0.038009510869565236
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 957, 1358, 754], \"source\": 1757, \"target\": 754, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002638034881784518,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.001055213952713807
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1757, 1358, 1483, 754], \"source\": 1757, \"target\": 754, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.1399393619162641,
+    "fragility_score": 0.027987872383252822
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 326], \"source\": 68, \"target\": 326, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.19853940217391308,
+    "fragility_score": 0.03970788043478262
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 154, 326], \"source\": 68, \"target\": 326, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002786269286269072,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.012813254830917664,
+    "fragility_score": 0.003677158680691162
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 1754, 326], \"source\": 68, \"target\": 326, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 109, 289, 1358, 1762], \"source\": 519, \"target\": 1762, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.3575822765700485,
+    "fragility_score": 0.0715164553140097
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 306, 139], \"source\": 519, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 3.777590873138559e-05,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.11101046698872796,
+    "fragility_score": 0.022217203761238147
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 2045, 139], \"source\": 519, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.013756793478260754,
+    "fragility_score": 0.002751358695652151
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 306, 103, 139], \"source\": 519, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.11790458937198078,
+    "fragility_score": 0.02358091787439616
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 306, 2080], \"source\": 519, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 109, 306, 2080], \"source\": 519, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 306, 112, 2080], \"source\": 519, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 289, 109, 426], \"source\": 1709, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0014232621545116897,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0005693048618046759
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 1546], \"source\": 68, \"target\": 1546, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0009691084650640391,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.14963893921095028,
+    "fragility_score": 0.030315431228215672
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 341, 1546], \"source\": 68, \"target\": 1546, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0010759344821842654,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00043037379287370615
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 687, 1546], \"source\": 68, \"target\": 1546, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.12433323268921104,
+    "fragility_score": 0.024866646537842207
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 109, 289], \"source\": 519, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.029809530998389455,
+    "fragility_score": 0.005961906199677892
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 306, 109, 289], \"source\": 519, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 1346, 109, 289], \"source\": 519, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0007132249694750403,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.12099310587761636,
+    "fragility_score": 0.02448391116331329
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 109, 426], \"source\": 2045, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.00020923451548429672,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 8.369380619371869e-05
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 306, 426], \"source\": 2045, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0006561195748691628,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.04685612922705307,
+    "fragility_score": 0.009633673675358279
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 1772, 426], \"source\": 2045, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0025054161116659923,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0010021664446663969
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 289, 109, 1772], \"source\": 1709, \"target\": 1772, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.003833320152069969,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0015333280608279876
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 2045, 341], \"source\": 519, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0022510399322897,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.10478940217391308,
+    "fragility_score": 0.0218582964076985
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 109, 2045, 341], \"source\": 519, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.00035166569541539294,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.05524733293075723,
+    "fragility_score": 0.011190132864317606
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 306, 2045, 341], \"source\": 519, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.2713617149758454,
+    "fragility_score": 0.05427234299516908
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 289, 1358, 173], \"source\": 1346, \"target\": 173, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 109, 1661], \"source\": 519, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 306, 109, 1661], \"source\": 519, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.3179725241545892,
+    "fragility_score": 0.06359450483091784
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 1346, 109, 1661], \"source\": 519, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 306, 1072, 1733], \"source\": 308, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0012497648185147703,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.007057669082125351,
+    "fragility_score": 0.0019114397438309786
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 126], \"source\": 1346, \"target\": 126, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0002084769397267261,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 8.339077589069044e-05
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 236, 126], \"source\": 1346, \"target\": 126, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.1830276268115938,
+    "fragility_score": 0.03660552536231876
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 236, 126], \"source\": 1346, \"target\": 126, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.3650802636876005,
+    "fragility_score": 0.0730160527375201
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 758], \"source\": 1709, \"target\": 758, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.003279712648462385,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.14929926529790638,
+    "fragility_score": 0.03117173811896623
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1738, 1358, 758], \"source\": 1709, \"target\": 758, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0009279019591516835,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.11710572665056329,
+    "fragility_score": 0.023792306113773334
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 111, 758], \"source\": 1709, \"target\": 758, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0015687007437004963,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0006274802974801986
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1787, 306, 1483, 754], \"source\": 1787, \"target\": 754, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.10616696859903385,
+    "fragility_score": 0.021233393719806773
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 341, 1358, 758], \"source\": 2045, \"target\": 758, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 306, 1072, 1358, 1762], \"source\": 308, \"target\": 1762, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.05727908615136901,
+    "fragility_score": 0.011455817230273802
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 306, 139], \"source\": 308, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002786453130203065,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.009749899355878,
+    "fragility_score": 0.003064561123256826
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 2045, 139], \"source\": 308, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 306, 103, 139], \"source\": 308, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.00309735542235523,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0012389421689420921
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 306, 2080], \"source\": 308, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 7.858877233835049e-05,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.09990187198067613,
+    "fragility_score": 0.02001180990507057
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 350, 306, 2080], \"source\": 308, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.2722612218196456,
+    "fragility_score": 0.05445224436392913
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 306, 112, 2080], \"source\": 308, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.09717819041867948,
+    "fragility_score": 0.0194356380837359
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 109, 153], \"source\": 1805, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0014757735320233833,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.148783464170692,
+    "fragility_score": 0.030347002246947752
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 306, 153], \"source\": 1805, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 109, 236, 153], \"source\": 1805, \"target\": 153, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0028515075202573403,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.10814210950080483,
+    "fragility_score": 0.022769024908263904
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 306, 109, 289], \"source\": 308, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.004868659420290022,
+    "fragility_score": 0.0009737318840580046
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 2045, 109, 289], \"source\": 308, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 2045, 341], \"source\": 308, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.054838466183574575,
+    "fragility_score": 0.010967693236714916
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 306, 2045, 341], \"source\": 308, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 306, 109, 1661], \"source\": 308, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0023842130092126546,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.07295440821255994,
+    "fragility_score": 0.01554456684619705
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 2045, 109, 1661], \"source\": 308, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.16204332729468618,
+    "fragility_score": 0.03240866545893724
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 2045, 1013, 1661], \"source\": 308, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 1568], \"source\": 68, \"target\": 1568, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0006135149572648602,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00024540598290594405
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 154, 1568], \"source\": 68, \"target\": 1568, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0015843718781215488,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.01436065821255994,
+    "fragility_score": 0.0035058803937606077
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 748, 1568], \"source\": 68, \"target\": 1568, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.23718045491143336,
+    "fragility_score": 0.047436090982286676
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 1245], \"source\": 1346, \"target\": 1245, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 109, 306, 1245], \"source\": 1346, \"target\": 1245, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 542, 1245], \"source\": 1346, \"target\": 1245, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.036735104669887164,
+    "fragility_score": 0.007347020933977433
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 306, 1483, 1620], \"source\": 519, \"target\": 1620, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.00025879814629786724,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.2308713264895328,
+    "fragility_score": 0.046277784556425706
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 109, 236], \"source\": 519, \"target\": 236, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 8.42345154841162e-05,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.03559656803542666,
+    "fragility_score": 0.007153007413278978
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 306, 236], \"source\": 519, \"target\": 236, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0007718122155621621,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00030872488622486484
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 2045, 236], \"source\": 519, \"target\": 236, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 326], \"source\": 1709, \"target\": 326, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0014860026819585592,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0005944010727834238
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1738, 1358, 326], \"source\": 1709, \"target\": 326, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 154, 326], \"source\": 1709, \"target\": 326, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.000757643051393031,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.10165685386473466,
+    "fragility_score": 0.020634427993504147
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 341, 1358, 326], \"source\": 2045, \"target\": 326, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0023461378898878005,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0009384551559551203
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 1546], \"source\": 1709, \"target\": 1546, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0020753170440668822,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.13425925925925952,
+    "fragility_score": 0.027681978669478656
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1738, 1358, 1546], \"source\": 1709, \"target\": 1546, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0010764964202460148,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.009466837761674896,
+    "fragility_score": 0.002323966120433385
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1709, 1358, 341, 1546], \"source\": 1709, \"target\": 1546, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.006850090579709978,
+    "fragility_score": 0.0013700181159419956
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 1072, 1733], \"source\": 1805, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002578758047507984,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0010315032190031936
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 306, 1072, 1733], \"source\": 1805, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002274741230991001,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0009098964923964004
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 1072, 1358, 1733], \"source\": 1805, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.1155331622383251,
+    "fragility_score": 0.02310663244766502
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 109, 426], \"source\": 519, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0005088807026306097,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0002035522810522439
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 306, 426], \"source\": 519, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0015756692653749182,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0006302677061499674
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 109, 306, 426], \"source\": 519, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0013713543401042416,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.2315003522544279,
+    "fragility_score": 0.04684861218692728
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 341, 1546], \"source\": 2045, \"target\": 1546, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.1446193136070857,
+    "fragility_score": 0.02892386272141714
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 306, 1804, 1546], \"source\": 2045, \"target\": 1546, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [2045, 341, 1358, 1546], \"source\": 2045, \"target\": 1546, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 109, 1772], \"source\": 519, \"target\": 1772, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.28734525966183533,
+    "fragility_score": 0.057469051932367066
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 306, 1772], \"source\": 519, \"target\": 1772, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.00034093753468747434,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00013637501387498975
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 2045, 1772], \"source\": 519, \"target\": 1772, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0003047237484734844,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00012188949938939375
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 1072, 1358, 1762], \"source\": 1805, \"target\": 1762, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.004429808386058193,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.001771923354423277
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 306, 139], \"source\": 1805, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0007663399100899249,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.08067255434782616,
+    "fragility_score": 0.016441046833601203
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 109, 306, 139], \"source\": 1805, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0008666701354200224,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.09526595209339739,
+    "fragility_score": 0.019399858472847486
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 306, 103, 139], \"source\": 1805, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 306, 1483, 1620], \"source\": 308, \"target\": 1620, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.05721618357487923,
+    "fragility_score": 0.011443236714975847
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 306, 2080], \"source\": 1805, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 109, 306, 2080], \"source\": 1805, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.019896084943638925,
+    "fragility_score": 0.003979216988727785
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 306, 112, 2080], \"source\": 1805, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.1596152878421897,
+    "fragility_score": 0.03192305756843794
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [153, 236, 1072, 1733], \"source\": 153, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.151689563204509,
+    "fragility_score": 0.0303379126409018
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [153, 306, 1072, 1733], \"source\": 153, \"target\": 1733, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 306, 236], \"source\": 308, \"target\": 236, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.001035287629037679,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0004141150516150716
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 2045, 236], \"source\": 308, \"target\": 236, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.00019519855144806142,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 7.807942057922457e-05
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 306, 109, 236], \"source\": 308, \"target\": 236, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [519, 109, 289, 1358, 758], \"source\": 519, \"target\": 758, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.1762089875201287,
+    "fragility_score": 0.03524179750402574
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 109, 289], \"source\": 1805, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 306, 109, 289], \"source\": 1805, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 426, 109, 289], \"source\": 1805, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.002525791569541469,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.3208597524154593,
+    "fragility_score": 0.06518226711090845
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 109, 2045, 341], \"source\": 1805, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.062166616344605075,
+    "fragility_score": 0.012433323268921015
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 306, 2045, 341], \"source\": 1805, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 1072, 1358, 341], \"source\": 1805, \"target\": 341, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [153, 109, 289, 1358, 1762], \"source\": 153, \"target\": 1762, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0017361111111107164,
+    "fragility_score": 0.0003472222222221433
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 173], \"source\": 68, \"target\": 173, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.06509158615136901,
+    "fragility_score": 0.013018317230273801
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [68, 1358, 687, 173], \"source\": 68, \"target\": 173, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [153, 306, 139], \"source\": 153, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [153, 1623, 139], \"source\": 153, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.005320102813852728,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.2484588868760067,
+    "fragility_score": 0.05181981850074243
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [153, 2045, 139], \"source\": 153, \"target\": 139, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0022359751359750657,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0008943900543900263
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 109, 1661], \"source\": 1805, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.1772657508051525,
+    "fragility_score": 0.035453150161030504
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 306, 109, 1661], \"source\": 1805, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1805, 426, 109, 1661], \"source\": 1805, \"target\": 1661, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0006034666722164184,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.00024138666888656735
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [153, 306, 2080], \"source\": 153, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.00012112332112282354,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.04989432367149771,
+    "fragility_score": 0.010027314062748672
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [153, 109, 306, 2080], \"source\": 153, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0012793949106447156,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0005117579642578863
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [153, 306, 112, 2080], \"source\": 153, \"target\": 2080, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.020594303542672776,
+    "fragility_score": 0.004118860708534555
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 306, 426], \"source\": 308, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.04642210144927539,
+    "fragility_score": 0.009284420289855077
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 350, 306, 426], \"source\": 308, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0008003531191031199,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.07681662640901799,
+    "fragility_score": 0.015683466529444846
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [308, 306, 109, 426], \"source\": 308, \"target\": 426, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0008527722277723859,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0003411088911089544
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [1346, 306, 1483, 754], \"source\": 1346, \"target\": 754, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0007538412975910957,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.016908212560386104,
+    "fragility_score": 0.0036831790311136594
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [153, 109, 289], \"source\": 153, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.0
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [153, 236, 109, 289], \"source\": 153, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.03488576892109485,
+    "fragility_score": 0.006977153784218971
+  },
+  "{\"dataset\": \"Cora\", \"num_nodes\": 2708, \"path\": [153, 306, 109, 289], \"source\": 153, \"target\": 289, \"weights\": {\"lambda_ASP\": 0.2, \"lambda_E\": 0.4, \"lambda_LCC\": 0.4}}": {
+    "delta_E": 0.0016388687701185123,
+    "delta_LCC": 0.0,
+    "delta_ASP": 0.0,
+    "fragility_score": 0.000655547508047405
+  }
+}

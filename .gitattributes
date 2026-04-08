@@ -1,3 +1,9 @@
 public_process/extract/**/*.pt filter=lfs diff=lfs merge=lfs -text
 public_datasets/**/*.pt filter=lfs diff=lfs merge=lfs -text
+public_process/extract/CS_struct/semantic_tfidf.pt filter=lfs diff=lfs merge=lfs -text
+public_datasets/Coauthor/Physics/processed/data.pt filter=lfs diff=lfs merge=lfs -text
+public_process/extract/Physics_struct/semantic_raw.pt filter=lfs diff=lfs merge=lfs -text
+public_process/extract/Physics_struct/semantic_tfidf.pt filter=lfs diff=lfs merge=lfs -text
+public_datasets/Coauthor/CS/processed/data.pt filter=lfs diff=lfs merge=lfs -text
+public_process/extract/CS_struct/semantic_raw.pt filter=lfs diff=lfs merge=lfs -text
 *.pt filter=lfs diff=lfs merge=lfs -text

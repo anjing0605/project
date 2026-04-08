@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from itertools import islice
 from typing import List, Optional
 
 import networkx as nx
@@ -20,16 +19,29 @@ class PathGenerator:
         max_hops: int = 8,
         delta: int = 2,
     ) -> List[List[int]]:
+        if k <= 0:
+            return []
+
         shortest = nx.shortest_path_length(G, source=source, target=target)
         max_len = min(max_hops, shortest + delta)
+
         paths: List[List[int]] = []
         generator = nx.shortest_simple_paths(G, source=source, target=target)
-        for path in islice(generator, 0, None):
+
+        for path in generator:
             hops = len(path) - 1
-            if hops <= max_len:
-                paths.append(path)
+
+            # 关键修复：
+            # shortest_simple_paths 已按路径代价非降序输出，
+            # 一旦当前路径 hop 数已经超过 max_len，
+            # 后续路径只会更长，直接停止。
+            if hops > max_len:
+                break
+
+            paths.append(path)
             if len(paths) >= k:
                 break
+
         return paths
 
     @staticmethod

@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import List, Set, Tuple
 
-from src.core.path_features import PathFeatureExtractor
-from src.core.types import PathRecord
+from path.src.core.path_features import PathFeatureExtractor
+from path.src.core.types import PathRecord
 
 
 class PathDeduplicator:

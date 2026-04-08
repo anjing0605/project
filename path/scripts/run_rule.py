@@ -585,6 +585,9 @@ def main() -> None:
             "community_mode": bundle.metadata.get("community_mode"),
             "importance_alignment": bundle.metadata.get("importance_alignment"),
         },
+        "shared_base_metrics": {
+            k: float(v) for k, v in shared_base_metrics.items()
+        },
         "key_nodes": {
             "count": int(len(key_nodes)),
             "preview": [int(x) for x in key_nodes[: min(20, len(key_nodes))]],
@@ -602,6 +605,9 @@ def main() -> None:
                 for t in tasks[: min(20, len(tasks))]
             ],
         },
+        "candidate_coverage": {
+            "rule": rule_candidate_stats
+        },
         "comparison": comparison,
         "top_paths": {
             "rule": evaluator.summarize_top_paths(rule_paths, top_n=top_n),
@@ -614,6 +620,14 @@ def main() -> None:
 
     metrics_out = resolve_output_path(output_cfg.get("metrics_json", "outputs/metrics/rule_metrics.json"))
     paths_out = resolve_output_path(output_cfg.get("paths_json", "outputs/paths/rule_paths.json"))
+    candidate_out = resolve_output_path(
+        output_cfg.get("candidate_json", "outputs/metrics/candidate_coverage.json")
+    )
+
+    stage_print(f"[OUTPUT] candidate_out = {candidate_out}")
+
+    timed_call("save candidate json", save_json, candidate_out, rule_candidate_stats)
+    tb.save_json("candidate_coverage.json", rule_candidate_stats)
 
     stage_print(f"[OUTPUT] metrics_out = {metrics_out}")
     stage_print(f"[OUTPUT] paths_out   = {paths_out}")

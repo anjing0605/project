@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import time
 from dataclasses import replace
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Tuple
 
 import numpy as np
 import networkx as nx
@@ -13,6 +13,7 @@ from path.src.core.path_features import PathFeatureExtractor
 from path.src.core.path_generator import PathGenerator
 from path.src.core.path_scorer import RulePathScorer
 from path.src.core.types import GraphDataBundle, PathRecord, TaskPair
+
 
 class RuleBasedCriticalPath:
     """
@@ -25,11 +26,19 @@ class RuleBasedCriticalPath:
       + d * fragility_score
       - e * path_length
 
-    Features are min-max normalized within the candidate pool.
+    Notes
+    -----
+    1. Cheap-stage coarse screening:
+       first use cheap structural features only, then compute fragility only
+       for top_m_for_fragility candidates within each task.
 
-    Optimization added:
-    1) frag_cache inside run()
-    2) coarse screening before expensive fragility computation
+    2. Shared base metrics:
+       if shared_base_metrics is provided, reuse it across methods so that
+       all methods are evaluated on the same original graph baseline.
+
+    3. Candidate coverage statistics:
+       if candidate_stats is provided, this function will fill it in-place
+       with task-level and global candidate-pool statistics.
     """
 
     DEFAULT_WEIGHTS = {
@@ -40,23 +49,40 @@ class RuleBasedCriticalPath:
         "path_length": 0.10,
     }
 
-    # 便宜特征的粗筛权重
+    # cheap-stage coarse screening weights
     DEFAULT_CHEAP_WEIGHTS = {
         "avg_node_importance": 0.45,
         "avg_edge_bc": 0.30,
         "cross_comm_ratio": 0.15,
-        "path_length": 0.10,   # 这是惩罚项，后面会减掉
+        "path_length": 0.10,  # penalty
     }
 
+    @staticmethod
+    def _safe_stats(values: List[float]) -> Dict[str, float]:
+        if not values:
+            return {
+                "mean": 0.0,
+                "std": 0.0,
+                "min": 0.0,
+                "max": 0.0,
+            }
+        arr = np.asarray(values, dtype=float)
+        return {
+            "mean": float(np.mean(arr)),
+            "std": float(np.std(arr)),
+            "min": float(np.min(arr)),
+            "max": float(np.max(arr)),
+        }
 
     @staticmethod
     def _cheap_score_from_raw_features(
         features: Dict[str, float],
-        cheap_weights: Dict[str, float]
+        cheap_weights: Dict[str, float],
     ) -> float:
         """
-        粗筛阶段只用便宜特征，不做 fragility。
-        因为每个 task 候选数通常很少（如 3 条），直接用原始值粗排即可。
+        Cheap-stage score without fragility.
+        Since each task usually has very few candidates (e.g. k=3),
+        raw-feature coarse ranking is sufficient.
         """
         return float(
             cheap_weights["avg_node_importance"] * float(features.get("avg_node_importance", 0.0))
@@ -66,25 +92,74 @@ class RuleBasedCriticalPath:
         )
 
     @classmethod
+    def _build_candidate_stats(
+        cls,
+        *,
+        tasks: List[TaskPair],
+        total_paths_generated: int,
+        total_paths_after_coarse: int,
+        task_candidate_rows: List[Dict[str, Any]],
+        path_length_hist: Dict[int, int],
+        all_candidate_avg_node_importance: List[float],
+        all_candidate_avg_edge_bc: List[float],
+        all_candidate_cross_comm_ratio: List[float],
+        all_candidate_fragility_scores: List[float],
+        total_cache_hits: int,
+        total_cache_misses: int,
+    ) -> Dict[str, Any]:
+        num_tasks = int(len(tasks))
+
+        return {
+            "num_tasks": num_tasks,
+            "total_candidates": int(total_paths_generated),
+            "total_candidates_after_coarse": int(total_paths_after_coarse),
+            "mean_candidates_per_task": (
+                float(total_paths_generated / num_tasks) if num_tasks > 0 else 0.0
+            ),
+            "mean_candidates_after_coarse_per_task": (
+                float(total_paths_after_coarse / num_tasks) if num_tasks > 0 else 0.0
+            ),
+            "path_length_distribution": {
+                str(k): int(v) for k, v in sorted(path_length_hist.items())
+            },
+            "task_rows": task_candidate_rows,
+            "feature_ranges": {
+                "avg_node_importance": cls._safe_stats(all_candidate_avg_node_importance),
+                "avg_edge_bc": cls._safe_stats(all_candidate_avg_edge_bc),
+                "cross_comm_ratio": cls._safe_stats(all_candidate_cross_comm_ratio),
+                "fragility_score": cls._safe_stats(all_candidate_fragility_scores),
+            },
+            "fragility_cache": {
+                "hits": int(total_cache_hits),
+                "misses": int(total_cache_misses),
+                "size": int(total_cache_misses),
+            },
+        }
+
+    @classmethod
     def run(
-            cls,
-            bundle: GraphDataBundle,
-            tasks: List[TaskPair],
-            path_k: int = 3,
-            max_hops: int = 8,
-            delta: int = 2,
-            weights: Dict[str, float] | None = None,
-            top_q: int = 10,
-            overlap_threshold: float = 0.6,
-            fragility_weights: Dict[str, float] | None = None,
-            top_m_for_fragility: int = 1,
-            fragility_gate: float = 0.50,
-            gate_penalty: float = 0.08,
-            shared_base_metrics: Dict[str, float] | None = None,
-            candidate_stats: Dict[str, Any] | None = None,
+        cls,
+        bundle: GraphDataBundle,
+        tasks: List[TaskPair],
+        path_k: int = 3,
+        max_hops: int = 8,
+        delta: int = 2,
+        weights: Dict[str, float] | None = None,
+        top_q: int = 10,
+        overlap_threshold: float = 0.6,
+        fragility_weights: Dict[str, float] | None = None,
+        top_m_for_fragility: int = 1,
+        fragility_gate: float = 0.50,
+        gate_penalty: float = 0.08,
+        shared_base_metrics: Dict[str, float] | None = None,
+        candidate_stats: Dict[str, Any] | None = None,
     ) -> List[PathRecord]:
         weights = weights or dict(cls.DEFAULT_WEIGHTS)
-        fragility_weights = fragility_weights or {"lambda_E": 0.4, "lambda_LCC": 0.4, "lambda_ASP": 0.2}
+        fragility_weights = fragility_weights or {
+            "lambda_E": 0.4,
+            "lambda_LCC": 0.4,
+            "lambda_ASP": 0.2,
+        }
         cheap_weights = dict(cls.DEFAULT_CHEAP_WEIGHTS)
 
         print(
@@ -98,13 +173,16 @@ class RuleBasedCriticalPath:
         if shared_base_metrics is None:
             t0 = time.perf_counter()
             base_metrics = evaluator.compute_base_metrics(bundle.nx_graph)
-            print(f"[rule] base_metrics computed locally in {time.perf_counter() - t0:.2f}s: {base_metrics}",
-                  flush=True)
+            print(
+                f"[rule] base_metrics computed locally in {time.perf_counter() - t0:.2f}s: "
+                f"{base_metrics}",
+                flush=True,
+            )
         else:
             base_metrics = dict(shared_base_metrics)
             print(f"[rule] using shared_base_metrics: {base_metrics}", flush=True)
 
-        # ===== 新增：fragility cache =====
+        # fragility cache
         frag_cache: Dict[Tuple[int, ...], Dict[str, float]] = {}
 
         candidates: List[PathRecord] = []
@@ -116,9 +194,10 @@ class RuleBasedCriticalPath:
         total_paths_after_coarse = 0
         total_cache_hits = 0
         total_cache_misses = 0
+
         task_candidate_rows: List[Dict[str, Any]] = []
         path_length_hist: Dict[int, int] = {}
-        all_candidate_lengths: List[int] = []
+
         all_candidate_avg_node_importance: List[float] = []
         all_candidate_avg_edge_bc: List[float] = []
         all_candidate_cross_comm_ratio: List[float] = []
@@ -132,7 +211,7 @@ class RuleBasedCriticalPath:
                     flush=True,
                 )
 
-            # ===== 1. 生成候选路径 =====
+            # 1) generate candidate paths
             t_gen0 = time.perf_counter()
             try:
                 paths = PathGenerator.k_shortest_simple_paths(
@@ -145,6 +224,7 @@ class RuleBasedCriticalPath:
                 )
             except (nx.NetworkXNoPath, nx.NodeNotFound):
                 continue
+
             t_gen = time.perf_counter() - t_gen0
             total_gen_time += t_gen
             total_paths_generated += len(paths)
@@ -156,7 +236,8 @@ class RuleBasedCriticalPath:
 
             if not paths:
                 continue
-            task_row = {
+
+            task_row: Dict[str, Any] = {
                 "source": int(task.source),
                 "target": int(task.target),
                 "shortest_len": int(task.shortest_len),
@@ -165,7 +246,7 @@ class RuleBasedCriticalPath:
                 "num_candidates": int(len(paths)),
             }
 
-            # ===== 2. 先提 cheap features，不算 fragility =====
+            # 2) cheap feature extraction
             task_cheap_records: List[PathRecord] = []
             for p_idx, path in enumerate(paths):
                 t_feat0 = time.perf_counter()
@@ -180,12 +261,17 @@ class RuleBasedCriticalPath:
 
                 cheap_score = cls._cheap_score_from_raw_features(feats, cheap_weights)
                 path_len_edges = int(len(path) - 1)
-                all_candidate_lengths.append(path_len_edges)
-                path_length_hist[path_len_edges] = path_length_hist.get(path_len_edges, 0) + 1
 
-                all_candidate_avg_node_importance.append(float(feats.get("avg_node_importance", 0.0)))
-                all_candidate_avg_edge_bc.append(float(feats.get("avg_edge_bc", 0.0)))
-                all_candidate_cross_comm_ratio.append(float(feats.get("cross_comm_ratio", 0.0)))
+                path_length_hist[path_len_edges] = path_length_hist.get(path_len_edges, 0) + 1
+                all_candidate_avg_node_importance.append(
+                    float(feats.get("avg_node_importance", 0.0))
+                )
+                all_candidate_avg_edge_bc.append(
+                    float(feats.get("avg_edge_bc", 0.0))
+                )
+                all_candidate_cross_comm_ratio.append(
+                    float(feats.get("cross_comm_ratio", 0.0))
+                )
 
                 record = PathRecord(
                     nodes=path,
@@ -194,7 +280,7 @@ class RuleBasedCriticalPath:
                     target=task.target,
                     success=True,
                     method="rule",
-                    score=cheap_score,   # 这里先临时存粗分数
+                    score=cheap_score,  # temporary cheap score
                     features=feats,
                     fragility=None,
                     metadata={
@@ -213,7 +299,7 @@ class RuleBasedCriticalPath:
                     flush=True,
                 )
 
-            # ===== 3. 每个 task 先粗筛，再精算 =====
+            # 3) coarse screening within task
             task_cheap_records.sort(
                 key=lambda r: r.score if r.score is not None else -1e18,
                 reverse=True,
@@ -227,7 +313,13 @@ class RuleBasedCriticalPath:
                 flush=True,
             )
 
-            # ===== 4. 只对粗筛保留的路径计算 fragility（带 cache） =====
+            task_row["num_candidates_after_coarse"] = int(len(selected_for_frag))
+            task_row["mean_candidate_length"] = float(
+                sum(len(r.nodes) - 1 for r in task_cheap_records) / len(task_cheap_records)
+            ) if task_cheap_records else 0.0
+            task_candidate_rows.append(task_row)
+
+            # 4) compute fragility only for kept candidates
             for keep_idx, record in enumerate(selected_for_frag):
                 path = record.nodes
                 path_key = tuple(path)
@@ -244,11 +336,12 @@ class RuleBasedCriticalPath:
                         base_metrics=base_metrics,
                         num_nodes=bundle.num_nodes,
                     )
-
-                    all_candidate_fragility_scores.append(float(frag.get("fragility_score", 0.0)))
                     frag_cache[path_key] = frag
                     cache_hit = False
                     total_cache_misses += 1
+
+                all_candidate_fragility_scores.append(float(frag.get("fragility_score", 0.0)))
+
                 t_frag = time.perf_counter() - t_frag0
                 total_frag_time += t_frag
 
@@ -259,13 +352,12 @@ class RuleBasedCriticalPath:
                     flush=True,
                 )
 
-                feats = dict(record.features)
+                feats = dict(record.features or {})
                 feats.update(frag)
 
-                # 这里才形成最终候选记录
                 final_record = replace(
                     record,
-                    score=None,           # 后面再做最终正规 score
+                    score=None,   # final normalized score will be assigned later
                     features=feats,
                     fragility=frag,
                 )
@@ -282,52 +374,28 @@ class RuleBasedCriticalPath:
             f"hits = {total_cache_hits}, misses = {total_cache_misses}",
             flush=True,
         )
+
         if candidate_stats is not None:
-            candidate_stats["num_tasks"] = int(len(tasks))
-            candidate_stats["total_candidates"] = int(total_paths_generated)
-            candidate_stats["total_candidates_after_coarse"] = int(total_paths_after_coarse)
-            candidate_stats["mean_candidates_per_task"] = (
-                float(total_paths_generated / len(tasks)) if tasks else 0.0
+            stats = cls._build_candidate_stats(
+                tasks=tasks,
+                total_paths_generated=total_paths_generated,
+                total_paths_after_coarse=total_paths_after_coarse,
+                task_candidate_rows=task_candidate_rows,
+                path_length_hist=path_length_hist,
+                all_candidate_avg_node_importance=all_candidate_avg_node_importance,
+                all_candidate_avg_edge_bc=all_candidate_avg_edge_bc,
+                all_candidate_cross_comm_ratio=all_candidate_cross_comm_ratio,
+                all_candidate_fragility_scores=all_candidate_fragility_scores,
+                total_cache_hits=total_cache_hits,
+                total_cache_misses=total_cache_misses,
             )
-            candidate_stats["path_length_distribution"] = {
-                str(k): int(v) for k, v in sorted(path_length_hist.items())
-            }
-            candidate_stats["task_rows"] = task_candidate_rows
-            candidate_stats["feature_ranges"] = {
-                "avg_node_importance": {
-                    "mean": float(
-                        np.mean(all_candidate_avg_node_importance)) if all_candidate_avg_node_importance else 0.0,
-                    "std": float(
-                        np.std(all_candidate_avg_node_importance)) if all_candidate_avg_node_importance else 0.0,
-                    "min": float(
-                        np.min(all_candidate_avg_node_importance)) if all_candidate_avg_node_importance else 0.0,
-                    "max": float(
-                        np.max(all_candidate_avg_node_importance)) if all_candidate_avg_node_importance else 0.0,
-                },
-                "avg_edge_bc": {
-                    "mean": float(np.mean(all_candidate_avg_edge_bc)) if all_candidate_avg_edge_bc else 0.0,
-                    "std": float(np.std(all_candidate_avg_edge_bc)) if all_candidate_avg_edge_bc else 0.0,
-                    "min": float(np.min(all_candidate_avg_edge_bc)) if all_candidate_avg_edge_bc else 0.0,
-                    "max": float(np.max(all_candidate_avg_edge_bc)) if all_candidate_avg_edge_bc else 0.0,
-                },
-                "cross_comm_ratio": {
-                    "mean": float(np.mean(all_candidate_cross_comm_ratio)) if all_candidate_cross_comm_ratio else 0.0,
-                    "std": float(np.std(all_candidate_cross_comm_ratio)) if all_candidate_cross_comm_ratio else 0.0,
-                    "min": float(np.min(all_candidate_cross_comm_ratio)) if all_candidate_cross_comm_ratio else 0.0,
-                    "max": float(np.max(all_candidate_cross_comm_ratio)) if all_candidate_cross_comm_ratio else 0.0,
-                },
-                "fragility_score": {
-                    "mean": float(np.mean(all_candidate_fragility_scores)) if all_candidate_fragility_scores else 0.0,
-                    "std": float(np.std(all_candidate_fragility_scores)) if all_candidate_fragility_scores else 0.0,
-                    "min": float(np.min(all_candidate_fragility_scores)) if all_candidate_fragility_scores else 0.0,
-                    "max": float(np.max(all_candidate_fragility_scores)) if all_candidate_fragility_scores else 0.0,
-                },
-            }
+            candidate_stats.clear()
+            candidate_stats.update(stats)
 
         if not candidates:
             return []
 
-        # ===== 最终正规评分：交给统一 scorer =====
+        # final normalized scoring
         scored = RulePathScorer.rank_paths(
             path_records=candidates,
             weights=weights,

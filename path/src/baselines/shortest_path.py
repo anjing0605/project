@@ -19,6 +19,7 @@ class ShortestPathBaseline:
         bundle: GraphDataBundle,
         tasks: List[TaskPair],
         fragility_weights: Optional[Dict[str, float]] = None,
+        shared_base_metrics: Optional[Dict[str, float]] = None,
         sort_by: str = "fragility_score",
     ) -> List[PathRecord]:
         fragility_weights = fragility_weights or {
@@ -31,12 +32,16 @@ class ShortestPathBaseline:
 
         evaluator = FragilityEvaluator(**fragility_weights)
 
-        t0 = time.perf_counter()
-        base_metrics = evaluator.compute_base_metrics(bundle.nx_graph)
-        print(
-            f"[shortest] base_metrics computed in {time.perf_counter() - t0:.2f}s: {base_metrics}",
-            flush=True,
-        )
+        if shared_base_metrics is None:
+            t0 = time.perf_counter()
+            base_metrics = evaluator.compute_base_metrics(bundle.nx_graph)
+            print(
+                f"[shortest] base_metrics computed locally in {time.perf_counter() - t0:.2f}s: {base_metrics}",
+                flush=True,
+            )
+        else:
+            base_metrics = dict(shared_base_metrics)
+            print(f"[shortest] using shared_base_metrics: {base_metrics}", flush=True)
 
         # 新增：局部缓存
         frag_cache: Dict[Tuple[int, ...], Dict[str, float]] = {}

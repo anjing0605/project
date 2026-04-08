@@ -23,6 +23,7 @@ class NodeScorePathBaseline:
         delta: int = 2,
         use_internal_only: bool = False,
         fragility_weights: Optional[Dict[str, float]] = None,
+        shared_base_metrics: Optional[Dict[str, float]] = None,
         sort_by: str = "fragility_score",
         top_m_for_fragility: int = 1,   # 新增：粗筛后保留多少条做 fragility
     ) -> List[PathRecord]:
@@ -44,12 +45,16 @@ class NodeScorePathBaseline:
 
         evaluator = FragilityEvaluator(**fragility_weights)
 
-        t0 = time.perf_counter()
-        base_metrics = evaluator.compute_base_metrics(bundle.nx_graph)
-        print(
-            f"[node_score] base_metrics computed in {time.perf_counter() - t0:.2f}s: {base_metrics}",
-            flush=True,
-        )
+        if shared_base_metrics is None:
+            t0 = time.perf_counter()
+            base_metrics = evaluator.compute_base_metrics(bundle.nx_graph)
+            print(
+                f"[node_score] base_metrics computed locally in {time.perf_counter() - t0:.2f}s: {base_metrics}",
+                flush=True,
+            )
+        else:
+            base_metrics = dict(shared_base_metrics)
+            print(f"[node_score] using shared_base_metrics: {base_metrics}", flush=True)
 
         frag_cache: Dict[Tuple[int, ...], Dict[str, float]] = {}
 

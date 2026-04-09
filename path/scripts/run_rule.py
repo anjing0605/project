@@ -299,33 +299,25 @@ def log_comparison_to_tb(
     comparison: Dict[str, Any],
     k_list: List[int],
 ) -> None:
-    """
-    comparison 典型形式:
-    {
-        "rule": {
-            "delta_E_curve": [...],
-            "delta_LCC_curve": [...],
-            "delta_ASP_curve": [...]
-        },
-        ...
-    }
-    """
     if "methods" in comparison:
         method_dict = comparison["methods"]
     else:
         method_dict = comparison
+
     for method_name, metrics in method_dict.items():
+        real_k_list = metrics.get("k_list", k_list)
+
         delta_E_curve = metrics.get("delta_E_curve", [])
         delta_LCC_curve = metrics.get("delta_LCC_curve", [])
         delta_ASP_curve = metrics.get("delta_ASP_curve", [])
 
-        for k, v in zip(k_list, delta_E_curve):
+        for k, v in zip(real_k_list, delta_E_curve):
             tb.add_scalar(f"{method_name}/damage/delta_E_at_k", v, int(k))
 
-        for k, v in zip(k_list, delta_LCC_curve):
+        for k, v in zip(real_k_list, delta_LCC_curve):
             tb.add_scalar(f"{method_name}/damage/delta_LCC_at_k", v, int(k))
 
-        for k, v in zip(k_list, delta_ASP_curve):
+        for k, v in zip(real_k_list, delta_ASP_curve):
             tb.add_scalar(f"{method_name}/damage/delta_ASP_at_k", v, int(k))
 
         if delta_E_curve:
@@ -334,7 +326,6 @@ def log_comparison_to_tb(
             tb.add_scalar(f"{method_name}/damage/top_last_delta_LCC", float(delta_LCC_curve[-1]), 0)
         if delta_ASP_curve:
             tb.add_scalar(f"{method_name}/damage/top_last_delta_ASP", float(delta_ASP_curve[-1]), 0)
-
 
 def main() -> None:
     total_t0 = time.perf_counter()
@@ -390,7 +381,7 @@ def main() -> None:
         f"delta={paths_cfg.get('delta', 2)}, "
         f"top_q={paths_cfg.get('top_q', 10)}, "
         f"overlap_threshold={paths_cfg.get('overlap_threshold', 0.6)}, "
-        f"top_m_for_fragility={paths_cfg.get('top_m_for_fragility', 1)}, "
+        f"top_m_for_fragility={paths_cfg.get('top_m_for_fragility', 3)}, "
         f"fragility_gate={cfg.get('scorer', {}).get('fragility_gate', 0.50)}, "
         f"gate_penalty={cfg.get('scorer', {}).get('gate_penalty', 0.08)}"
     )
@@ -476,6 +467,7 @@ def main() -> None:
     log_dataset_and_task_info(tb, bundle, key_nodes, tasks)
 
     rule_candidate_stats: Dict[str, Any] = {}
+    stage_print(f"[DEBUG] effective top_m_for_fragility = {paths_cfg.get('top_m_for_fragility', 3)}")
 
     rule_paths = timed_call(
         "RuleBasedCriticalPath.run",
@@ -489,7 +481,7 @@ def main() -> None:
         top_q=paths_cfg.get("top_q", 10),
         overlap_threshold=paths_cfg.get("overlap_threshold", 0.6),
         fragility_weights=fragility_cfg,
-        top_m_for_fragility=paths_cfg.get("top_m_for_fragility", 1),
+        top_m_for_fragility=paths_cfg.get("top_m_for_fragility", 3),
         fragility_gate=cfg.get("scorer", {}).get("fragility_gate", 0.50),
         gate_penalty=cfg.get("scorer", {}).get("gate_penalty", 0.08),
         shared_base_metrics=shared_base_metrics,
@@ -570,6 +562,9 @@ def main() -> None:
         },
         G=bundle.nx_graph,
         k_list=k_list,
+        mode="approx",
+        early_stop=False,
+        tol=1e-4,
         shared_base_metrics=shared_base_metrics,
     )
 

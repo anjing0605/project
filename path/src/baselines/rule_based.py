@@ -135,7 +135,121 @@ class RuleBasedCriticalPath:
                 "size": int(total_cache_misses),
             },
         }
+    @staticmethod
+    def _edge_set_from_path_record(record: PathRecord) -> set[tuple[int, int]]:
+        return {tuple(sorted(e)) for e in record.edges}
 
+    @staticmethod
+    def _edge_jaccard_overlap(
+        a: set[tuple[int, int]],
+        b: set[tuple[int, int]],
+    ) -> float:
+        if not a and not b:
+            return 0.0
+        inter = len(a & b)
+        union = len(a | b)
+        return float(inter / union) if union > 0 else 0.0
+
+    @staticmethod
+    def _single_path_score(
+        record: PathRecord,
+        weights: Dict[str, float],
+    ) -> float:
+        """
+        单路径分数：使用 RulePathScorer 已经写回的 normalized features
+        """
+        feats = record.features or {}
+
+        s = 0.0
+        s += float(weights.get("avg_node_importance", 0.0)) * float(feats.get("norm_avg_node_importance", 0.0))
+        s += float(weights.get("avg_edge_bc", 0.0)) * float(feats.get("norm_avg_edge_bc", 0.0))
+        s += float(weights.get("cross_comm_ratio", 0.0)) * float(feats.get("norm_cross_comm_ratio", 0.0))
+        s += float(weights.get("fragility_score", 0.0)) * float(feats.get("norm_fragility_score", 0.0))
+        s -= float(weights.get("path_length", 0.0)) * float(feats.get("norm_path_length", 0.0))
+        return float(s)
+
+    @classmethod
+    def _greedy_set_level_select(
+        cls,
+        scored_records: List[PathRecord],
+        top_q: int,
+        overlap_threshold: float,
+        lambda_marginal: float = 0.70,
+        lambda_single: float = 0.30,
+        overlap_penalty: float = 0.20,
+    ) -> List[PathRecord]:
+        """
+        集合级贪心选择：
+        每一步选择“对当前已选集合带来最大边际增益”的路径，而不是只看单路径分数。
+
+        定义：
+            set_score = lambda_single * single_score
+                        + lambda_marginal * marginal_gain
+                        - overlap_penalty * max_overlap
+
+        这里的 marginal_gain 用“相对当前已选边集新增了多少边”近似。
+        这不是最终 RL/set-level 最优，但足够作为规则法的论文级升级版本。
+        """
+        if not scored_records or top_q <= 0:
+            return []
+
+        remaining = list(scored_records)
+        selected: List[PathRecord] = []
+        selected_edge_union: set[tuple[int, int]] = set()
+
+        while remaining and len(selected) < top_q:
+            best_idx = None
+            best_value = float("-inf")
+            best_augmented_score = None
+
+            for idx, record in enumerate(remaining):
+                edge_set = cls._edge_set_from_path_record(record)
+                single_score = float(record.score if record.score is not None else 0.0)
+
+                # 相对当前集合的新增边比例
+                if len(edge_set) == 0:
+                    marginal_gain = 0.0
+                else:
+                    new_edges = edge_set - selected_edge_union
+                    marginal_gain = float(len(new_edges) / len(edge_set))
+
+                # 与已选集合中最相似路径的 overlap
+                if not selected:
+                    max_overlap = 0.0
+                else:
+                    max_overlap = max(
+                        cls._edge_jaccard_overlap(edge_set, cls._edge_set_from_path_record(prev))
+                        for prev in selected
+                    )
+
+                # 超过阈值不必直接硬踢掉，先允许进入打分；但给明显惩罚
+                hard_penalty = 1.0 if max_overlap > overlap_threshold else 0.0
+
+                set_level_value = (
+                    lambda_single * single_score
+                    + lambda_marginal * marginal_gain
+                    - overlap_penalty * max_overlap
+                    - 0.50 * hard_penalty
+                )
+
+                if set_level_value > best_value:
+                    best_value = set_level_value
+                    best_idx = idx
+                    best_augmented_score = {
+                        "single_score": single_score,
+                        "marginal_gain": marginal_gain,
+                        "max_overlap": max_overlap,
+                        "set_level_value": set_level_value,
+                    }
+
+            chosen = remaining.pop(best_idx)
+            chosen.metadata = dict(chosen.metadata or {})
+            chosen.metadata["set_level"] = best_augmented_score
+
+            selected.append(chosen)
+            selected_edge_union |= cls._edge_set_from_path_record(chosen)
+
+        return selected
     @classmethod
     def run(
         cls,
@@ -148,7 +262,7 @@ class RuleBasedCriticalPath:
         top_q: int = 10,
         overlap_threshold: float = 0.6,
         fragility_weights: Dict[str, float] | None = None,
-        top_m_for_fragility: int = 1,
+        top_m_for_fragility: int = 3,
         fragility_gate: float = 0.50,
         gate_penalty: float = 0.08,
         shared_base_metrics: Dict[str, float] | None = None,
@@ -395,7 +509,7 @@ class RuleBasedCriticalPath:
         if not candidates:
             return []
 
-        # final normalized scoring
+        # 第一步：先做单路径归一化评分
         scored = RulePathScorer.rank_paths(
             path_records=candidates,
             weights=weights,
@@ -403,10 +517,14 @@ class RuleBasedCriticalPath:
             gate_penalty=gate_penalty,
         )
 
-        selected = PathDeduplicator.greedy_deduplicate(
-            scored,
-            overlap_threshold=overlap_threshold,
+        # 第二步：集合级贪心选择
+        selected = cls._greedy_set_level_select(
+            scored_records=scored,
             top_q=top_q,
+            overlap_threshold=overlap_threshold,
+            lambda_marginal=0.70,
+            lambda_single=0.30,
+            overlap_penalty=0.20,
         )
 
         print(f"[rule] final selected = {len(selected)}", flush=True)

@@ -20,7 +20,7 @@ paths:
   delta: 2
   top_q: 10
   overlap_threshold: 0.6
-  top_m_for_fragility: 1
+  top_m_for_fragility: 3
 rule_weights:
   avg_node_importance: 0.12
   avg_edge_bc: 0.1

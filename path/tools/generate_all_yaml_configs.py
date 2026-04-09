@@ -111,7 +111,7 @@ COMMON_PATHS = {
     "delta": 2,
     "top_q": 10,
     "overlap_threshold": 0.6,
-    "top_m_for_fragility": 1,
+    "top_m_for_fragility": 3,
 }
 
 COMMON_FRAGILITY = {

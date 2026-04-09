@@ -50,7 +50,7 @@ class MethodEvaluator:
             selected_paths: Sequence[PathRecord],
             k_list: Sequence[int],
             mode: str = "approx",
-            early_stop: bool = True,
+            early_stop: bool = False,
             tol: float = 1e-4,
             debug: bool = True,
             shared_base_metrics: Dict[str, float] | None = None,
@@ -175,10 +175,13 @@ class MethodEvaluator:
             )
 
             # ====== early stop ======
+            '''
             if early_stop and k > 1:
                 if abs(fragility_score - prev_fragility) < tol:
                     print(f"[compare] early stop at k={k} (delta < {tol})")
                     break
+            '''
+
 
             prev_fragility = fragility_score
 
@@ -204,7 +207,7 @@ class MethodEvaluator:
             G: nx.Graph,
             k_list: Sequence[int],
             mode: str = "approx",
-            early_stop: bool = True,
+            early_stop: bool = False,
             tol: float = 1e-4,
             debug: bool = True,
             shared_base_metrics: Dict[str, float] | None = None,

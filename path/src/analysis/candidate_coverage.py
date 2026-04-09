@@ -4,10 +4,10 @@ from collections import Counter, defaultdict
 from statistics import mean, pstdev
 from typing import Any, Dict, List, Optional
 
-from src.core.types import GraphDataBundle, TaskPair
-from src.core.path_generator import PathGenerator
-from src.core.path_features import PathFeatureExtractor
-from src.core.fragility import FragilityEvaluator
+from path.src.core.types import GraphDataBundle, TaskPair
+from path.src.core.path_generator import PathGenerator
+from path.src.core.path_features import PathFeatureExtractor
+from path.src.core.fragility import FragilityEvaluator
 
 
 def _safe_mean(xs: List[float]) -> float:

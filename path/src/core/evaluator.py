@@ -58,87 +58,58 @@ class MethodEvaluator:
 
         ks = self._sorted_k_list(k_list)
 
-        print(f"[compare] start evaluate_topk_damage")
-        print(f"[compare] ks={ks}, num_paths={len(selected_paths)}")
-
         if shared_base_metrics is None:
-            t0 = time.perf_counter()
             base_metrics = self.fragility_evaluator.compute_base_metrics(G)
-            print(f"[compare] base_metrics computed locally in {time.perf_counter() - t0:.2f}s")
         else:
             base_metrics = dict(shared_base_metrics)
-            print("[compare] using shared_base_metrics")
 
         num_nodes = int(G.number_of_nodes())
 
-        # =========================
-        # 1. 预计算 prefix edges（关键优化）
-        # =========================
-        print("[compare] building prefix edge cache...")
+        print("[compare] building prefix internal-node cache...")
 
-        prefix_edges: Dict[int, List[tuple[int, int]]] = {}
-        seen = set()
-        curr_edges = []
+        prefix_nodes: Dict[int, List[int]] = {}
+        seen_nodes = set()
+        curr_nodes = []
 
         for i, record in enumerate(selected_paths):
-            edges = PathFeatureExtractor.path_to_edges(record.nodes)
-            for u, v in edges:
-                e = tuple(sorted((int(u), int(v))))
-                if e not in seen:
-                    seen.add(e)
-                    curr_edges.append(e)
+            for n in record.nodes[1:-1]:
+                n = int(n)
+                if n not in seen_nodes:
+                    seen_nodes.add(n)
+                    curr_nodes.append(n)
+            prefix_nodes[i + 1] = list(curr_nodes)
 
-            k = i + 1
-            prefix_edges[k] = list(curr_edges)
-
-        print(f"[compare] prefix edge cache built: max_edges={len(curr_edges)}")
-
-        # =========================
-        # 2. 初始化
-        # =========================
-        H = G.copy()
+        print(f"[compare] prefix internal-node cache built: max_nodes={len(curr_nodes)}")
 
         delta_E_curve = []
         delta_LCC_curve = []
         delta_ASP_curve = []
         fragility_score_curve = []
-        num_removed_edges = []
+        num_removed_nodes = []
 
         metrics_cache: Dict[int, tuple] = {}
 
-        prev_fragility = 0.0
-
-        # =========================
-        # 3. 主循环
-        # =========================
         for k in ks:
-
-            edges = prefix_edges.get(k, [])
+            nodes = prefix_nodes.get(k, [])
 
             t_step = time.perf_counter()
 
-            # ====== 删除边（重新构造一次更安全）======
             H = G.copy()
-            H.remove_edges_from(edges)
+            H.remove_nodes_from(nodes)
 
-            # ====== 缓存 ======
             if k in metrics_cache:
                 E1, ASP1, LCC1 = metrics_cache[k]
                 cache_hit = True
             else:
                 cache_hit = False
-
                 if mode == "approx":
                     E1 = self.fragility_evaluator.global_efficiency_approx(H)
                     ASP1 = self.fragility_evaluator.avg_shortest_path_of_lcc_approx(H)
                     LCC1 = self.fragility_evaluator.lcc_ratio(H, num_nodes)
-
-
                 elif mode == "exact":
                     E1 = self.fragility_evaluator.global_efficiency_exact(H)
                     ASP1 = self.fragility_evaluator.avg_shortest_path_of_lcc_exact(H)
                     LCC1 = self.fragility_evaluator.lcc_ratio(H, num_nodes)
-
                 elif mode == "hybrid":
                     if k <= 3:
                         E1 = self.fragility_evaluator.global_efficiency_exact(H)
@@ -147,13 +118,11 @@ class MethodEvaluator:
                         E1 = self.fragility_evaluator.global_efficiency_approx(H)
                         ASP1 = self.fragility_evaluator.avg_shortest_path_of_lcc_approx(H)
                     LCC1 = self.fragility_evaluator.lcc_ratio(H, num_nodes)
-
                 else:
                     raise ValueError(f"unknown mode={mode}")
 
                 metrics_cache[k] = (E1, ASP1, LCC1)
 
-            # ====== 计算 delta ======
             delta_E = max(0.0, float(base_metrics["global_efficiency"]) - E1)
             delta_LCC = max(0.0, float(base_metrics["lcc_ratio"]) - LCC1)
             delta_ASP = max(0.0, ASP1 - float(base_metrics["avg_shortest_path_lcc"]))
@@ -168,28 +137,17 @@ class MethodEvaluator:
 
             print(
                 f"[compare][k={k}] "
-                f"edges={len(edges)} "
+                f"nodes={len(nodes)} "
                 f"time={dt:.3f}s "
                 f"fragility={fragility_score:.6f} "
                 f"{'(cache)' if cache_hit else ''}"
             )
 
-            # ====== early stop ======
-            '''
-            if early_stop and k > 1:
-                if abs(fragility_score - prev_fragility) < tol:
-                    print(f"[compare] early stop at k={k} (delta < {tol})")
-                    break
-            '''
-
-
-            prev_fragility = fragility_score
-
             delta_E_curve.append(float(delta_E))
             delta_LCC_curve.append(float(delta_LCC))
             delta_ASP_curve.append(float(delta_ASP))
             fragility_score_curve.append(float(fragility_score))
-            num_removed_edges.append(len(edges))
+            num_removed_nodes.append(len(nodes))
 
         return {
             "k_list": ks[:len(fragility_score_curve)],
@@ -197,7 +155,7 @@ class MethodEvaluator:
             "delta_LCC_curve": delta_LCC_curve,
             "delta_ASP_curve": delta_ASP_curve,
             "fragility_score_curve": fragility_score_curve,
-            "num_removed_edges": num_removed_edges,
+            "num_removed_nodes": num_removed_nodes,
             "base_metrics": {k: float(v) for k, v in base_metrics.items()},
         }
 

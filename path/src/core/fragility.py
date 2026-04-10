@@ -1,4 +1,3 @@
-
 from __future__ import annotations
 
 from typing import Dict, List, Tuple, Optional
@@ -8,7 +7,8 @@ import networkx as nx
 
 class FragilityEvaluator:
     """
-    Evaluate structural damage caused by removing path edges.
+    Evaluate structural damage caused by removing path INTERNAL NODES
+    (instead of only removing path edges).
 
     Fast version:
     - approximate global efficiency by sampled node pairs
@@ -31,19 +31,15 @@ class FragilityEvaluator:
         self.lambda_LCC = float(lambda_LCC)
         self.lambda_ASP = float(lambda_ASP)
 
-        # 采样参数：可继续调
         self.efficiency_num_pairs = int(efficiency_num_pairs)
         self.asp_num_sources = int(asp_num_sources)
         self.random_seed = int(random_seed)
         self._rng = random.Random(self.random_seed)
 
-        # 可选：若 path 中没有桥，则快速近似为“不太脆弱”
+        # 保留该参数，但在“删内部节点”设定下通常不建议启用
         self.use_bridge_shortcut = bool(use_bridge_shortcut)
 
-        # path 级缓存
         self._frag_cache: Dict[Tuple[int, ...], Dict[str, float]] = {}
-
-        # base 图桥边缓存（首次按图构建）
         self._bridge_edge_cache: Optional[set[Tuple[int, int]]] = None
 
     @staticmethod
@@ -71,9 +67,6 @@ class FragilityEvaluator:
 
     @staticmethod
     def avg_shortest_path_of_lcc_exact(G: nx.Graph) -> float:
-        """
-        Exact average shortest path length on the largest connected component.
-        """
         if G.number_of_nodes() == 0 or G.number_of_edges() == 0:
             return 0.0
         components = list(nx.connected_components(G))
@@ -87,6 +80,7 @@ class FragilityEvaluator:
             return float(nx.average_shortest_path_length(subg))
         except Exception:
             return 0.0
+
     def global_efficiency_approx(self, G: nx.Graph) -> float:
         """
         Approximate global efficiency by sampled unordered node pairs.
@@ -105,7 +99,6 @@ class FragilityEvaluator:
         sampled = 0
         seen = set()
 
-        # 对中小图，2000 对已经足够快很多
         while sampled < m:
             u, v = self._rng.sample(nodes, 2)
             e = self._canon_edge(u, v)
@@ -122,8 +115,6 @@ class FragilityEvaluator:
 
             sampled += 1
 
-        # global efficiency 定义是 ordered pairs 上平均，但 unordered / ordered 只差常数，
-        # 在前后差分时影响很小，这里直接用 sampled mean 作为近似。
         return float(acc) / float(m)
 
     @staticmethod
@@ -149,7 +140,6 @@ class FragilityEvaluator:
             return 0.0
 
         subg = G.subgraph(lcc_nodes)
-
         sampled_sources = self._safe_sample(self._rng, lcc_nodes, self.asp_num_sources)
         if not sampled_sources:
             return 0.0
@@ -159,7 +149,6 @@ class FragilityEvaluator:
 
         for s in sampled_sources:
             lengths = nx.single_source_shortest_path_length(subg, s)
-            # 去掉自己
             for t, d in lengths.items():
                 if t == s:
                     continue
@@ -183,14 +172,34 @@ class FragilityEvaluator:
         return float(lcc_size) / float(num_nodes)
 
     @staticmethod
+    def remove_path_internal_nodes(G: nx.Graph, path: List[int]) -> nx.Graph:
+        """
+        Remove INTERNAL nodes of a path:
+            path = [source, ..., target]
+        remove path[1:-1], keep endpoints.
+
+        This is much stronger than only removing edges and is usually
+        more consistent with "critical path" semantics.
+        """
+        G_removed = G.copy()
+
+        if path is None or len(path) <= 2:
+            return G_removed
+
+        internal_nodes = [int(n) for n in path[1:-1] if G_removed.has_node(n)]
+        if internal_nodes:
+            G_removed.remove_nodes_from(internal_nodes)
+
+        return G_removed
+
+    @staticmethod
     def remove_path_edges(G: nx.Graph, path: List[int]) -> nx.Graph:
         """
-        Faster remove: copy once + remove_edges_from once
+        保留旧接口，兼容旧代码；默认不再在 compute_fragility 中使用。
         """
         G_removed = G.copy()
         edges = list(zip(path[:-1], path[1:]))
 
-        # 规范成图中真实存在的边
         rm_edges = []
         for u, v in edges:
             if G_removed.has_edge(u, v):
@@ -219,18 +228,12 @@ class FragilityEvaluator:
         return False
 
     def compute_base_metrics(G: nx.Graph) -> Dict[str, float]:
-        """
-        保持原接口名不变，但改为近似版本的 base metrics
-        """
         raise RuntimeError(
             "Please call instance method compute_base_metrics(...) instead of "
             "FragilityEvaluator.compute_base_metrics(G)."
         )
 
     def compute_base_metrics(self, G: nx.Graph) -> Dict[str, float]:
-        """
-        Cache base metrics of the original graph.
-        """
         num_nodes = G.number_of_nodes()
 
         if self.use_bridge_shortcut:
@@ -250,7 +253,7 @@ class FragilityEvaluator:
         num_nodes: int,
     ) -> Dict[str, float]:
         """
-        Compute fragility after removing path edges.
+        Compute fragility after removing INTERNAL NODES of the path.
 
         Returns:
             {
@@ -272,9 +275,8 @@ class FragilityEvaluator:
         if path_key in self._frag_cache:
             return self._frag_cache[path_key]
 
-        # 可选快速捷径：
-        # 若 path 中没有桥，很多时候对 LCC 的破坏趋近很小。
-        # 注意：这是启发式近似，不是严格结论。
+        # 在“删内部节点”的设定下，bridge shortcut 启发式通常不再可靠；
+        # 这里保留开关，但默认建议关闭。
         if self.use_bridge_shortcut:
             self._build_bridge_cache_if_needed(G)
             if not self._path_contains_bridge(path):
@@ -287,7 +289,7 @@ class FragilityEvaluator:
                 self._frag_cache[path_key] = approx_out
                 return approx_out
 
-        G_removed = self.remove_path_edges(G, path)
+        G_removed = self.remove_path_internal_nodes(G, path)
 
         new_E = self.global_efficiency_approx(G_removed)
         new_LCC = self.lcc_ratio(G_removed, num_nodes)
@@ -297,14 +299,9 @@ class FragilityEvaluator:
         base_LCC = float(base_metrics.get("lcc_ratio", 0.0))
         base_ASP = float(base_metrics.get("avg_shortest_path_lcc", 0.0))
 
-        delta_E = base_E - new_E
-        delta_LCC = base_LCC - new_LCC
-        delta_ASP = new_ASP - base_ASP
-
-        # 防止采样近似带来的轻微负噪声
-        delta_E = max(0.0, float(delta_E))
-        delta_LCC = max(0.0, float(delta_LCC))
-        delta_ASP = max(0.0, float(delta_ASP))
+        delta_E = max(0.0, float(base_E - new_E))
+        delta_LCC = max(0.0, float(base_LCC - new_LCC))
+        delta_ASP = max(0.0, float(new_ASP - base_ASP))
 
         fragility_score = (
             self.lambda_E * delta_E

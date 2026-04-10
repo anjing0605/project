@@ -27,6 +27,7 @@ class TaskPair:
     shortest_len: int
     same_community: bool
     pair_score: float
+    metadata: Dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass

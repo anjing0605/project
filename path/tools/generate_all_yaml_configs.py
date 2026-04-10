@@ -106,12 +106,12 @@ COMMON_KEYNODE = {
 }
 
 COMMON_PATHS = {
-    "k_shortest": 3,
+    "k_shortest": 20,
     "max_hops": 8,
     "delta": 2,
     "top_q": 10,
     "overlap_threshold": 0.6,
-    "top_m_for_fragility": 3,
+    "top_m_for_fragility": 5,
 }
 
 COMMON_FRAGILITY = {

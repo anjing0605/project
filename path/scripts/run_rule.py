@@ -326,7 +326,27 @@ def log_comparison_to_tb(
             tb.add_scalar(f"{method_name}/damage/top_last_delta_LCC", float(delta_LCC_curve[-1]), 0)
         if delta_ASP_curve:
             tb.add_scalar(f"{method_name}/damage/top_last_delta_ASP", float(delta_ASP_curve[-1]), 0)
+def check_shared_base_metrics_consistency(
+    shared_base_metrics: Dict[str, float],
+    comparison: Dict[str, Any],
+) -> None:
+    methods = comparison.get("methods", {})
+    if not methods:
+        raise ValueError("comparison['methods'] is empty.")
 
+    for method_name, metrics in methods.items():
+        method_base = metrics.get("base_metrics")
+        if method_base is None:
+            raise ValueError(f"{method_name} missing base_metrics in comparison result.")
+
+        for k, v in shared_base_metrics.items():
+            mv = float(method_base[k])
+            sv = float(v)
+            if abs(mv - sv) > 1e-12:
+                raise ValueError(
+                    f"shared_base_metrics mismatch in method={method_name}, key={k}: "
+                    f"method={mv}, shared={sv}"
+                )
 def main() -> None:
     total_t0 = time.perf_counter()
 
@@ -453,9 +473,11 @@ def main() -> None:
             "No valid task pairs were constructed. "
             "Check key-node selection, graph connectivity, and shortest-path constraints."
         )
+    fragility_evaluator = FragilityEvaluator(**fragility_cfg)
+
     shared_base_metrics = timed_call(
         "compute shared_base_metrics",
-        FragilityEvaluator(**fragility_cfg).compute_base_metrics,
+        fragility_evaluator.compute_base_metrics,
         bundle.nx_graph,
     )
 
@@ -562,15 +584,25 @@ def main() -> None:
         },
         G=bundle.nx_graph,
         k_list=k_list,
-        mode="approx",
+        mode="exact",
         early_stop=False,
         tol=1e-4,
         shared_base_metrics=shared_base_metrics,
     )
 
+    comparison["shared_base_metrics"] = {
+        k: float(v) for k, v in shared_base_metrics.items()
+    }
+
+    check_shared_base_metrics_consistency(
+        shared_base_metrics=shared_base_metrics,
+        comparison=comparison,
+    )
+
     log_comparison_to_tb(tb, comparison, k_list)
 
     top_n = output_cfg.get("top_n_summary", 10)
+
 
     payload = {
         "dataset": {

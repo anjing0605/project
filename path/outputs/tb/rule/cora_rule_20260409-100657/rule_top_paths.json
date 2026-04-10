@@ -1,0 +1,2125 @@
+{
+  "rule": [
+    {
+      "rank": 1,
+      "source": 1346,
+      "target": 289,
+      "nodes": [
+        1346,
+        519,
+        109,
+        289
+      ],
+      "length": 4,
+      "score": 0.7468236555485025,
+      "method": "rule",
+      "features": {
+        "avg_node_importance": 0.8307033389806747,
+        "internal_node_importance": 0.820909833908081,
+        "avg_edge_bc": 0.004597458624501507,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.000880475774225703,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.45068438003220646,
+        "fragility_score": 0.09048906631613157,
+        "norm_avg_edge_bc": 0.2906591518513157,
+        "norm_avg_node_importance": 0.800758947472535,
+        "norm_cross_comm_ratio": 0.16666666666666663,
+        "norm_fragility_score": 1.0,
+        "norm_path_length": 0.3333333333333333
+      },
+      "fragility": {
+        "delta_E": 0.000880475774225703,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.45068438003220646,
+        "fragility_score": 0.09048906631613157
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6809936881065368,
+        "shortest_len": 2,
+        "cheap_score": 0.12519574012865403,
+        "scorer": "RulePathScorer",
+        "fragility_gate": 0.5,
+        "gate_penalty": 0.08,
+        "score_weights": {
+          "avg_node_importance": 0.12,
+          "avg_edge_bc": 0.1,
+          "cross_comm_ratio": 0.03,
+          "fragility_score": 0.65,
+          "path_length": 0.1
+        },
+        "set_level": {
+          "single_score": 0.7468236555485025,
+          "marginal_gain": 1.0,
+          "max_overlap": 0.0,
+          "set_level_value": 0.9240470966645506
+        }
+      }
+    },
+    {
+      "rank": 2,
+      "source": 1709,
+      "target": 308,
+      "nodes": [
+        1709,
+        1986,
+        519,
+        306,
+        308
+      ],
+      "length": 5,
+      "score": 0.6496070921787397,
+      "method": "rule",
+      "features": {
+        "avg_node_importance": 0.8280024909973145,
+        "internal_node_importance": 0.8199677308400473,
+        "avg_edge_bc": 0.008147343335173562,
+        "cross_comm_ratio": 0.5,
+        "path_length": 4.0,
+        "delta_E": 0.002687946081695758,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3847561896135261,
+        "fragility_score": 0.07802641635538353,
+        "norm_avg_edge_bc": 0.5421253942525651,
+        "norm_avg_node_importance": 0.7527731705762158,
+        "norm_cross_comm_ratio": 0.37499999999999994,
+        "norm_fragility_score": 0.8622745214630829,
+        "norm_path_length": 0.6666666666666666
+      },
+      "fragility": {
+        "delta_E": 0.002687946081695758,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3847561896135261,
+        "fragility_score": 0.07802641635538353
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6801092624664307,
+        "shortest_len": 4,
+        "cheap_score": 0.050045323949343634,
+        "scorer": "RulePathScorer",
+        "fragility_gate": 0.5,
+        "gate_penalty": 0.08,
+        "score_weights": {
+          "avg_node_importance": 0.12,
+          "avg_edge_bc": 0.1,
+          "cross_comm_ratio": 0.03,
+          "fragility_score": 0.65,
+          "path_length": 0.1
+        },
+        "set_level": {
+          "single_score": 0.6496070921787397,
+          "marginal_gain": 1.0,
+          "max_overlap": 0.0,
+          "set_level_value": 0.8948821276536219
+        }
+      }
+    },
+    {
+      "rank": 3,
+      "source": 1762,
+      "target": 426,
+      "nodes": [
+        1762,
+        1358,
+        1483,
+        306,
+        426
+      ],
+      "length": 5,
+      "score": 0.6092926994756416,
+      "method": "rule",
+      "features": {
+        "avg_node_importance": 0.821990921497345,
+        "internal_node_importance": 0.8149890502293905,
+        "avg_edge_bc": 0.004845425636776389,
+        "cross_comm_ratio": 0.25,
+        "path_length": 4.0,
+        "delta_E": 0.0006684516872015323,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.39246175523349436,
+        "fragility_score": 0.07875973172157949,
+        "norm_avg_edge_bc": 0.30822460478807434,
+        "norm_avg_node_importance": 0.6459660364466759,
+        "norm_cross_comm_ratio": 0.062499999999999986,
+        "norm_fragility_score": 0.8703784327536919,
+        "norm_path_length": 0.6666666666666666
+      },
+      "fragility": {
+        "delta_E": 0.0006684516872015323,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.39246175523349436,
+        "fragility_score": 0.07875973172157949
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6649874567985534,
+        "shortest_len": 4,
+        "cheap_score": 0.008849542364838092,
+        "scorer": "RulePathScorer",
+        "fragility_gate": 0.5,
+        "gate_penalty": 0.08,
+        "score_weights": {
+          "avg_node_importance": 0.12,
+          "avg_edge_bc": 0.1,
+          "cross_comm_ratio": 0.03,
+          "fragility_score": 0.65,
+          "path_length": 0.1
+        },
+        "set_level": {
+          "single_score": 0.6092926994756416,
+          "marginal_gain": 1.0,
+          "max_overlap": 0.0,
+          "set_level_value": 0.8827878098426925
+        }
+      }
+    },
+    {
+      "rank": 4,
+      "source": 1805,
+      "target": 341,
+      "nodes": [
+        1805,
+        109,
+        2045,
+        341
+      ],
+      "length": 4,
+      "score": 0.6067314027980999,
+      "method": "rule",
+      "features": {
+        "avg_node_importance": 0.8284718662500382,
+        "internal_node_importance": 0.8221034944057465,
+        "avg_edge_bc": 0.0024466607946833445,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3688481280193239,
+        "fragility_score": 0.07376962560386478,
+        "norm_avg_edge_bc": 0.13830123250729778,
+        "norm_avg_node_importance": 0.7611125278064705,
+        "norm_cross_comm_ratio": 0.16666666666666663,
+        "norm_fragility_score": 0.8152324762214261,
+        "norm_path_length": 0.3333333333333333
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3688481280193239,
+        "fragility_score": 0.07376962560386478
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6696804761886597,
+        "shortest_len": 3,
+        "cheap_score": 0.12354633805092213,
+        "scorer": "RulePathScorer",
+        "fragility_gate": 0.5,
+        "gate_penalty": 0.08,
+        "score_weights": {
+          "avg_node_importance": 0.12,
+          "avg_edge_bc": 0.1,
+          "cross_comm_ratio": 0.03,
+          "fragility_score": 0.65,
+          "path_length": 0.1
+        },
+        "set_level": {
+          "single_score": 0.6067314027980999,
+          "marginal_gain": 1.0,
+          "max_overlap": 0.0,
+          "set_level_value": 0.8820194208394299
+        }
+      }
+    },
+    {
+      "rank": 5,
+      "source": 1787,
+      "target": 1546,
+      "nodes": [
+        1787,
+        306,
+        1804,
+        1546
+      ],
+      "length": 4,
+      "score": 0.5959114783703632,
+      "method": "rule",
+      "features": {
+        "avg_node_importance": 0.8238205909729004,
+        "internal_node_importance": 0.8080376327037812,
+        "avg_edge_bc": 0.0019870169842191383,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.002705919774669663,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3650739734299515,
+        "fragility_score": 0.07409716259585816,
+        "norm_avg_edge_bc": 0.10574104780244188,
+        "norm_avg_node_importance": 0.6784736458304421,
+        "norm_cross_comm_ratio": 0.16666666666666663,
+        "norm_fragility_score": 0.818852106805845,
+        "norm_path_length": 0.3333333333333333
+      },
+      "fragility": {
+        "delta_E": 0.002705919774669663,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3650739734299515,
+        "fragility_score": 0.07409716259585816
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6792070984840395,
+        "shortest_len": 3,
+        "cheap_score": 0.12131537103307088,
+        "scorer": "RulePathScorer",
+        "fragility_gate": 0.5,
+        "gate_penalty": 0.08,
+        "score_weights": {
+          "avg_node_importance": 0.12,
+          "avg_edge_bc": 0.1,
+          "cross_comm_ratio": 0.03,
+          "fragility_score": 0.65,
+          "path_length": 0.1
+        },
+        "set_level": {
+          "single_score": 0.5959114783703632,
+          "marginal_gain": 1.0,
+          "max_overlap": 0.0,
+          "set_level_value": 0.8787734435111089
+        }
+      }
+    },
+    {
+      "rank": 6,
+      "source": 1772,
+      "target": 758,
+      "nodes": [
+        1772,
+        306,
+        1072,
+        1358,
+        758
+      ],
+      "length": 5,
+      "score": 0.5741218128202973,
+      "method": "rule",
+      "features": {
+        "avg_node_importance": 0.819563798904419,
+        "internal_node_importance": 0.8121750235557555,
+        "avg_edge_bc": 0.010757305443258655,
+        "cross_comm_ratio": 0.25,
+        "path_length": 4.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.34376887077294693,
+        "fragility_score": 0.06875377415458939,
+        "norm_avg_edge_bc": 0.7270095292659384,
+        "norm_avg_node_importance": 0.6028435193847343,
+        "norm_cross_comm_ratio": 0.062499999999999986,
+        "norm_fragility_score": 0.759802006514157,
+        "norm_path_length": 0.6666666666666666
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.34376887077294693,
+        "fragility_score": 0.06875377415458939
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6612939238548279,
+        "shortest_len": 4,
+        "cheap_score": 0.009530901139966075,
+        "scorer": "RulePathScorer",
+        "fragility_gate": 0.5,
+        "gate_penalty": 0.08,
+        "score_weights": {
+          "avg_node_importance": 0.12,
+          "avg_edge_bc": 0.1,
+          "cross_comm_ratio": 0.03,
+          "fragility_score": 0.65,
+          "path_length": 0.1
+        },
+        "set_level": {
+          "single_score": 0.5741218128202973,
+          "marginal_gain": 1.0,
+          "max_overlap": 0.0,
+          "set_level_value": 0.8722365438460892
+        }
+      }
+    },
+    {
+      "rank": 7,
+      "source": 68,
+      "target": 1762,
+      "nodes": [
+        68,
+        1358,
+        111,
+        1762
+      ],
+      "length": 4,
+      "score": 0.4745977677771085,
+      "method": "rule",
+      "features": {
+        "avg_node_importance": 0.824014088511467,
+        "internal_node_importance": 0.8089248239994049,
+        "avg_edge_bc": 0.004848834205043039,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.2716447765700485,
+        "fragility_score": 0.0543289553140097,
+        "norm_avg_edge_bc": 0.3084660604757494,
+        "norm_avg_node_importance": 0.6819115030415281,
+        "norm_cross_comm_ratio": 0.16666666666666663,
+        "norm_fragility_score": 0.6003924841505899,
+        "norm_path_length": 0.3333333333333333
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.2716447765700485,
+        "fragility_score": 0.0543289553140097
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.678206706047058,
+        "shortest_len": 2,
+        "cheap_score": 0.12226099009167302,
+        "scorer": "RulePathScorer",
+        "fragility_gate": 0.5,
+        "gate_penalty": 0.08,
+        "score_weights": {
+          "avg_node_importance": 0.12,
+          "avg_edge_bc": 0.1,
+          "cross_comm_ratio": 0.03,
+          "fragility_score": 0.65,
+          "path_length": 0.1
+        },
+        "set_level": {
+          "single_score": 0.4745977677771085,
+          "marginal_gain": 1.0,
+          "max_overlap": 0.0,
+          "set_level_value": 0.8423793303331325
+        }
+      }
+    },
+    {
+      "rank": 8,
+      "source": 1779,
+      "target": 1661,
+      "nodes": [
+        1779,
+        1624,
+        109,
+        1661
+      ],
+      "length": 4,
+      "score": 0.428625121710235,
+      "method": "rule",
+      "features": {
+        "avg_node_importance": 0.8160840302705765,
+        "internal_node_importance": 0.787883049249649,
+        "avg_edge_bc": 0.002015056621159628,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.26538597020933974,
+        "fragility_score": 0.05307719404186795,
+        "norm_avg_edge_bc": 0.10772731572785439,
+        "norm_avg_node_importance": 0.5410187138632371,
+        "norm_cross_comm_ratio": 0.16666666666666663,
+        "norm_fragility_score": 0.5865591966264528,
+        "norm_path_length": 0.3333333333333333
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.26538597020933974,
+        "fragility_score": 0.05307719404186795
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6885700225830078,
+        "shortest_len": 2,
+        "cheap_score": 0.11784233060810728,
+        "scorer": "RulePathScorer",
+        "fragility_gate": 0.5,
+        "gate_penalty": 0.08,
+        "score_weights": {
+          "avg_node_importance": 0.12,
+          "avg_edge_bc": 0.1,
+          "cross_comm_ratio": 0.03,
+          "fragility_score": 0.65,
+          "path_length": 0.1
+        },
+        "set_level": {
+          "single_score": 0.428625121710235,
+          "marginal_gain": 1.0,
+          "max_overlap": 0.0,
+          "set_level_value": 0.8285875365130704
+        }
+      }
+    },
+    {
+      "rank": 9,
+      "source": 1779,
+      "target": 1733,
+      "nodes": [
+        1779,
+        109,
+        236,
+        1072,
+        1733
+      ],
+      "length": 5,
+      "score": 0.40275409496123593,
+      "method": "rule",
+      "features": {
+        "avg_node_importance": 0.824766263961792,
+        "internal_node_importance": 0.8113919854164123,
+        "avg_edge_bc": 0.0008021156203300018,
+        "cross_comm_ratio": 0.25,
+        "path_length": 4.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.2658514492753623,
+        "fragility_score": 0.05317028985507247,
+        "norm_avg_edge_bc": 0.02180516878711826,
+        "norm_avg_node_importance": 0.6952753515693076,
+        "norm_cross_comm_ratio": 0.062499999999999986,
+        "norm_fragility_score": 0.5875880039398058,
+        "norm_path_length": 0.6666666666666666
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.2658514492753623,
+        "fragility_score": 0.05317028985507247
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.689655363559723,
+        "shortest_len": 3,
+        "cheap_score": 0.008885453468905402,
+        "scorer": "RulePathScorer",
+        "fragility_gate": 0.5,
+        "gate_penalty": 0.08,
+        "score_weights": {
+          "avg_node_importance": 0.12,
+          "avg_edge_bc": 0.1,
+          "cross_comm_ratio": 0.03,
+          "fragility_score": 0.65,
+          "path_length": 0.1
+        },
+        "set_level": {
+          "single_score": 0.40275409496123593,
+          "marginal_gain": 1.0,
+          "max_overlap": 0.0,
+          "set_level_value": 0.8208262284883707
+        }
+      }
+    },
+    {
+      "rank": 10,
+      "source": 68,
+      "target": 1245,
+      "nodes": [
+        68,
+        1986,
+        476,
+        306,
+        1245
+      ],
+      "length": 5,
+      "score": 0.39896876669803116,
+      "method": "rule",
+      "features": {
+        "avg_node_importance": 0.807817234992981,
+        "internal_node_importance": 0.7903520067532858,
+        "avg_edge_bc": 0.005769607112935099,
+        "cross_comm_ratio": 0.5,
+        "path_length": 4.0,
+        "delta_E": 0.0015207230269729255,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.2543088264895328,
+        "fragility_score": 0.05147005450869573,
+        "norm_avg_edge_bc": 0.3736916444380672,
+        "norm_avg_node_importance": 0.39414314134593126,
+        "norm_cross_comm_ratio": 0.37499999999999994,
+        "norm_fragility_score": 0.5687986030144297,
+        "norm_path_length": 0.6666666666666666
+      },
+      "fragility": {
+        "delta_E": 0.0015207230269729255,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.2543088264895328,
+        "fragility_score": 0.05147005450869573
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6680301547050478,
+        "shortest_len": 4,
+        "cheap_score": 0.040248637880721916,
+        "scorer": "RulePathScorer",
+        "fragility_gate": 0.5,
+        "gate_penalty": 0.08,
+        "score_weights": {
+          "avg_node_importance": 0.12,
+          "avg_edge_bc": 0.1,
+          "cross_comm_ratio": 0.03,
+          "fragility_score": 0.65,
+          "path_length": 0.1
+        },
+        "set_level": {
+          "single_score": 0.39896876669803116,
+          "marginal_gain": 1.0,
+          "max_overlap": 0.0,
+          "set_level_value": 0.8196906300094093
+        }
+      }
+    }
+  ],
+  "shortest": [
+    {
+      "rank": 1,
+      "source": 139,
+      "target": 289,
+      "nodes": [
+        139,
+        306,
+        109,
+        289
+      ],
+      "length": 4,
+      "score": 0.0906966244021678,
+      "method": "shortest",
+      "features": {
+        "avg_node_importance": 0.8213260352611542,
+        "internal_node_importance": 0.8089508712291718,
+        "avg_edge_bc": 0.0049191727900556115,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.0008961503774002622,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.45169082125603843,
+        "fragility_score": 0.0906966244021678
+      },
+      "fragility": {
+        "delta_E": 0.0008961503774002622,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.45169082125603843,
+        "fragility_score": 0.0906966244021678
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6674023985862731,
+        "shortest_len": 3
+      }
+    },
+    {
+      "rank": 2,
+      "source": 139,
+      "target": 1620,
+      "nodes": [
+        139,
+        306,
+        1483,
+        1620
+      ],
+      "length": 4,
+      "score": 0.0769906957434674,
+      "method": "shortest",
+      "features": {
+        "avg_node_importance": 0.8224070250988007,
+        "internal_node_importance": 0.8119492530822754,
+        "avg_edge_bc": 0.0036431531503623373,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.002658779415029122,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.37963591988727874,
+        "fragility_score": 0.0769906957434674
+      },
+      "fragility": {
+        "delta_E": 0.002658779415029122,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.37963591988727874,
+        "fragility_score": 0.0769906957434674
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6657295942306518,
+        "shortest_len": 3
+      }
+    },
+    {
+      "rank": 3,
+      "source": 1661,
+      "target": 236,
+      "nodes": [
+        1661,
+        109,
+        236
+      ],
+      "length": 3,
+      "score": 0.07424442852638495,
+      "method": "shortest",
+      "features": {
+        "avg_node_importance": 0.8224666635195415,
+        "internal_node_importance": 0.8024673461914062,
+        "avg_edge_bc": 0.0021791194704286216,
+        "cross_comm_ratio": 0.5,
+        "path_length": 2.0,
+        "delta_E": 0.0027469912032411226,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3657281602254425,
+        "fragility_score": 0.07424442852638495
+      },
+      "fragility": {
+        "delta_E": 0.0027469912032411226,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3657281602254425,
+        "fragility_score": 0.07424442852638495
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.664932644367218,
+        "shortest_len": 2
+      }
+    },
+    {
+      "rank": 4,
+      "source": 68,
+      "target": 1620,
+      "nodes": [
+        68,
+        1358,
+        1620
+      ],
+      "length": 3,
+      "score": 0.06850467995169077,
+      "method": "shortest",
+      "features": {
+        "avg_node_importance": 0.8323972503344218,
+        "internal_node_importance": 0.8210686445236206,
+        "avg_edge_bc": 0.00708849162247501,
+        "cross_comm_ratio": 0.5,
+        "path_length": 2.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3425233997584538,
+        "fragility_score": 0.06850467995169077
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3425233997584538,
+        "fragility_score": 0.06850467995169077
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6761231064796447,
+        "shortest_len": 2
+      }
+    },
+    {
+      "rank": 5,
+      "source": 1787,
+      "target": 289,
+      "nodes": [
+        1787,
+        109,
+        289
+      ],
+      "length": 3,
+      "score": 0.06724121442567106,
+      "method": "shortest",
+      "features": {
+        "avg_node_importance": 0.8288418134053548,
+        "internal_node_importance": 0.8024673461914062,
+        "avg_edge_bc": 0.005585537395757852,
+        "cross_comm_ratio": 0.5,
+        "path_length": 2.0,
+        "delta_E": 0.003323446692196863,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.32955917874396157,
+        "fragility_score": 0.06724121442567106
+      },
+      "fragility": {
+        "delta_E": 0.003323446692196863,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.32955917874396157,
+        "fragility_score": 0.06724121442567106
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6840580940246581,
+        "shortest_len": 2
+      }
+    },
+    {
+      "rank": 6,
+      "source": 519,
+      "target": 1661,
+      "nodes": [
+        519,
+        109,
+        1661
+      ],
+      "length": 3,
+      "score": 0.06353789251207723,
+      "method": "shortest",
+      "features": {
+        "avg_node_importance": 0.8250219106674194,
+        "internal_node_importance": 0.8024673461914062,
+        "avg_edge_bc": 0.0039661224614997645,
+        "cross_comm_ratio": 0.5,
+        "path_length": 2.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3176894625603861,
+        "fragility_score": 0.06353789251207723
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3176894625603861,
+        "fragility_score": 0.06353789251207723
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.672598385810852,
+        "shortest_len": 2
+      }
+    },
+    {
+      "rank": 7,
+      "source": 153,
+      "target": 341,
+      "nodes": [
+        153,
+        2045,
+        341
+      ],
+      "length": 3,
+      "score": 0.06120029702181883,
+      "method": "shortest",
+      "features": {
+        "avg_node_importance": 0.8369479815165203,
+        "internal_node_importance": 0.8417396426200867,
+        "avg_edge_bc": 0.001811154028510098,
+        "cross_comm_ratio": 0.5,
+        "path_length": 2.0,
+        "delta_E": 0.0027516483516486223,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3004981884057969,
+        "fragility_score": 0.06120029702181883
+      },
+      "fragility": {
+        "delta_E": 0.0027516483516486223,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3004981884057969,
+        "fragility_score": 0.06120029702181883
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6691043019294738,
+        "shortest_len": 2
+      }
+    },
+    {
+      "rank": 8,
+      "source": 2080,
+      "target": 1546,
+      "nodes": [
+        2080,
+        306,
+        1804,
+        1546
+      ],
+      "length": 4,
+      "score": 0.06040282809983904,
+      "method": "shortest",
+      "features": {
+        "avg_node_importance": 0.8196228981018066,
+        "internal_node_importance": 0.8080376327037812,
+        "avg_edge_bc": 0.002108294759969847,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.30201414049919517,
+        "fragility_score": 0.06040282809983904
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.30201414049919517,
+        "fragility_score": 0.06040282809983904
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6624163269996644,
+        "shortest_len": 3
+      }
+    },
+    {
+      "rank": 9,
+      "source": 2080,
+      "target": 1620,
+      "nodes": [
+        2080,
+        306,
+        1483,
+        1620
+      ],
+      "length": 4,
+      "score": 0.05946138677948467,
+      "method": "shortest",
+      "features": {
+        "avg_node_importance": 0.8223732560873032,
+        "internal_node_importance": 0.8119492530822754,
+        "avg_edge_bc": 0.0045631410685470705,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.003276177294927296,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.29075457930756876,
+        "fragility_score": 0.05946138677948467
+      },
+      "fragility": {
+        "delta_E": 0.003276177294927296,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.29075457930756876,
+        "fragility_score": 0.05946138677948467
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6655945181846619,
+        "shortest_len": 3
+      }
+    },
+    {
+      "rank": 10,
+      "source": 1346,
+      "target": 289,
+      "nodes": [
+        1346,
+        109,
+        289
+      ],
+      "length": 3,
+      "score": 0.05904287439613523,
+      "method": "shortest",
+      "features": {
+        "avg_node_importance": 0.8278203447659811,
+        "internal_node_importance": 0.8024673461914062,
+        "avg_edge_bc": 0.004743668728165996,
+        "cross_comm_ratio": 0.5,
+        "path_length": 2.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.2952143719806761,
+        "fragility_score": 0.05904287439613523
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.2952143719806761,
+        "fragility_score": 0.05904287439613523
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6809936881065368,
+        "shortest_len": 2
+      }
+    }
+  ],
+  "random": [
+    {
+      "rank": 1,
+      "source": 153,
+      "target": 1733,
+      "nodes": [
+        153,
+        2045,
+        1784,
+        1072,
+        1733
+      ],
+      "length": 5,
+      "score": 0.06641548001113229,
+      "method": "random",
+      "features": {
+        "avg_node_importance": 0.8239870262145995,
+        "internal_node_importance": 0.8166509985923768,
+        "avg_edge_bc": 0.0008607128165507747,
+        "cross_comm_ratio": 0.25,
+        "path_length": 4.0,
+        "delta_E": 0.0033286054223555517,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3254201892109503,
+        "fragility_score": 0.06641548001113229
+      },
+      "fragility": {
+        "delta_E": 0.0033286054223555517,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3254201892109503,
+        "fragility_score": 0.06641548001113229
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.669982135295868,
+        "shortest_len": 3,
+        "num_random_samples": 5,
+        "num_trials": 30,
+        "cheap_score": 0.008552375641534937
+      }
+    },
+    {
+      "rank": 2,
+      "source": 519,
+      "target": 1568,
+      "nodes": [
+        519,
+        1986,
+        68,
+        1358,
+        1741,
+        1309,
+        1625,
+        1729,
+        1568
+      ],
+      "length": 9,
+      "score": 0.06365363325281806,
+      "method": "random",
+      "features": {
+        "avg_node_importance": 0.7981138732698229,
+        "internal_node_importance": 0.788093400001526,
+        "avg_edge_bc": 0.005927322598248355,
+        "cross_comm_ratio": 0.5,
+        "path_length": 8.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.31826816626409027,
+        "fragility_score": 0.06365363325281806
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.31826816626409027,
+        "fragility_score": 0.06365363325281806
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6663710594177246,
+        "shortest_len": 4,
+        "num_random_samples": 5,
+        "num_trials": 30,
+        "cheap_score": -0.3640705602491052
+      }
+    },
+    {
+      "rank": 3,
+      "source": 1805,
+      "target": 1620,
+      "nodes": [
+        1805,
+        306,
+        1483,
+        1743,
+        742,
+        1620
+      ],
+      "length": 6,
+      "score": 0.053372836151368834,
+      "method": "random",
+      "features": {
+        "avg_node_importance": 0.8112215320269267,
+        "internal_node_importance": 0.7998190641403198,
+        "avg_edge_bc": 0.0021164065372931574,
+        "cross_comm_ratio": 0.2,
+        "path_length": 5.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.26686418075684415,
+        "fragility_score": 0.053372836151368834
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.26686418075684415,
+        "fragility_score": 0.053372836151368834
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6680529356002807,
+        "shortest_len": 3,
+        "num_random_samples": 5,
+        "num_trials": 30,
+        "cheap_score": -0.10431538862669498
+      }
+    },
+    {
+      "rank": 4,
+      "source": 1661,
+      "target": 1620,
+      "nodes": [
+        1661,
+        1013,
+        1583,
+        366,
+        1986,
+        68,
+        1358,
+        1620
+      ],
+      "length": 8,
+      "score": 0.05335019122383251,
+      "method": "random",
+      "features": {
+        "avg_node_importance": 0.7924739181995392,
+        "internal_node_importance": 0.7791198750336964,
+        "avg_edge_bc": 0.005268248504543191,
+        "cross_comm_ratio": 0.2857142857142857,
+        "path_length": 7.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.26675095611916255,
+        "fragility_score": 0.05335019122383251
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.26675095611916255,
+        "fragility_score": 0.05335019122383251
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6650720953941345,
+        "shortest_len": 4,
+        "num_random_samples": 5,
+        "num_trials": 30,
+        "cheap_score": -0.2989491194017016
+      }
+    },
+    {
+      "rank": 5,
+      "source": 1787,
+      "target": 341,
+      "nodes": [
+        1787,
+        306,
+        1251,
+        1448,
+        2045,
+        341
+      ],
+      "length": 6,
+      "score": 0.052914826882055115,
+      "method": "random",
+      "features": {
+        "avg_node_importance": 0.8026830077171324,
+        "internal_node_importance": 0.783021304011345,
+        "avg_edge_bc": 0.002417295259764555,
+        "cross_comm_ratio": 0.2,
+        "path_length": 5.0,
+        "delta_E": 0.0006351197413697052,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.26330389492753614,
+        "fragility_score": 0.052914826882055115
+      },
+      "fragility": {
+        "delta_E": 0.0006351197413697052,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.26330389492753614,
+        "fragility_score": 0.052914826882055115
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6840128302574158,
+        "shortest_len": 2,
+        "num_random_samples": 5,
+        "num_trials": 30,
+        "cheap_score": -0.10806745794936101
+      }
+    },
+    {
+      "rank": 6,
+      "source": 68,
+      "target": 341,
+      "nodes": [
+        68,
+        1358,
+        613,
+        341
+      ],
+      "length": 4,
+      "score": 0.05235769168108926,
+      "method": "random",
+      "features": {
+        "avg_node_importance": 0.8236642777919769,
+        "internal_node_importance": 0.808453232049942,
+        "avg_edge_bc": 0.00459679774256732,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.0031924998612497535,
+        "delta_LCC": 0.00036927621861149174,
+        "delta_ASP": 0.2546649062457238,
+        "fragility_score": 0.05235769168108926
+      },
+      "fragility": {
+        "delta_E": 0.0031924998612497535,
+        "delta_LCC": 0.00036927621861149174,
+        "delta_ASP": 0.2546649062457238,
+        "fragility_score": 0.05235769168108926
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6777506470680237,
+        "shortest_len": 2,
+        "num_random_samples": 5,
+        "num_trials": 30,
+        "cheap_score": 0.12202796432915974
+      }
+    },
+    {
+      "rank": 7,
+      "source": 1733,
+      "target": 236,
+      "nodes": [
+        1733,
+        1072,
+        236
+      ],
+      "length": 3,
+      "score": 0.047264995974235016,
+      "method": "random",
+      "features": {
+        "avg_node_importance": 0.8220133384068807,
+        "internal_node_importance": 0.800022029876709,
+        "avg_edge_bc": 0.0008500322922949633,
+        "cross_comm_ratio": 0.5,
+        "path_length": 2.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.23632497987117507,
+        "fragility_score": 0.047264995974235016
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.23632497987117507,
+        "fragility_score": 0.047264995974235016
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6660179853439332,
+        "shortest_len": 2,
+        "num_random_samples": 5,
+        "num_trials": 30,
+        "cheap_score": 0.24516101197078483
+      }
+    },
+    {
+      "rank": 8,
+      "source": 308,
+      "target": 341,
+      "nodes": [
+        308,
+        306,
+        1651,
+        2045,
+        341
+      ],
+      "length": 5,
+      "score": 0.044880988325281736,
+      "method": "random",
+      "features": {
+        "avg_node_importance": 0.8262546777725219,
+        "internal_node_importance": 0.8198768973350526,
+        "avg_edge_bc": 0.0011520450000725377,
+        "cross_comm_ratio": 0.25,
+        "path_length": 4.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.22440494162640867,
+        "fragility_score": 0.044880988325281736
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.22440494162640867,
+        "fragility_score": 0.044880988325281736
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6716426968574525,
+        "shortest_len": 2,
+        "num_random_samples": 5,
+        "num_trials": 30,
+        "cheap_score": 0.00966021849765658
+      }
+    },
+    {
+      "rank": 9,
+      "source": 1733,
+      "target": 426,
+      "nodes": [
+        1733,
+        1072,
+        1798,
+        958,
+        306,
+        426
+      ],
+      "length": 6,
+      "score": 0.04260014090177133,
+      "method": "random",
+      "features": {
+        "avg_node_importance": 0.8142548799514772,
+        "internal_node_importance": 0.8050300121307373,
+        "avg_edge_bc": 0.0004534025422381101,
+        "cross_comm_ratio": 0.2,
+        "path_length": 5.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.21300070450885666,
+        "fragility_score": 0.04260014090177133
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.21300070450885666,
+        "fragility_score": 0.04260014090177133
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.665409231185913,
+        "shortest_len": 3,
+        "num_random_samples": 5,
+        "num_trials": 30,
+        "cheap_score": -0.1034492832591638
+      }
+    },
+    {
+      "rank": 10,
+      "source": 1787,
+      "target": 754,
+      "nodes": [
+        1787,
+        2045,
+        341,
+        613,
+        1358,
+        754
+      ],
+      "length": 6,
+      "score": 0.037585172203766205,
+      "method": "random",
+      "features": {
+        "avg_node_importance": 0.8273937106132508,
+        "internal_node_importance": 0.823024919629097,
+        "avg_edge_bc": 0.001323030327613679,
+        "cross_comm_ratio": 0.2,
+        "path_length": 5.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.00036927621861149174,
+        "delta_ASP": 0.18718730858160804,
+        "fragility_score": 0.037585172203766205
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.00036927621861149174,
+        "delta_ASP": 0.18718730858160804,
+        "fragility_score": 0.037585172203766205
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6722625851631165,
+        "shortest_len": 3,
+        "num_random_samples": 5,
+        "num_trials": 30,
+        "cheap_score": -0.097275921125753
+      }
+    }
+  ],
+  "betweenness": [
+    {
+      "rank": 1,
+      "source": 139,
+      "target": 289,
+      "nodes": [
+        139,
+        306,
+        109,
+        289
+      ],
+      "length": 4,
+      "score": 0.0906966244021678,
+      "method": "betweenness",
+      "features": {
+        "avg_node_importance": 0.8213260352611542,
+        "internal_node_importance": 0.8089508712291718,
+        "avg_edge_bc": 0.0049191727900556115,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.0008961503774002622,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.45169082125603843,
+        "fragility_score": 0.0906966244021678
+      },
+      "fragility": {
+        "delta_E": 0.0008961503774002622,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.45169082125603843,
+        "fragility_score": 0.0906966244021678
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6674023985862731,
+        "shortest_len": 3,
+        "selection_metric": "avg_edge_bc",
+        "coarse_avg_edge_bc": 0.0049191727900556115
+      }
+    },
+    {
+      "rank": 2,
+      "source": 139,
+      "target": 1620,
+      "nodes": [
+        139,
+        306,
+        1072,
+        1358,
+        1620
+      ],
+      "length": 5,
+      "score": 0.08065943311720472,
+      "method": "betweenness",
+      "features": {
+        "avg_node_importance": 0.8204509329795837,
+        "internal_node_importance": 0.8121750235557555,
+        "avg_edge_bc": 0.010908956052596442,
+        "cross_comm_ratio": 0.25,
+        "path_length": 4.0,
+        "delta_E": 0.0031500672938170604,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.39699703099838946,
+        "fragility_score": 0.08065943311720472
+      },
+      "fragility": {
+        "delta_E": 0.0031500672938170604,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.39699703099838946,
+        "fragility_score": 0.08065943311720472
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6657295942306518,
+        "shortest_len": 3,
+        "selection_metric": "avg_edge_bc",
+        "coarse_avg_edge_bc": 0.010908956052596442
+      }
+    },
+    {
+      "rank": 3,
+      "source": 1661,
+      "target": 236,
+      "nodes": [
+        1661,
+        1013,
+        2045,
+        236
+      ],
+      "length": 4,
+      "score": 0.07581396370939841,
+      "method": "betweenness",
+      "features": {
+        "avg_node_importance": 0.8087084084749222,
+        "internal_node_importance": 0.7849504947662354,
+        "avg_edge_bc": 0.0060250077347017835,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.0029847381784881,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.37310034219001587,
+        "fragility_score": 0.07581396370939841
+      },
+      "fragility": {
+        "delta_E": 0.0029847381784881,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.37310034219001587,
+        "fragility_score": 0.07581396370939841
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.664932644367218,
+        "shortest_len": 2,
+        "selection_metric": "avg_edge_bc",
+        "coarse_avg_edge_bc": 0.0060250077347017835
+      }
+    },
+    {
+      "rank": 4,
+      "source": 68,
+      "target": 1620,
+      "nodes": [
+        68,
+        1986,
+        1149,
+        1358,
+        1620
+      ],
+      "length": 5,
+      "score": 0.0690758353462158,
+      "method": "betweenness",
+      "features": {
+        "avg_node_importance": 0.8241516375541688,
+        "internal_node_importance": 0.8148783604303995,
+        "avg_edge_bc": 0.01274456436346816,
+        "cross_comm_ratio": 0.25,
+        "path_length": 4.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.345379176731079,
+        "fragility_score": 0.0690758353462158
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.345379176731079,
+        "fragility_score": 0.0690758353462158
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6761231064796447,
+        "shortest_len": 2,
+        "selection_metric": "avg_edge_bc",
+        "coarse_avg_edge_bc": 0.01274456436346816
+      }
+    },
+    {
+      "rank": 5,
+      "source": 1787,
+      "target": 289,
+      "nodes": [
+        1787,
+        306,
+        109,
+        289
+      ],
+      "length": 4,
+      "score": 0.06737761999272883,
+      "method": "betweenness",
+      "features": {
+        "avg_node_importance": 0.8254899591207504,
+        "internal_node_importance": 0.8089508712291718,
+        "avg_edge_bc": 0.005717882932489635,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.003425430819181008,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3300372383252821,
+        "fragility_score": 0.06737761999272883
+      },
+      "fragility": {
+        "delta_E": 0.003425430819181008,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3300372383252821,
+        "fragility_score": 0.06737761999272883
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6840580940246581,
+        "shortest_len": 2,
+        "selection_metric": "avg_edge_bc",
+        "coarse_avg_edge_bc": 0.005717882932489635
+      }
+    },
+    {
+      "rank": 6,
+      "source": 519,
+      "target": 1661,
+      "nodes": [
+        519,
+        306,
+        109,
+        1661
+      ],
+      "length": 4,
+      "score": 0.06424617552334944,
+      "method": "betweenness",
+      "features": {
+        "avg_node_importance": 0.822625032067299,
+        "internal_node_importance": 0.8089508712291718,
+        "avg_edge_bc": 0.005379694926194068,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3212308776167472,
+        "fragility_score": 0.06424617552334944
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3212308776167472,
+        "fragility_score": 0.06424617552334944
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.672598385810852,
+        "shortest_len": 2,
+        "selection_metric": "avg_edge_bc",
+        "coarse_avg_edge_bc": 0.005379694926194068
+      }
+    },
+    {
+      "rank": 7,
+      "source": 2080,
+      "target": 1546,
+      "nodes": [
+        2080,
+        306,
+        1072,
+        1358,
+        1546
+      ],
+      "length": 5,
+      "score": 0.06268241747181964,
+      "method": "betweenness",
+      "features": {
+        "avg_node_importance": 0.8197882795333863,
+        "internal_node_importance": 0.8121750235557555,
+        "avg_edge_bc": 0.011785334034647132,
+        "cross_comm_ratio": 0.25,
+        "path_length": 4.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3134120873590982,
+        "fragility_score": 0.06268241747181964
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3134120873590982,
+        "fragility_score": 0.06268241747181964
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6624163269996644,
+        "shortest_len": 3,
+        "selection_metric": "avg_edge_bc",
+        "coarse_avg_edge_bc": 0.011785334034647132
+      }
+    },
+    {
+      "rank": 8,
+      "source": 2080,
+      "target": 1620,
+      "nodes": [
+        2080,
+        306,
+        1072,
+        1358,
+        1620
+      ],
+      "length": 5,
+      "score": 0.062291993519765214,
+      "method": "betweenness",
+      "features": {
+        "avg_node_importance": 0.8204239177703858,
+        "internal_node_importance": 0.8121750235557555,
+        "avg_edge_bc": 0.01159894699123499,
+        "cross_comm_ratio": 0.25,
+        "path_length": 4.0,
+        "delta_E": 0.0035277645965145765,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3044044384057969,
+        "fragility_score": 0.062291993519765214
+      },
+      "fragility": {
+        "delta_E": 0.0035277645965145765,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3044044384057969,
+        "fragility_score": 0.062291993519765214
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6655945181846619,
+        "shortest_len": 3,
+        "selection_metric": "avg_edge_bc",
+        "coarse_avg_edge_bc": 0.01159894699123499
+      }
+    },
+    {
+      "rank": 9,
+      "source": 153,
+      "target": 341,
+      "nodes": [
+        153,
+        109,
+        289,
+        1358,
+        341
+      ],
+      "length": 5,
+      "score": 0.06184909734388002,
+      "method": "betweenness",
+      "features": {
+        "avg_node_importance": 0.825227825641632,
+        "internal_node_importance": 0.8190116087595621,
+        "avg_edge_bc": 0.00534313998256431,
+        "cross_comm_ratio": 0.25,
+        "path_length": 4.0,
+        "delta_E": 0.0028891483516486627,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3034671900161028,
+        "fragility_score": 0.06184909734388002
+      },
+      "fragility": {
+        "delta_E": 0.0028891483516486627,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3034671900161028,
+        "fragility_score": 0.06184909734388002
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6691043019294738,
+        "shortest_len": 2,
+        "selection_metric": "avg_edge_bc",
+        "coarse_avg_edge_bc": 0.00534313998256431
+      }
+    },
+    {
+      "rank": 10,
+      "source": 308,
+      "target": 1620,
+      "nodes": [
+        308,
+        306,
+        1072,
+        1358,
+        1620
+      ],
+      "length": 5,
+      "score": 0.060164659939496865,
+      "method": "betweenness",
+      "features": {
+        "avg_node_importance": 0.8213080453872681,
+        "internal_node_importance": 0.8121750235557555,
+        "avg_edge_bc": 0.010839489963487527,
+        "cross_comm_ratio": 0.25,
+        "path_length": 4.0,
+        "delta_E": 0.004782749889000015,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.2912577999194843,
+        "fragility_score": 0.060164659939496865
+      },
+      "fragility": {
+        "delta_E": 0.004782749889000015,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.2912577999194843,
+        "fragility_score": 0.060164659939496865
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6700151562690735,
+        "shortest_len": 3,
+        "selection_metric": "avg_edge_bc",
+        "coarse_avg_edge_bc": 0.010839489963487527
+      }
+    }
+  ],
+  "node_score": [
+    {
+      "rank": 1,
+      "source": 139,
+      "target": 289,
+      "nodes": [
+        139,
+        2045,
+        109,
+        289
+      ],
+      "length": 4,
+      "score": 0.09032681303800862,
+      "method": "node_score",
+      "features": {
+        "avg_node_importance": 0.8279023468494415,
+        "internal_node_importance": 0.8221034944057465,
+        "avg_edge_bc": 0.0045179251399616515,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.0008899995837494679,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.4498540660225441,
+        "fragility_score": 0.09032681303800862
+      },
+      "fragility": {
+        "delta_E": 0.0008899995837494679,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.4498540660225441,
+        "fragility_score": 0.09032681303800862
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6674023985862731,
+        "shortest_len": 3,
+        "selection_metric": "avg_node_importance",
+        "coarse_node_score": 0.8279023468494415
+      }
+    },
+    {
+      "rank": 2,
+      "source": 139,
+      "target": 1620,
+      "nodes": [
+        139,
+        2045,
+        341,
+        1358,
+        1620
+      ],
+      "length": 5,
+      "score": 0.07709913173380552,
+      "method": "node_score",
+      "features": {
+        "avg_node_importance": 0.8323982906341552,
+        "internal_node_importance": 0.8320872863133748,
+        "avg_edge_bc": 0.0020110995258076957,
+        "cross_comm_ratio": 0.25,
+        "path_length": 4.0,
+        "delta_E": 0.002618501637251358,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.38025865539452486,
+        "fragility_score": 0.07709913173380552
+      },
+      "fragility": {
+        "delta_E": 0.002618501637251358,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.38025865539452486,
+        "fragility_score": 0.07709913173380552
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6657295942306518,
+        "shortest_len": 3,
+        "selection_metric": "avg_node_importance",
+        "coarse_node_score": 0.8323982906341552
+      }
+    },
+    {
+      "rank": 3,
+      "source": 1661,
+      "target": 236,
+      "nodes": [
+        1661,
+        109,
+        2045,
+        236
+      ],
+      "length": 4,
+      "score": 0.07463831556125029,
+      "method": "node_score",
+      "features": {
+        "avg_node_importance": 0.8272849082946777,
+        "internal_node_importance": 0.8221034944057465,
+        "avg_edge_bc": 0.002471210119037604,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.0027944604007103524,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.36760265700483075,
+        "fragility_score": 0.07463831556125029
+      },
+      "fragility": {
+        "delta_E": 0.0027944604007103524,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.36760265700483075,
+        "fragility_score": 0.07463831556125029
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.664932644367218,
+        "shortest_len": 2,
+        "selection_metric": "avg_node_importance",
+        "coarse_node_score": 0.8272849082946777
+      }
+    },
+    {
+      "rank": 4,
+      "source": 68,
+      "target": 1620,
+      "nodes": [
+        68,
+        1358,
+        1620
+      ],
+      "length": 3,
+      "score": 0.06850467995169077,
+      "method": "node_score",
+      "features": {
+        "avg_node_importance": 0.8323972503344218,
+        "internal_node_importance": 0.8210686445236206,
+        "avg_edge_bc": 0.00708849162247501,
+        "cross_comm_ratio": 0.5,
+        "path_length": 2.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3425233997584538,
+        "fragility_score": 0.06850467995169077
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3425233997584538,
+        "fragility_score": 0.06850467995169077
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6761231064796447,
+        "shortest_len": 2,
+        "selection_metric": "avg_node_importance",
+        "coarse_node_score": 0.8323972503344218
+      }
+    },
+    {
+      "rank": 5,
+      "source": 1787,
+      "target": 289,
+      "nodes": [
+        1787,
+        2045,
+        109,
+        289
+      ],
+      "length": 4,
+      "score": 0.0674026803792021,
+      "method": "node_score",
+      "features": {
+        "avg_node_importance": 0.8320662707090378,
+        "internal_node_importance": 0.8221034944057465,
+        "avg_edge_bc": 0.0048553915882567624,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.0033559863747365526,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3303014291465374,
+        "fragility_score": 0.0674026803792021
+      },
+      "fragility": {
+        "delta_E": 0.0033559863747365526,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3303014291465374,
+        "fragility_score": 0.0674026803792021
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6840580940246581,
+        "shortest_len": 2,
+        "selection_metric": "avg_node_importance",
+        "coarse_node_score": 0.8320662707090378
+      }
+    },
+    {
+      "rank": 6,
+      "source": 519,
+      "target": 1661,
+      "nodes": [
+        519,
+        1346,
+        109,
+        1661
+      ],
+      "length": 4,
+      "score": 0.06324979871175529,
+      "method": "node_score",
+      "features": {
+        "avg_node_importance": 0.8306401461362838,
+        "internal_node_importance": 0.8249810993671417,
+        "avg_edge_bc": 0.0013336295604263967,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.31624899355877645,
+        "fragility_score": 0.06324979871175529
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.31624899355877645,
+        "fragility_score": 0.06324979871175529
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.672598385810852,
+        "shortest_len": 2,
+        "selection_metric": "avg_node_importance",
+        "coarse_node_score": 0.8306401461362838
+      }
+    },
+    {
+      "rank": 7,
+      "source": 153,
+      "target": 341,
+      "nodes": [
+        153,
+        2045,
+        341
+      ],
+      "length": 3,
+      "score": 0.06120029702181883,
+      "method": "node_score",
+      "features": {
+        "avg_node_importance": 0.8369479815165203,
+        "internal_node_importance": 0.8417396426200867,
+        "avg_edge_bc": 0.001811154028510098,
+        "cross_comm_ratio": 0.5,
+        "path_length": 2.0,
+        "delta_E": 0.0027516483516486223,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3004981884057969,
+        "fragility_score": 0.06120029702181883
+      },
+      "fragility": {
+        "delta_E": 0.0027516483516486223,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.3004981884057969,
+        "fragility_score": 0.06120029702181883
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6691043019294738,
+        "shortest_len": 2,
+        "selection_metric": "avg_node_importance",
+        "coarse_node_score": 0.8369479815165203
+      }
+    },
+    {
+      "rank": 8,
+      "source": 2080,
+      "target": 1546,
+      "nodes": [
+        2080,
+        306,
+        2045,
+        341,
+        1546
+      ],
+      "length": 5,
+      "score": 0.06081546900161037,
+      "method": "node_score",
+      "features": {
+        "avg_node_importance": 0.8306087875366212,
+        "internal_node_importance": 0.830209203561147,
+        "avg_edge_bc": 0.0028054328379202957,
+        "cross_comm_ratio": 0.25,
+        "path_length": 4.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.30407734500805184,
+        "fragility_score": 0.06081546900161037
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.30407734500805184,
+        "fragility_score": 0.06081546900161037
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6624163269996644,
+        "shortest_len": 3,
+        "selection_metric": "avg_node_importance",
+        "coarse_node_score": 0.8306087875366212
+      }
+    },
+    {
+      "rank": 9,
+      "source": 1346,
+      "target": 289,
+      "nodes": [
+        1346,
+        519,
+        109,
+        289
+      ],
+      "length": 4,
+      "score": 0.059537288647342916,
+      "method": "node_score",
+      "features": {
+        "avg_node_importance": 0.8307033389806747,
+        "internal_node_importance": 0.820909833908081,
+        "avg_edge_bc": 0.004597458624501507,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.29768644323671456,
+        "fragility_score": 0.059537288647342916
+      },
+      "fragility": {
+        "delta_E": 0.0,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.29768644323671456,
+        "fragility_score": 0.059537288647342916
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6809936881065368,
+        "shortest_len": 2,
+        "selection_metric": "avg_node_importance",
+        "coarse_node_score": 0.8307033389806747
+      }
+    },
+    {
+      "rank": 10,
+      "source": 2080,
+      "target": 1620,
+      "nodes": [
+        2080,
+        306,
+        1483,
+        1620
+      ],
+      "length": 4,
+      "score": 0.05946138677948467,
+      "method": "node_score",
+      "features": {
+        "avg_node_importance": 0.8223732560873032,
+        "internal_node_importance": 0.8119492530822754,
+        "avg_edge_bc": 0.0045631410685470705,
+        "cross_comm_ratio": 0.3333333333333333,
+        "path_length": 3.0,
+        "delta_E": 0.003276177294927296,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.29075457930756876,
+        "fragility_score": 0.05946138677948467
+      },
+      "fragility": {
+        "delta_E": 0.003276177294927296,
+        "delta_LCC": 0.0,
+        "delta_ASP": 0.29075457930756876,
+        "fragility_score": 0.05946138677948467
+      },
+      "metadata": {
+        "same_community": false,
+        "pair_score": 1.6655945181846619,
+        "shortest_len": 3,
+        "selection_metric": "avg_node_importance",
+        "coarse_node_score": 0.8223732560873032
+      }
+    }
+  ]
+}

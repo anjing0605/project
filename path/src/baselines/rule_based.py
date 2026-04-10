@@ -39,6 +39,13 @@ class RuleBasedCriticalPath:
     3. Candidate coverage statistics:
        if candidate_stats is provided, this function will fill it in-place
        with task-level and global candidate-pool statistics.
+
+    4. Set-level selection:
+       final top-q selection is now NODE-AWARE rather than EDGE-AWARE:
+       - node overlap instead of edge overlap
+       - node marginal gain instead of edge marginal gain
+       - node reuse penalty to avoid repeatedly choosing paths through
+         the same hubs/internal nodes
     """
 
     DEFAULT_WEIGHTS = {
@@ -81,8 +88,7 @@ class RuleBasedCriticalPath:
     ) -> float:
         """
         Cheap-stage score without fragility.
-        Since each task usually has very few candidates (e.g. k=3),
-        raw-feature coarse ranking is sufficient.
+        Since each task usually has very few candidates, raw-feature coarse ranking is sufficient.
         """
         return float(
             cheap_weights["avg_node_importance"] * float(features.get("avg_node_importance", 0.0))
@@ -135,6 +141,10 @@ class RuleBasedCriticalPath:
                 "size": int(total_cache_misses),
             },
         }
+
+    # ------------------------------------------------------------------
+    # Legacy edge-aware helpers (kept for compatibility / debugging only)
+    # ------------------------------------------------------------------
     @staticmethod
     def _edge_set_from_path_record(record: PathRecord) -> set[tuple[int, int]]:
         return {tuple(sorted(e)) for e in record.edges}
@@ -149,6 +159,31 @@ class RuleBasedCriticalPath:
         inter = len(a & b)
         union = len(a | b)
         return float(inter / union) if union > 0 else 0.0
+
+    # ------------------------------------------------------------------
+    # New node-aware helpers
+    # ------------------------------------------------------------------
+    @staticmethod
+    def _internal_node_set_from_record(record: PathRecord) -> set[int]:
+        """
+        Internal nodes only: exclude source / target.
+        This matches current fragility/evaluation semantics better than edge-level overlap.
+        """
+        if record.nodes is None or len(record.nodes) <= 2:
+            return set()
+        return {int(n) for n in record.nodes[1:-1]}
+
+    @staticmethod
+    def _node_jaccard_overlap(
+        a: set[int],
+        b: set[int],
+    ) -> float:
+        if not a and not b:
+            return 0.0
+        union = a | b
+        if not union:
+            return 0.0
+        return float(len(a & b) / len(union))
 
     @staticmethod
     def _single_path_score(
@@ -174,62 +209,131 @@ class RuleBasedCriticalPath:
         scored_records: List[PathRecord],
         top_q: int,
         overlap_threshold: float,
-        lambda_marginal: float = 0.70,
-        lambda_single: float = 0.30,
+        lambda_marginal: float = 0.60,
+        lambda_single: float = 0.40,
         overlap_penalty: float = 0.20,
+        low_single_threshold: float = 0.10,
+        low_single_penalty: float = 0.20,
+        reuse_penalty: float = 0.08,
     ) -> List[PathRecord]:
         """
-        集合级贪心选择：
-        每一步选择“对当前已选集合带来最大边际增益”的路径，而不是只看单路径分数。
+        Node-aware set-level greedy selection.
 
-        定义：
-            set_score = lambda_single * single_score
-                        + lambda_marginal * marginal_gain
-                        - overlap_penalty * max_overlap
+        Compared with the old edge-aware version, this one uses:
+        1. internal-node overlap instead of edge overlap
+        2. node-based marginal gain instead of num_new_edges
+        3. node reuse penalty to discourage repeatedly selecting paths through
+           the same hubs/internal nodes
 
-        这里的 marginal_gain 用“相对当前已选边集新增了多少边”近似。
-        这不是最终 RL/set-level 最优，但足够作为规则法的论文级升级版本。
+        set_score =
+            lambda_single   * single_score
+          + lambda_marginal * norm_marginal_gain
+          - overlap_penalty * max_node_overlap
+          - hard_penalty
+          - low_single_penalty_if_needed
+          - reuse_penalty * node_reuse_term
         """
         if not scored_records or top_q <= 0:
             return []
 
         remaining = list(scored_records)
         selected: List[PathRecord] = []
-        selected_edge_union: set[tuple[int, int]] = set()
+
+        # 已选集合的内部节点并集
+        selected_internal_union: set[int] = set()
+
+        # 每条已选路径的内部节点集合（用于 pairwise overlap）
+        selected_internal_sets: List[set[int]] = []
+
+        # internal node reuse counter
+        selected_node_counter: Dict[int, int] = {}
 
         while remaining and len(selected) < top_q:
+            candidate_infos = []
+
+            # ---------- 第一遍：计算每个候选的原始 node-based marginal gain ----------
+            for idx, record in enumerate(remaining):
+                internal_nodes = cls._internal_node_set_from_record(record)
+                single_score = float(record.score if record.score is not None else 0.0)
+
+                new_internal_nodes = internal_nodes - selected_internal_union
+                num_new_internal_nodes = len(new_internal_nodes)
+
+                feats = record.features or {}
+                avg_node_importance = float(feats.get("avg_node_importance", 0.0))
+                fragility_score = float(feats.get("fragility_score", 0.0))
+
+                # node-quality surrogate:
+                # prioritize paths that introduce new internal nodes and whose
+                # path-level node quality / fragility is high
+                node_quality = 0.7 * avg_node_importance + 0.3 * fragility_score
+                raw_marginal_gain = num_new_internal_nodes * node_quality
+
+                if not selected_internal_sets:
+                    max_node_overlap = 0.0
+                else:
+                    max_node_overlap = max(
+                        cls._node_jaccard_overlap(internal_nodes, prev_internal)
+                        for prev_internal in selected_internal_sets
+                    )
+
+                # internal-node reuse penalty: repeated hubs/internal nodes get penalized
+                node_reuse_term = float(
+                    sum(selected_node_counter.get(v, 0) for v in internal_nodes)
+                )
+
+                candidate_infos.append({
+                    "idx": idx,
+                    "record": record,
+                    "internal_nodes": internal_nodes,
+                    "new_internal_nodes": new_internal_nodes,
+                    "single_score": single_score,
+                    "num_new_internal_nodes": num_new_internal_nodes,
+                    "avg_node_importance": avg_node_importance,
+                    "fragility_score": fragility_score,
+                    "raw_marginal_gain": raw_marginal_gain,
+                    "max_node_overlap": max_node_overlap,
+                    "node_reuse_term": node_reuse_term,
+                })
+
+            # ---------- 第二遍：归一化 marginal gain ----------
+            raw_vals = [x["raw_marginal_gain"] for x in candidate_infos]
+            raw_min = min(raw_vals) if raw_vals else 0.0
+            raw_max = max(raw_vals) if raw_vals else 0.0
+
             best_idx = None
             best_value = float("-inf")
             best_augmented_score = None
 
-            for idx, record in enumerate(remaining):
-                edge_set = cls._edge_set_from_path_record(record)
-                single_score = float(record.score if record.score is not None else 0.0)
+            for item in candidate_infos:
+                idx = item["idx"]
+                single_score = item["single_score"]
+                raw_marginal_gain = item["raw_marginal_gain"]
+                max_node_overlap = item["max_node_overlap"]
+                node_reuse_term = item["node_reuse_term"]
 
-                # 相对当前集合的新增边比例
-                if len(edge_set) == 0:
-                    marginal_gain = 0.0
+                if raw_max > raw_min:
+                    norm_marginal_gain = (raw_marginal_gain - raw_min) / (raw_max - raw_min)
                 else:
-                    new_edges = edge_set - selected_edge_union
-                    marginal_gain = float(len(new_edges) / len(edge_set))
+                    # If all candidates have identical raw gain, keep a neutral-positive
+                    # value rather than collapsing all to 0.
+                    norm_marginal_gain = 1.0 if raw_max > 0 else 0.0
 
-                # 与已选集合中最相似路径的 overlap
-                if not selected:
-                    max_overlap = 0.0
-                else:
-                    max_overlap = max(
-                        cls._edge_jaccard_overlap(edge_set, cls._edge_set_from_path_record(prev))
-                        for prev in selected
-                    )
+                # overlap 超阈值时给硬惩罚，但不直接剔除
+                hard_penalty = 0.50 if max_node_overlap > overlap_threshold else 0.0
 
-                # 超过阈值不必直接硬踢掉，先允许进入打分；但给明显惩罚
-                hard_penalty = 1.0 if max_overlap > overlap_threshold else 0.0
+                # single_score 太低时，给额外惩罚
+                low_single_penalty_term = (
+                    low_single_penalty if single_score < low_single_threshold else 0.0
+                )
 
                 set_level_value = (
                     lambda_single * single_score
-                    + lambda_marginal * marginal_gain
-                    - overlap_penalty * max_overlap
-                    - 0.50 * hard_penalty
+                    + lambda_marginal * norm_marginal_gain
+                    - overlap_penalty * max_node_overlap
+                    - hard_penalty
+                    - low_single_penalty_term
+                    - reuse_penalty * node_reuse_term
                 )
 
                 if set_level_value > best_value:
@@ -237,8 +341,17 @@ class RuleBasedCriticalPath:
                     best_idx = idx
                     best_augmented_score = {
                         "single_score": single_score,
-                        "marginal_gain": marginal_gain,
-                        "max_overlap": max_overlap,
+                        "raw_marginal_gain": raw_marginal_gain,
+                        "norm_marginal_gain": norm_marginal_gain,
+                        "num_new_internal_nodes": item["num_new_internal_nodes"],
+                        "avg_node_importance": item["avg_node_importance"],
+                        "fragility_score": item["fragility_score"],
+                        "max_node_overlap": max_node_overlap,
+                        "node_reuse_term": node_reuse_term,
+                        "hard_penalty": hard_penalty,
+                        "low_single_threshold": low_single_threshold,
+                        "low_single_penalty": low_single_penalty_term,
+                        "reuse_penalty": reuse_penalty,
                         "set_level_value": set_level_value,
                     }
 
@@ -246,10 +359,17 @@ class RuleBasedCriticalPath:
             chosen.metadata = dict(chosen.metadata or {})
             chosen.metadata["set_level"] = best_augmented_score
 
+            chosen_internal = cls._internal_node_set_from_record(chosen)
+
             selected.append(chosen)
-            selected_edge_union |= cls._edge_set_from_path_record(chosen)
+            selected_internal_union |= chosen_internal
+            selected_internal_sets.append(chosen_internal)
+
+            for v in chosen_internal:
+                selected_node_counter[v] = selected_node_counter.get(v, 0) + 1
 
         return selected
+
     @classmethod
     def run(
         cls,
@@ -328,13 +448,17 @@ class RuleBasedCriticalPath:
             # 1) generate candidate paths
             t_gen0 = time.perf_counter()
             try:
-                paths = PathGenerator.k_shortest_simple_paths(
-                    bundle.nx_graph,
+                raw_k = max(path_k * 3, path_k + 10)
+
+                paths = PathGenerator.diversified_k_shortest_simple_paths(
+                    G=bundle.nx_graph,
                     source=task.source,
                     target=task.target,
-                    k=path_k,
+                    raw_k=raw_k,
+                    final_k=path_k,
                     max_hops=max_hops,
                     delta=delta,
+                    max_internal_overlap=0.60,
                 )
             except (nx.NetworkXNoPath, nx.NodeNotFound):
                 continue
@@ -517,14 +641,17 @@ class RuleBasedCriticalPath:
             gate_penalty=gate_penalty,
         )
 
-        # 第二步：集合级贪心选择
+        # 第二步：node-aware 集合级贪心选择
         selected = cls._greedy_set_level_select(
             scored_records=scored,
             top_q=top_q,
             overlap_threshold=overlap_threshold,
-            lambda_marginal=0.70,
-            lambda_single=0.30,
+            lambda_marginal=0.45,
+            lambda_single=0.55,
             overlap_penalty=0.20,
+            low_single_threshold=0.15,
+            low_single_penalty=0.30,
+            reuse_penalty=0.15,
         )
 
         print(f"[rule] final selected = {len(selected)}", flush=True)

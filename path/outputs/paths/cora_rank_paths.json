@@ -1,92 +1,46 @@
 [
   {
-    "source": 1787,
-    "target": 1762,
+    "source": 1805,
+    "target": 1661,
     "nodes": [
-      1787,
-      306,
+      1805,
       1072,
-      1358,
-      1762
-    ],
-    "score": 0.5425561666488647,
-    "method": "xgb_rank",
-    "features": {
-      "shortest_len": 4.0,
-      "same_community": 0.0,
-      "pair_score": 1.68446888923645,
-      "candidate_rank": 2.0,
-      "path_length_int": 5.0,
-      "avg_node_importance": 0.8241987919807434,
-      "internal_node_importance": 0.8121750235557555,
-      "avg_edge_bc": 0.011410537279231655,
-      "cross_comm_ratio": 0.25,
-      "path_length": 5.0,
-      "num_edges": 4.0,
-      "delta_E": 0.2747095494104591,
-      "delta_LCC": 0.16482572964627545,
-      "delta_ASP": 0.10988381976418365,
-      "fragility_score": 0.5494190988209182,
-      "y_fragility": 0.5494190988209182
-    },
-    "fragility": {
-      "delta_E": 0.2747095494104591,
-      "delta_LCC": 0.16482572964627545,
-      "delta_ASP": 0.10988381976418365,
-      "fragility_score": 0.5494190988209182
-    },
-    "metadata": {
-      "candidate_rank": 2,
-      "backend": "xgboost",
-      "selector": "greedy_marginal_gain",
-      "marginal_gain": 0.05734538358782916,
-      "set_fragility_after_select": 0.05734538358782916,
-      "selection_step": 1
-    }
-  },
-  {
-    "source": 1787,
-    "target": 1709,
-    "nodes": [
-      1787,
+      236,
       109,
-      519,
-      1986,
-      1709
+      1661
     ],
-    "score": 0.5994194746017456,
+    "score": 0.6001874804496765,
     "method": "xgb_rank",
     "features": {
-      "shortest_len": 4.0,
+      "shortest_len": 2.0,
       "same_community": 0.0,
-      "pair_score": 1.692479395866394,
-      "candidate_rank": 3.0,
+      "pair_score": 1.6694729685783387,
+      "candidate_rank": 5.0,
       "path_length_int": 5.0,
-      "avg_node_importance": 0.8278831076622009,
-      "internal_node_importance": 0.8156453808148703,
-      "avg_edge_bc": 0.007564668225161607,
-      "cross_comm_ratio": 0.5,
-      "path_length": 5.0,
-      "num_edges": 4.0,
-      "delta_E": 0.2994716271096294,
-      "delta_LCC": 0.17968297626577762,
-      "delta_ASP": 0.11978865084385176,
-      "fragility_score": 0.5989432542192588,
-      "y_fragility": 0.5989432542192588
+      "avg_node_importance": 0.8207297849655152,
+      "internal_node_importance": 0.8113919854164123,
+      "avg_edge_bc": 0.0016393167652623665,
+      "cross_comm_ratio": 0.75,
+      "path_length": 4.0,
+      "delta_E": 0.3100035511429695,
+      "delta_LCC": 0.1860021306857817,
+      "delta_ASP": 0.12400142045718782,
+      "fragility_score": 0.620007102285939,
+      "y_fragility": 0.620007102285939
     },
     "fragility": {
-      "delta_E": 0.2994716271096294,
-      "delta_LCC": 0.17968297626577762,
-      "delta_ASP": 0.11978865084385176,
-      "fragility_score": 0.5989432542192588
+      "delta_E": 0.3100035511429695,
+      "delta_LCC": 0.1860021306857817,
+      "delta_ASP": 0.12400142045718782,
+      "fragility_score": 0.620007102285939
     },
     "metadata": {
-      "candidate_rank": 3,
+      "candidate_rank": 5,
       "backend": "xgboost",
       "selector": "greedy_marginal_gain",
-      "marginal_gain": -0.028431585278650386,
-      "set_fragility_after_select": 0.028913798309178774,
-      "selection_step": 2
+      "marginal_gain": 0.052264054196608505,
+      "set_fragility_after_select": 0.052264054196608505,
+      "selection_step": 1
     }
   },
   {
@@ -95,88 +49,263 @@
     "nodes": [
       1787,
       2045,
-      341,
-      1358,
+      1013,
+      1729,
       1568
     ],
-    "score": 0.5466387867927551,
+    "score": 0.5953821539878845,
     "method": "xgb_rank",
     "features": {
       "shortest_len": 4.0,
       "same_community": 0.0,
       "pair_score": 1.6775779962539672,
-      "candidate_rank": 3.0,
+      "candidate_rank": 5.0,
       "path_length_int": 5.0,
-      "avg_node_importance": 0.8347679710388185,
-      "internal_node_importance": 0.8320872863133748,
-      "avg_edge_bc": 0.0021326790591122387,
-      "cross_comm_ratio": 0.25,
-      "path_length": 5.0,
-      "num_edges": 4.0,
-      "delta_E": 0.27537366299510085,
-      "delta_LCC": 0.16522419779706052,
-      "delta_ASP": 0.11014946519804035,
-      "fragility_score": 0.5507473259902017,
-      "y_fragility": 0.5507473259902017
+      "avg_node_importance": 0.8094444370269777,
+      "internal_node_importance": 0.7898813962936401,
+      "avg_edge_bc": 0.007620645641392945,
+      "cross_comm_ratio": 0.5,
+      "path_length": 4.0,
+      "delta_E": 0.2959844906089915,
+      "delta_LCC": 0.1775906943653949,
+      "delta_ASP": 0.11839379624359661,
+      "fragility_score": 0.591968981217983,
+      "y_fragility": 0.591968981217983
     },
     "fragility": {
-      "delta_E": 0.27537366299510085,
-      "delta_LCC": 0.16522419779706052,
-      "delta_ASP": 0.11014946519804035,
-      "fragility_score": 0.5507473259902017
+      "delta_E": 0.2959844906089915,
+      "delta_LCC": 0.1775906943653949,
+      "delta_ASP": 0.11839379624359661,
+      "fragility_score": 0.591968981217983
     },
     "metadata": {
-      "candidate_rank": 3,
+      "candidate_rank": 5,
       "backend": "xgboost",
       "selector": "greedy_marginal_gain",
-      "marginal_gain": 0.024833297831395613,
-      "set_fragility_after_select": 0.05374709614057439,
+      "marginal_gain": 0.009897529941877745,
+      "set_fragility_after_select": 0.06216158413848625,
+      "selection_step": 2
+    }
+  },
+  {
+    "source": 1787,
+    "target": 1709,
+    "nodes": [
+      1787,
+      306,
+      476,
+      1986,
+      1709
+    ],
+    "score": 0.6412127017974854,
+    "method": "xgb_rank",
+    "features": {
+      "shortest_len": 4.0,
+      "same_community": 0.0,
+      "pair_score": 1.692479395866394,
+      "candidate_rank": 11.0,
+      "path_length_int": 5.0,
+      "avg_node_importance": 0.8127070832252503,
+      "internal_node_importance": 0.7903520067532858,
+      "avg_edge_bc": 0.006938052390106192,
+      "cross_comm_ratio": 0.75,
+      "path_length": 4.0,
+      "delta_E": 0.32105816531461234,
+      "delta_LCC": 0.1926348991887674,
+      "delta_ASP": 0.12842326612584495,
+      "fragility_score": 0.6421163306292247,
+      "y_fragility": 0.6421163306292247
+    },
+    "fragility": {
+      "delta_E": 0.32105816531461234,
+      "delta_LCC": 0.1926348991887674,
+      "delta_ASP": 0.12842326612584495,
+      "fragility_score": 0.6421163306292247
+    },
+    "metadata": {
+      "candidate_rank": 11,
+      "backend": "xgboost",
+      "selector": "greedy_marginal_gain",
+      "marginal_gain": -0.008332383071839693,
+      "set_fragility_after_select": 0.053829201066646556,
       "selection_step": 3
     }
   },
   {
-    "source": 2045,
-    "target": 758,
+    "source": 1805,
+    "target": 341,
     "nodes": [
+      1805,
+      1072,
+      1784,
       2045,
-      109,
-      289,
-      1358,
-      758
+      341
     ],
-    "score": 0.5282440185546875,
+    "score": 0.6365888714790344,
     "method": "xgb_rank",
     "features": {
       "shortest_len": 3.0,
       "same_community": 0.0,
-      "pair_score": 1.6721370100975037,
-      "candidate_rank": 2.0,
+      "pair_score": 1.6696804761886597,
+      "candidate_rank": 10.0,
       "path_length_int": 5.0,
-      "avg_node_importance": 0.825834367275238,
-      "internal_node_importance": 0.8190116087595621,
-      "avg_edge_bc": 0.005643050247731929,
-      "cross_comm_ratio": 0.25,
-      "path_length": 5.0,
-      "num_edges": 4.0,
-      "delta_E": 0.2643214892892645,
-      "delta_LCC": 0.1585928935735587,
-      "delta_ASP": 0.10572859571570581,
-      "fragility_score": 0.528642978578529,
-      "y_fragility": 0.528642978578529
+      "avg_node_importance": 0.8239266943931579,
+      "internal_node_importance": 0.8166509985923768,
+      "avg_edge_bc": 0.0017246460520649403,
+      "cross_comm_ratio": 0.75,
+      "path_length": 4.0,
+      "delta_E": 0.32320636378930856,
+      "delta_LCC": 0.19392381827358512,
+      "delta_ASP": 0.12928254551572343,
+      "fragility_score": 0.6464127275786171,
+      "y_fragility": 0.6464127275786171
     },
     "fragility": {
-      "delta_E": 0.2643214892892645,
-      "delta_LCC": 0.1585928935735587,
-      "delta_ASP": 0.10572859571570581,
-      "fragility_score": 0.528642978578529
+      "delta_E": 0.32320636378930856,
+      "delta_LCC": 0.19392381827358512,
+      "delta_ASP": 0.12928254551572343,
+      "fragility_score": 0.6464127275786171
     },
     "metadata": {
-      "candidate_rank": 2,
+      "candidate_rank": 10,
       "backend": "xgboost",
       "selector": "greedy_marginal_gain",
-      "marginal_gain": 0.008717015458374194,
-      "set_fragility_after_select": 0.06246411159894858,
+      "marginal_gain": -0.005286792239563888,
+      "set_fragility_after_select": 0.04854240882708267,
       "selection_step": 4
+    }
+  },
+  {
+    "source": 1805,
+    "target": 1762,
+    "nodes": [
+      1805,
+      1072,
+      1733,
+      831,
+      1358,
+      1762
+    ],
+    "score": 0.5882055163383484,
+    "method": "xgb_rank",
+    "features": {
+      "shortest_len": 3.0,
+      "same_community": 0.0,
+      "pair_score": 1.670136535167694,
+      "candidate_rank": 16.0,
+      "path_length_int": 6.0,
+      "avg_node_importance": 0.8120337943236033,
+      "internal_node_importance": 0.8005165576934814,
+      "avg_edge_bc": 0.0010175343374885975,
+      "cross_comm_ratio": 0.6,
+      "path_length": 5.0,
+      "delta_E": 0.295856852353026,
+      "delta_LCC": 0.17751411141181558,
+      "delta_ASP": 0.1183427409412104,
+      "fragility_score": 0.591713704706052,
+      "y_fragility": 0.591713704706052
+    },
+    "fragility": {
+      "delta_E": 0.295856852353026,
+      "delta_LCC": 0.17751411141181558,
+      "delta_ASP": 0.1183427409412104,
+      "fragility_score": 0.591713704706052
+    },
+    "metadata": {
+      "candidate_rank": 16,
+      "backend": "xgboost",
+      "selector": "greedy_marginal_gain",
+      "marginal_gain": 0.009194608081129957,
+      "set_fragility_after_select": 0.057737016908212625,
+      "selection_step": 5
+    }
+  },
+  {
+    "source": 1787,
+    "target": 754,
+    "nodes": [
+      1787,
+      2045,
+      341,
+      1358,
+      754
+    ],
+    "score": 0.5465631484985352,
+    "method": "xgb_rank",
+    "features": {
+      "shortest_len": 3.0,
+      "same_community": 0.0,
+      "pair_score": 1.6722625851631165,
+      "candidate_rank": 4.0,
+      "path_length_int": 5.0,
+      "avg_node_importance": 0.8337048888206482,
+      "internal_node_importance": 0.8320872863133748,
+      "avg_edge_bc": 0.002172040824915701,
+      "cross_comm_ratio": 0.25,
+      "path_length": 4.0,
+      "delta_E": 0.27532838123735304,
+      "delta_LCC": 0.16519702874241182,
+      "delta_ASP": 0.11013135249494121,
+      "fragility_score": 0.5506567624747061,
+      "y_fragility": 0.5506567624747061
+    },
+    "fragility": {
+      "delta_E": 0.27532838123735304,
+      "delta_LCC": 0.16519702874241182,
+      "delta_ASP": 0.11013135249494121,
+      "fragility_score": 0.5506567624747061
+    },
+    "metadata": {
+      "candidate_rank": 4,
+      "backend": "xgboost",
+      "selector": "greedy_marginal_gain",
+      "marginal_gain": -0.014971950267928559,
+      "set_fragility_after_select": 0.042765066640284066,
+      "selection_step": 6
+    }
+  },
+  {
+    "source": 2045,
+    "target": 289,
+    "nodes": [
+      2045,
+      1013,
+      1661,
+      109,
+      289
+    ],
+    "score": 0.6082369685173035,
+    "method": "xgb_rank",
+    "features": {
+      "shortest_len": 2.0,
+      "same_community": 0.0,
+      "pair_score": 1.6752384781837464,
+      "candidate_rank": 14.0,
+      "path_length_int": 5.0,
+      "avg_node_importance": 0.8078226470947266,
+      "internal_node_importance": 0.7879582524299621,
+      "avg_edge_bc": 0.007625319055684253,
+      "cross_comm_ratio": 0.75,
+      "path_length": 4.0,
+      "delta_E": 0.3082120214088694,
+      "delta_LCC": 0.18492721284532163,
+      "delta_ASP": 0.12328480856354776,
+      "fragility_score": 0.6164240428177388,
+      "y_fragility": 0.6164240428177388
+    },
+    "fragility": {
+      "delta_E": 0.3082120214088694,
+      "delta_LCC": 0.18492721284532163,
+      "delta_ASP": 0.12328480856354776,
+      "fragility_score": 0.6164240428177388
+    },
+    "metadata": {
+      "candidate_rank": 14,
+      "backend": "xgboost",
+      "selector": "greedy_marginal_gain",
+      "marginal_gain": 0.03953858044531948,
+      "set_fragility_after_select": 0.08230364708560355,
+      "selection_step": 7
     }
   },
   {
@@ -184,259 +313,131 @@
     "target": 1546,
     "nodes": [
       1787,
-      2045,
-      306,
-      1804,
+      1810,
+      481,
+      823,
+      1358,
       1546
     ],
-    "score": 0.5360223054885864,
+    "score": 0.5516055822372437,
     "method": "xgb_rank",
     "features": {
       "shortest_len": 3.0,
       "same_community": 0.0,
       "pair_score": 1.6792070984840395,
-      "candidate_rank": 3.0,
-      "path_length_int": 5.0,
-      "avg_node_importance": 0.8274044013023376,
-      "internal_node_importance": 0.8192716360092164,
-      "avg_edge_bc": 0.0021605964121147155,
-      "cross_comm_ratio": 0.25,
+      "candidate_rank": 18.0,
+      "path_length_int": 6.0,
+      "avg_node_importance": 0.7920018454392751,
+      "internal_node_importance": 0.7682009935379028,
+      "avg_edge_bc": 0.0052018908678661034,
+      "cross_comm_ratio": 0.4,
       "path_length": 5.0,
-      "num_edges": 4.0,
-      "delta_E": 0.2637295029484615,
-      "delta_LCC": 0.1582377017690769,
-      "delta_ASP": 0.1054918011793846,
-      "fragility_score": 0.527459005896923,
-      "y_fragility": 0.527459005896923
+      "delta_E": 0.27246056979932726,
+      "delta_LCC": 0.16347634187959634,
+      "delta_ASP": 0.1089842279197309,
+      "fragility_score": 0.5449211395986545,
+      "y_fragility": 0.5449211395986545
     },
     "fragility": {
-      "delta_E": 0.2637295029484615,
-      "delta_LCC": 0.1582377017690769,
-      "delta_ASP": 0.1054918011793846,
-      "fragility_score": 0.527459005896923
+      "delta_E": 0.27246056979932726,
+      "delta_LCC": 0.16347634187959634,
+      "delta_ASP": 0.1089842279197309,
+      "fragility_score": 0.5449211395986545
     },
     "metadata": {
-      "candidate_rank": 3,
+      "candidate_rank": 18,
       "backend": "xgboost",
       "selector": "greedy_marginal_gain",
-      "marginal_gain": -0.06175490830224535,
-      "set_fragility_after_select": 0.0007092032967032314,
-      "selection_step": 5
-    }
-  },
-  {
-    "source": 1787,
-    "target": 1346,
-    "nodes": [
-      1787,
-      306,
-      1346
-    ],
-    "score": 0.021245157346129417,
-    "method": "xgb_rank",
-    "features": {
-      "shortest_len": 2.0,
-      "same_community": 1.0,
-      "pair_score": 1.6980541110038758,
-      "candidate_rank": 2.0,
-      "path_length_int": 3.0,
-      "avg_node_importance": 0.8378295024236042,
-      "internal_node_importance": 0.8154343962669373,
-      "avg_edge_bc": 0.001820633390960513,
-      "cross_comm_ratio": 0.0,
-      "path_length": 3.0,
-      "num_edges": 2.0,
-      "delta_E": 0.0004511634199132475,
-      "delta_LCC": 0.0,
-      "delta_ASP": 0.0,
-      "fragility_score": 0.000180465367965299,
-      "y_fragility": 0.000180465367965299
-    },
-    "fragility": {
-      "delta_E": 0.0004511634199132475,
-      "delta_LCC": 0.0,
-      "delta_ASP": 0.0,
-      "fragility_score": 0.000180465367965299
-    },
-    "metadata": {
-      "candidate_rank": 2,
-      "backend": "xgboost",
-      "selector": "greedy_marginal_gain",
-      "marginal_gain": 0.0822374480008719,
-      "set_fragility_after_select": 0.08294665129757514,
-      "selection_step": 6
-    }
-  },
-  {
-    "source": 1805,
-    "target": 1661,
-    "nodes": [
-      1805,
-      109,
-      1661
-    ],
-    "score": 0.014507785439491272,
-    "method": "xgb_rank",
-    "features": {
-      "shortest_len": 2.0,
-      "same_community": 0.0,
-      "pair_score": 1.6694729685783387,
-      "candidate_rank": 1.0,
-      "path_length_int": 3.0,
-      "avg_node_importance": 0.8239801049232481,
-      "internal_node_importance": 0.8024673461914062,
-      "avg_edge_bc": 0.002167868291836131,
-      "cross_comm_ratio": 0.5,
-      "path_length": 3.0,
-      "num_edges": 2.0,
-      "delta_E": 0.0,
-      "delta_LCC": 0.0,
-      "delta_ASP": 0.1772657508051525,
-      "fragility_score": 0.035453150161030504,
-      "y_fragility": 0.035453150161030504
-    },
-    "fragility": {
-      "delta_E": 0.0,
-      "delta_LCC": 0.0,
-      "delta_ASP": 0.1772657508051525,
-      "fragility_score": 0.035453150161030504
-    },
-    "metadata": {
-      "candidate_rank": 1,
-      "backend": "xgboost",
-      "selector": "greedy_marginal_gain",
-      "marginal_gain": 0.010394439453461121,
-      "set_fragility_after_select": 0.09334109075103626,
-      "selection_step": 7
-    }
-  },
-  {
-    "source": 1787,
-    "target": 236,
-    "nodes": [
-      1787,
-      306,
-      236
-    ],
-    "score": 0.021465694531798363,
-    "method": "xgb_rank",
-    "features": {
-      "shortest_len": 2.0,
-      "same_community": 1.0,
-      "pair_score": 1.6822458386421204,
-      "candidate_rank": 2.0,
-      "path_length_int": 3.0,
-      "avg_node_importance": 0.8325600783030191,
-      "internal_node_importance": 0.8154343962669373,
-      "avg_edge_bc": 0.001744089577731858,
-      "cross_comm_ratio": 0.0,
-      "path_length": 3.0,
-      "num_edges": 2.0,
-      "delta_E": 0.0004643446830944198,
-      "delta_LCC": 0.0,
-      "delta_ASP": 0.0,
-      "fragility_score": 0.00018573787323776793,
-      "y_fragility": 0.00018573787323776793
-    },
-    "fragility": {
-      "delta_E": 0.0004643446830944198,
-      "delta_LCC": 0.0,
-      "delta_ASP": 0.0,
-      "fragility_score": 0.00018573787323776793
-    },
-    "metadata": {
-      "candidate_rank": 2,
-      "backend": "xgboost",
-      "selector": "greedy_marginal_gain",
-      "marginal_gain": -0.024138750199076256,
-      "set_fragility_after_select": 0.06920234055196,
+      "marginal_gain": -0.08136909663605311,
+      "set_fragility_after_select": 0.0009345504495504309,
       "selection_step": 8
     }
   },
   {
-    "source": 1805,
-    "target": 139,
+    "source": 1787,
+    "target": 426,
     "nodes": [
-      1805,
+      1787,
+      1810,
+      719,
       306,
-      103,
-      139
+      426
     ],
-    "score": 0.02112334966659546,
+    "score": 0.41968461871147156,
     "method": "xgb_rank",
     "features": {
       "shortest_len": 2.0,
       "same_community": 1.0,
-      "pair_score": 1.670130467414856,
-      "candidate_rank": 3.0,
-      "path_length_int": 4.0,
-      "avg_node_importance": 0.8260534077882766,
-      "internal_node_importance": 0.8170415818691253,
-      "avg_edge_bc": 0.00048656692330144015,
-      "cross_comm_ratio": 0.0,
+      "pair_score": 1.6816370844841004,
+      "candidate_rank": 17.0,
+      "path_length_int": 5.0,
+      "avg_node_importance": 0.8072011256217957,
+      "internal_node_importance": 0.784789514541626,
+      "avg_edge_bc": 0.00441294587456454,
+      "cross_comm_ratio": 0.5,
       "path_length": 4.0,
-      "num_edges": 3.0,
-      "delta_E": 0.0,
-      "delta_LCC": 0.0,
-      "delta_ASP": 0.0,
-      "fragility_score": 0.0,
-      "y_fragility": 0.0
+      "delta_E": 0.2072215969101653,
+      "delta_LCC": 0.12433295814609918,
+      "delta_ASP": 0.08288863876406613,
+      "fragility_score": 0.4144431938203306,
+      "y_fragility": 0.4144431938203306
     },
     "fragility": {
-      "delta_E": 0.0,
-      "delta_LCC": 0.0,
-      "delta_ASP": 0.0,
-      "fragility_score": 0.0
+      "delta_E": 0.2072215969101653,
+      "delta_LCC": 0.12433295814609918,
+      "delta_ASP": 0.08288863876406613,
+      "fragility_score": 0.4144431938203306
     },
     "metadata": {
-      "candidate_rank": 3,
+      "candidate_rank": 17,
       "backend": "xgboost",
       "selector": "greedy_marginal_gain",
-      "marginal_gain": 0.006132144369318263,
-      "set_fragility_after_select": 0.07533448492127827,
+      "marginal_gain": 0.09608424475283162,
+      "set_fragility_after_select": 0.09701879520238205,
       "selection_step": 9
     }
   },
   {
     "source": 2045,
-    "target": 1805,
+    "target": 1661,
     "nodes": [
       2045,
-      306,
-      1805
+      519,
+      836,
+      1013,
+      1661
     ],
-    "score": 0.021154720336198807,
+    "score": 0.4842965304851532,
     "method": "xgb_rank",
     "features": {
       "shortest_len": 2.0,
-      "same_community": 1.0,
-      "pair_score": 1.6779665470123293,
-      "candidate_rank": 2.0,
-      "path_length_int": 3.0,
-      "avg_node_importance": 0.8311336477597555,
-      "internal_node_importance": 0.8154343962669373,
-      "avg_edge_bc": 0.002158537562122877,
-      "cross_comm_ratio": 0.0,
-      "path_length": 3.0,
-      "num_edges": 2.0,
-      "delta_E": 0.0036539842102343845,
-      "delta_LCC": 0.0,
-      "delta_ASP": 0.07572841183574841,
-      "fragility_score": 0.016607276051243437,
-      "y_fragility": 0.016607276051243437
+      "same_community": 0.0,
+      "pair_score": 1.6749857068061829,
+      "candidate_rank": 14.0,
+      "path_length_int": 5.0,
+      "avg_node_importance": 0.8034680461883544,
+      "internal_node_importance": 0.7807848413785298,
+      "avg_edge_bc": 0.0035276334252861206,
+      "cross_comm_ratio": 0.25,
+      "path_length": 4.0,
+      "delta_E": 0.25645741313232795,
+      "delta_LCC": 0.15387444787939678,
+      "delta_ASP": 0.10258296525293119,
+      "fragility_score": 0.5129148262646559,
+      "y_fragility": 0.5129148262646559
     },
     "fragility": {
-      "delta_E": 0.0036539842102343845,
-      "delta_LCC": 0.0,
-      "delta_ASP": 0.07572841183574841,
-      "fragility_score": 0.016607276051243437
+      "delta_E": 0.25645741313232795,
+      "delta_LCC": 0.15387444787939678,
+      "delta_ASP": 0.10258296525293119,
+      "fragility_score": 0.5129148262646559
     },
     "metadata": {
-      "candidate_rank": 2,
+      "candidate_rank": 14,
       "backend": "xgboost",
       "selector": "greedy_marginal_gain",
-      "marginal_gain": -0.01603622606459544,
-      "set_fragility_after_select": 0.05929825885668283,
+      "marginal_gain": -0.07938457507468363,
+      "set_fragility_after_select": 0.017634220127698406,
       "selection_step": 10
     }
   }

@@ -422,13 +422,16 @@ class PathRankingDatasetBuilder:
             # -------------------------
             try:
                 t_paths = time.perf_counter()
-                paths = PathGenerator.k_shortest_simple_paths(
-                    bundle.nx_graph,
+                raw_k = max(path_k * 3, path_k + 10)
+                paths = PathGenerator.diversified_k_shortest_simple_paths(
+                    G=bundle.nx_graph,
                     source=task.source,
                     target=task.target,
-                    k=path_k,
+                    raw_k=raw_k,  # 例如先取 3 倍
+                    final_k=path_k,
                     max_hops=max_hops,
                     delta=delta,
+                    max_internal_overlap=0.60,
                 )
                 if debug:
                     print(

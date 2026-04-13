@@ -14,6 +14,9 @@ keynode:
   k: 30
   min_shortest_len: 2
   max_pairs: 200
+  task_sampling_mode: hybrid
+  random_task_ratio: 0.1
+  random_seed: 42
 paths:
   k_shortest: 20
   max_hops: 8
@@ -27,32 +30,30 @@ fragility:
   lambda_ASP: 0.2
 ranking:
   train_ratio: 0.8
-  top_per_task: 1
+  top_per_task: 5
   random_state: 42
   fragility_mode: hybrid
-  exact_every_n_tasks: 20
-  exact_top_ranks: 1
-  exact_max_path_len: 4
-  progress_every: 10
+  exact_every_n_tasks: 10
+  exact_top_ranks: 3
+  exact_max_path_len: 5
+  progress_every: 20
   eval_mode: hybrid
   eval_early_stop: true
   eval_tol: 0.0001
-  eval_debug: true
-  max_shared_internal_nodes: 1
-  alpha_pred: 0.35
-  alpha_gain: 0.65
+  eval_debug: false
+  max_shared_internal_nodes: 2
+  alpha_pred: 0.45
+  alpha_gain: 0.55
   feature_cols:
   - shortest_len
   - same_community
   - pair_score
-  - candidate_rank
   - path_length_int
   - avg_node_importance
   - internal_node_importance
   - avg_edge_bc
   - cross_comm_ratio
   - path_length
-  - num_edges
   xgb_params:
     n_estimators: 300
     max_depth: 4
@@ -68,7 +69,7 @@ tensorboard:
   log_root: outputs/tb
   run_name: cora_rank
 debug:
-  enabled: true
+  enabled: false
 scorer:
   fragility_gate: 0.5
   gate_penalty: 0.08

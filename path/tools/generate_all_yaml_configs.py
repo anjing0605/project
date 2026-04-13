@@ -103,6 +103,9 @@ COMMON_KEYNODE = {
     "k": 30,
     "min_shortest_len": 2,
     "max_pairs": 200,
+    "task_sampling_mode": "hybrid",
+    "random_task_ratio": 0.10,
+    "random_seed": 42,
 }
 
 COMMON_PATHS = {
@@ -214,38 +217,38 @@ def build_rank_yaml(info: dict) -> dict:
         "fragility": deepcopy(COMMON_FRAGILITY),
         "ranking": {
             "train_ratio": 0.8,
-            "top_per_task": 1,
+            "top_per_task": 5,
             "random_state": 42,
 
             # ===== 新增：dataset 构造阶段的 fragility 加速配置 =====
             "fragility_mode": "hybrid",          # exact | cached | approx | hybrid
-            "exact_every_n_tasks": 20,
-            "exact_top_ranks": 1,
-            "exact_max_path_len": 4,
-            "progress_every": 10,
+            "exact_every_n_tasks": 10,
+            "exact_top_ranks": 3,
+            "exact_max_path_len": 5,
+            "progress_every": 20,
 
             # ===== 新增：compare_methods / evaluate_topk_damage 配置 =====
             "eval_mode": "hybrid",               # exact | approx | hybrid
             "eval_early_stop": True,
             "eval_tol": 1e-4,
-            "eval_debug": True,
-            "max_shared_internal_nodes": 1,
-            "alpha_pred": 0.35,
-            "alpha_gain": 0.65,
+            "eval_debug": False,
+            "max_shared_internal_nodes": 2,
+            "alpha_pred": 0.45,
+            "alpha_gain": 0.55,
 
 
             "feature_cols": [
                 "shortest_len",
                 "same_community",
                 "pair_score",
-                "candidate_rank",
+                #"candidate_rank",
                 "path_length_int",
                 "avg_node_importance",
                 "internal_node_importance",
                 "avg_edge_bc",
                 "cross_comm_ratio",
                 "path_length",
-                "num_edges",
+                #"num_edges",
             ],
             "xgb_params": {
                 "n_estimators": 300,
@@ -266,7 +269,7 @@ def build_rank_yaml(info: dict) -> dict:
 
         # ===== 可选：统一 debug 开关 =====
         "debug": {
-            "enabled": True,
+            "enabled": False,
         },
         "scorer": deepcopy(COMMON_SCORER),
 

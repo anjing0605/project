@@ -29,6 +29,8 @@ from path.src.core.types import TaskPair
 from path.src.data.preprocess import GraphPreprocessor
 from path.src.utils.tb_logger import TBLogger
 from path.src.core.fragility import FragilityEvaluator
+from path.src.core.keynode import KeyNodeSelector
+from path.src.core.task_sampler import TaskPairBuilder
 '''
 cd D:\project\keynode\project
 python -m path.scripts.run_rule --config path/configs/cora_rule.yaml
@@ -98,111 +100,6 @@ def timed_call(stage_name: str, fn, *args, **kwargs):
     dt = time.perf_counter() - t0
     stage_print(f"[STAGE-DONE] {stage_name} finished in {dt:.2f}s")
     return out
-
-
-def select_key_nodes(
-    importance,
-    mode: str,
-    k: int | None = None,
-    ratio: float | None = None
-) -> List[int]:
-    num_nodes = len(importance)
-
-    if mode == "topk":
-        if k is None or k <= 1:
-            raise ValueError("When keynode.mode='topk', keynode.k must be > 1.")
-        num_select = int(k)
-
-    elif mode == "top_ratio":
-        if ratio is None or not (0.0 < float(ratio) <= 1.0):
-            raise ValueError("When keynode.mode='top_ratio', keynode.ratio must be in (0,1].")
-        num_select = max(2, int(round(num_nodes * float(ratio))))
-
-    else:
-        raise ValueError(f"Unsupported keynode mode: {mode}")
-
-    ranked = sorted(range(num_nodes), key=lambda i: float(importance[i]), reverse=True)
-    selected = ranked[:num_select]
-    return selected
-
-
-def build_task_pairs(
-    G: nx.Graph,
-    key_nodes: List[int],
-    community,
-    importance,
-    min_shortest_len: int = 2,
-    max_pairs: int | None = None,
-) -> List[TaskPair]:
-    tasks: List[TaskPair] = []
-    skipped_no_path = 0
-    skipped_too_short = 0
-    total_pairs_considered = 0
-
-    t0 = time.perf_counter()
-
-    for i, source in enumerate(key_nodes):
-        for target in key_nodes[i + 1:]:
-            total_pairs_considered += 1
-
-            try:
-                shortest_len = int(nx.shortest_path_length(G, source=source, target=target))
-            except (nx.NetworkXNoPath, nx.NodeNotFound):
-                skipped_no_path += 1
-                continue
-
-            if shortest_len < int(min_shortest_len):
-                skipped_too_short += 1
-                continue
-
-            same_community = bool(community[source] == community[target])
-            pair_score = float(importance[source] + importance[target])
-
-            tasks.append(
-                TaskPair(
-                    source=int(source),
-                    target=int(target),
-                    shortest_len=shortest_len,
-                    same_community=same_community,
-                    pair_score=pair_score,
-                )
-            )
-
-    tasks.sort(
-        key=lambda t: (
-            int(t.same_community),   # False(0) 优先于 True(1)
-            -t.pair_score,
-            -t.shortest_len,
-            t.source,
-            t.target,
-        )
-    )
-
-    if max_pairs is not None and max_pairs > 0:
-        tasks = tasks[: int(max_pairs)]
-
-    dt = time.perf_counter() - t0
-    stage_print(
-        "[TASKS] "
-        f"considered={total_pairs_considered}, "
-        f"valid={len(tasks)}, "
-        f"skipped_no_path={skipped_no_path}, "
-        f"skipped_too_short={skipped_too_short}, "
-        f"elapsed={dt:.2f}s"
-    )
-
-    if tasks:
-        preview = tasks[: min(5, len(tasks))]
-        for idx, t in enumerate(preview):
-            stage_print(
-                f"[TASKS-PREVIEW-{idx}] "
-                f"source={t.source}, target={t.target}, "
-                f"shortest_len={t.shortest_len}, "
-                f"same_community={t.same_community}, "
-                f"pair_score={t.pair_score:.6f}"
-            )
-
-    return tasks
 
 
 def ensure_parent(path_str: str) -> None:
@@ -443,31 +340,74 @@ def main() -> None:
         f"importance_alignment={bundle.metadata.get('importance_alignment')}"
     )
 
-    key_nodes = timed_call(
-        "select_key_nodes",
-        select_key_nodes,
-        importance=bundle.importance,
-        mode=keynode_cfg.get("mode", "topk"),
-        k=keynode_cfg.get("k"),
-        ratio=keynode_cfg.get("ratio"),
-    )
+    keynode_mode = keynode_cfg.get("mode", "topk")
+
+    if keynode_mode == "topk":
+        key_nodes = timed_call(
+            "KeyNodeSelector.select_topk_nodes",
+            KeyNodeSelector.select_topk_nodes,
+            importance=bundle.importance,
+            k=keynode_cfg.get("k"),
+        )
+    elif keynode_mode == "top_ratio":
+        key_nodes = timed_call(
+            "KeyNodeSelector.select_top_ratio_nodes",
+            KeyNodeSelector.select_top_ratio_nodes,
+            importance=bundle.importance,
+            ratio=keynode_cfg.get("ratio"),
+        )
+    elif keynode_mode == "stratified":
+        node_buckets = timed_call(
+            "KeyNodeSelector.select_stratified_nodes",
+            KeyNodeSelector.select_stratified_nodes,
+            importance=bundle.importance,
+            total_k=keynode_cfg.get("k", 60),
+            high_ratio=keynode_cfg.get("high_ratio", 0.4),
+            mid_ratio=keynode_cfg.get("mid_ratio", 0.4),
+            low_ratio=keynode_cfg.get("low_ratio", 0.2),
+        )
+        key_nodes = node_buckets["all"]
+    else:
+        raise ValueError(f"Unsupported keynode mode: {keynode_mode}")
 
     stage_print(
         f"[KEYNODES] count={len(key_nodes)}, "
         f"preview={key_nodes[:min(20, len(key_nodes))]}"
     )
 
-    tasks = timed_call(
-        "build_task_pairs",
-        build_task_pairs,
+    all_task_pairs = timed_call(
+        "TaskPairBuilder.build_task_pairs",
+        TaskPairBuilder.build_task_pairs,
         G=bundle.nx_graph,
         key_nodes=key_nodes,
         community=bundle.community,
         importance=bundle.importance,
         min_shortest_len=keynode_cfg.get("min_shortest_len", 2),
-        max_pairs=keynode_cfg.get("max_pairs"),
     )
 
+    task_sampling_mode = keynode_cfg.get("task_sampling_mode", "hybrid")
+
+    sample_kwargs = dict(
+        task_pairs=all_task_pairs,
+        num_samples=keynode_cfg.get("max_pairs", 200),
+        mode=task_sampling_mode,
+        random_seed=keynode_cfg.get("random_seed", 42),
+    )
+
+    if task_sampling_mode == "hybrid":
+        sample_kwargs.update(
+            G=bundle.nx_graph,
+            community=bundle.community,
+            importance=bundle.importance,
+            min_shortest_len=keynode_cfg.get("min_shortest_len", 2),
+            random_ratio=keynode_cfg.get("random_task_ratio", 0.10),
+        )
+
+    tasks = timed_call(
+        "TaskPairBuilder.sample_task_pairs",
+        TaskPairBuilder.sample_task_pairs,
+        **sample_kwargs,
+    )
     if not tasks:
         raise RuntimeError(
             "No valid task pairs were constructed. "

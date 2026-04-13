@@ -14,6 +14,9 @@ keynode:
   k: 30
   min_shortest_len: 2
   max_pairs: 200
+  task_sampling_mode: hybrid
+  random_task_ratio: 0.1
+  random_seed: 42
 paths:
   k_shortest: 20
   max_hops: 8

@@ -205,33 +205,29 @@ class RuleBasedCriticalPath:
 
     @classmethod
     def _greedy_set_level_select(
-        cls,
-        scored_records: List[PathRecord],
-        top_q: int,
-        overlap_threshold: float,
-        lambda_marginal: float = 0.60,
-        lambda_single: float = 0.40,
-        overlap_penalty: float = 0.20,
-        low_single_threshold: float = 0.10,
-        low_single_penalty: float = 0.20,
-        reuse_penalty: float = 0.08,
+            cls,
+            scored_records: List[PathRecord],
+            top_q: int,
+            overlap_threshold: float,
+            lambda_marginal: float = 0.45,
+            lambda_single: float = 0.55,
+            overlap_penalty: float = 0.20,
+            low_single_threshold: float = 0.15,
+            low_single_penalty: float = 0.30,
+            reuse_penalty: float = 0.15,
+            min_single_score_after_first: float = 0.25,
+            hard_low_single_penalty: float = 0.15,
     ) -> List[PathRecord]:
         """
-        Node-aware set-level greedy selection.
+        Stronger node-aware set-level greedy selection.
 
-        Compared with the old edge-aware version, this one uses:
-        1. internal-node overlap instead of edge overlap
-        2. node-based marginal gain instead of num_new_edges
-        3. node reuse penalty to discourage repeatedly selecting paths through
-           the same hubs/internal nodes
-
-        set_score =
-            lambda_single   * single_score
-          + lambda_marginal * norm_marginal_gain
-          - overlap_penalty * max_node_overlap
-          - hard_penalty
-          - low_single_penalty_if_needed
-          - reuse_penalty * node_reuse_term
+        Compared with the previous version:
+        1. reduce marginal-gain dominance
+        2. strengthen single-path quality constraint
+        3. strengthen node reuse penalty
+        4. add an extra guard after the first selected path:
+           very-low single-score candidates should not be promoted too easily
+           by novelty alone
         """
         if not scored_records or top_q <= 0:
             return []
@@ -263,10 +259,9 @@ class RuleBasedCriticalPath:
                 avg_node_importance = float(feats.get("avg_node_importance", 0.0))
                 fragility_score = float(feats.get("fragility_score", 0.0))
 
-                # node-quality surrogate:
-                # prioritize paths that introduce new internal nodes and whose
-                # path-level node quality / fragility is high
-                node_quality = 0.7 * avg_node_importance + 0.3 * fragility_score
+                # 节点质量代理：
+                # 比原版更保守，不让 fragility 太弱的路径仅靠“新节点数量”上位
+                node_quality = 0.8 * avg_node_importance + 0.2 * fragility_score
                 raw_marginal_gain = num_new_internal_nodes * node_quality
 
                 if not selected_internal_sets:
@@ -277,7 +272,6 @@ class RuleBasedCriticalPath:
                         for prev_internal in selected_internal_sets
                     )
 
-                # internal-node reuse penalty: repeated hubs/internal nodes get penalized
                 node_reuse_term = float(
                     sum(selected_node_counter.get(v, 0) for v in internal_nodes)
                 )
@@ -315,25 +309,31 @@ class RuleBasedCriticalPath:
                 if raw_max > raw_min:
                     norm_marginal_gain = (raw_marginal_gain - raw_min) / (raw_max - raw_min)
                 else:
-                    # If all candidates have identical raw gain, keep a neutral-positive
-                    # value rather than collapsing all to 0.
                     norm_marginal_gain = 1.0 if raw_max > 0 else 0.0
 
-                # overlap 超阈值时给硬惩罚，但不直接剔除
+                # overlap 超阈值时硬惩罚
                 hard_penalty = 0.50 if max_node_overlap > overlap_threshold else 0.0
 
-                # single_score 太低时，给额外惩罚
+                # soft low-single penalty
                 low_single_penalty_term = (
                     low_single_penalty if single_score < low_single_threshold else 0.0
                 )
 
+                # extra guard:
+                # 第一条之后，不希望 very-low-single-score 的路径仅靠 novelty 被抬进来
+                if len(selected) >= 1 and single_score < min_single_score_after_first:
+                    extra_guard_penalty = hard_low_single_penalty
+                else:
+                    extra_guard_penalty = 0.0
+
                 set_level_value = (
-                    lambda_single * single_score
-                    + lambda_marginal * norm_marginal_gain
-                    - overlap_penalty * max_node_overlap
-                    - hard_penalty
-                    - low_single_penalty_term
-                    - reuse_penalty * node_reuse_term
+                        lambda_single * single_score
+                        + lambda_marginal * norm_marginal_gain
+                        - overlap_penalty * max_node_overlap
+                        - hard_penalty
+                        - low_single_penalty_term
+                        - extra_guard_penalty
+                        - reuse_penalty * node_reuse_term
                 )
 
                 if set_level_value > best_value:
@@ -351,6 +351,8 @@ class RuleBasedCriticalPath:
                         "hard_penalty": hard_penalty,
                         "low_single_threshold": low_single_threshold,
                         "low_single_penalty": low_single_penalty_term,
+                        "min_single_score_after_first": min_single_score_after_first,
+                        "extra_guard_penalty": extra_guard_penalty,
                         "reuse_penalty": reuse_penalty,
                         "set_level_value": set_level_value,
                     }
@@ -369,7 +371,6 @@ class RuleBasedCriticalPath:
                 selected_node_counter[v] = selected_node_counter.get(v, 0) + 1
 
         return selected
-
     @classmethod
     def run(
         cls,
@@ -652,6 +653,8 @@ class RuleBasedCriticalPath:
             low_single_threshold=0.15,
             low_single_penalty=0.30,
             reuse_penalty=0.15,
+            min_single_score_after_first=0.25,
+            hard_low_single_penalty=0.15,
         )
 
         print(f"[rule] final selected = {len(selected)}", flush=True)

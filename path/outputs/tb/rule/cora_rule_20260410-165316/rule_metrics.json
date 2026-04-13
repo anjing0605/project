@@ -1,0 +1,4752 @@
+{
+  "dataset": {
+    "name": "Cora",
+    "num_nodes": 2708,
+    "num_edges": 5278,
+    "community_mode": "louvain",
+    "importance_alignment": {
+      "mode": "direct",
+      "score_path": "D:/project/keynode/project/public_process/extract/Cora_struct/gnn_node_scores_mean.csv",
+      "node_features_path": null,
+      "score_node_col": "node",
+      "score_col": "gnn_score",
+      "num_nodes": 2708,
+      "loaded_rows": 2708,
+      "missing_old_ids": [],
+      "missing_count": 0,
+      "filled_missing": false,
+      "fill_value": null,
+      "new_id_start": null
+    }
+  },
+  "shared_base_metrics": {
+    "global_efficiency": 0.14956171398046283,
+    "lcc_ratio": 0.9176514032496307,
+    "avg_shortest_path_lcc": 6.286087208132045
+  },
+  "key_nodes": {
+    "count": 30,
+    "preview": [
+      1779,
+      1757,
+      1787,
+      1346,
+      68,
+      1709,
+      2045,
+      519,
+      308,
+      1805,
+      153,
+      1733,
+      1762,
+      139,
+      2080,
+      289,
+      341,
+      1661,
+      1620,
+      236
+    ]
+  },
+  "tasks": {
+    "count": 200,
+    "preview": [
+      {
+        "source": 1779,
+        "target": 1757,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.7070073366165162
+      },
+      {
+        "source": 1757,
+        "target": 1787,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.702242636680603
+      },
+      {
+        "source": 1779,
+        "target": 68,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.6996210336685182
+      },
+      {
+        "source": 1757,
+        "target": 1346,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.6991782307624816
+      },
+      {
+        "source": 1779,
+        "target": 1709,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.6972440958023072
+      },
+      {
+        "source": 1787,
+        "target": 68,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.694856333732605
+      },
+      {
+        "source": 1787,
+        "target": 1709,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.692479395866394
+      },
+      {
+        "source": 1757,
+        "target": 519,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.6910356998443603
+      },
+      {
+        "source": 1757,
+        "target": 308,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.6898725032806396
+      },
+      {
+        "source": 1779,
+        "target": 1762,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.6892335891723633
+      },
+      {
+        "source": 1757,
+        "target": 153,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.6873341083526612
+      },
+      {
+        "source": 1779,
+        "target": 758,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.6857213258743287
+      },
+      {
+        "source": 1757,
+        "target": 139,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.685586941242218
+      },
+      {
+        "source": 1757,
+        "target": 2080,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.685451865196228
+      },
+      {
+        "source": 1757,
+        "target": 1661,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.6849294424057006
+      },
+      {
+        "source": 1787,
+        "target": 1762,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.68446888923645
+      },
+      {
+        "source": 1779,
+        "target": 326,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.6843649387359618
+      },
+      {
+        "source": 1757,
+        "target": 426,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.6827612042427063
+      },
+      {
+        "source": 1757,
+        "target": 1772,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.6825799345970154
+      },
+      {
+        "source": 68,
+        "target": 308,
+        "shortest_len": 4,
+        "same_community": false,
+        "pair_score": 1.6824862003326415
+      }
+    ]
+  },
+  "candidate_coverage": {
+    "rule": {
+      "num_tasks": 200,
+      "total_candidates": 3226,
+      "total_candidates_after_coarse": 996,
+      "mean_candidates_per_task": 16.13,
+      "mean_candidates_after_coarse_per_task": 4.98,
+      "path_length_distribution": {
+        "2": 132,
+        "3": 658,
+        "4": 1114,
+        "5": 1251,
+        "6": 71
+      },
+      "task_rows": [
+        {
+          "source": 1779,
+          "target": 1757,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.7070073366165162,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.75
+        },
+        {
+          "source": 1757,
+          "target": 1787,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.702242636680603,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.75
+        },
+        {
+          "source": 1779,
+          "target": 68,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6996210336685182,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.65
+        },
+        {
+          "source": 1757,
+          "target": 1346,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6991782307624816,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.9
+        },
+        {
+          "source": 1779,
+          "target": 1709,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6972440958023072,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.65
+        },
+        {
+          "source": 1787,
+          "target": 68,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.694856333732605,
+          "num_candidates": 17,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.294117647058823
+        },
+        {
+          "source": 1787,
+          "target": 1709,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.692479395866394,
+          "num_candidates": 17,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.294117647058823
+        },
+        {
+          "source": 1757,
+          "target": 519,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6910356998443603,
+          "num_candidates": 17,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.470588235294118
+        },
+        {
+          "source": 1757,
+          "target": 308,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6898725032806396,
+          "num_candidates": 19,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.947368421052632
+        },
+        {
+          "source": 1779,
+          "target": 1762,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6892335891723633,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.95
+        },
+        {
+          "source": 1757,
+          "target": 153,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6873341083526612,
+          "num_candidates": 13,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.538461538461538
+        },
+        {
+          "source": 1779,
+          "target": 758,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6857213258743287,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.95
+        },
+        {
+          "source": 1757,
+          "target": 139,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.685586941242218,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.8
+        },
+        {
+          "source": 1757,
+          "target": 2080,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.685451865196228,
+          "num_candidates": 12,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.916666666666667
+        },
+        {
+          "source": 1757,
+          "target": 1661,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6849294424057006,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 5.25
+        },
+        {
+          "source": 1787,
+          "target": 1762,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.68446888923645,
+          "num_candidates": 16,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.75
+        },
+        {
+          "source": 1779,
+          "target": 326,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6843649387359618,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.95
+        },
+        {
+          "source": 1757,
+          "target": 426,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6827612042427063,
+          "num_candidates": 14,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.642857142857143
+        },
+        {
+          "source": 1757,
+          "target": 1772,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6825799345970154,
+          "num_candidates": 15,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.666666666666667
+        },
+        {
+          "source": 68,
+          "target": 308,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6824862003326415,
+          "num_candidates": 16,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.5
+        },
+        {
+          "source": 1779,
+          "target": 1568,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6823426961898804,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.85
+        },
+        {
+          "source": 1346,
+          "target": 1762,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6814044833183288,
+          "num_candidates": 17,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.9411764705882355
+        },
+        {
+          "source": 1787,
+          "target": 758,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6809566259384154,
+          "num_candidates": 17,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.764705882352941
+        },
+        {
+          "source": 1757,
+          "target": 68,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6959804534912108,
+          "num_candidates": 4,
+          "num_candidates_after_coarse": 4,
+          "mean_candidate_length": 3.25
+        },
+        {
+          "source": 1757,
+          "target": 2045,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6934230208396912,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.4
+        },
+        {
+          "source": 1346,
+          "target": 68,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6917919278144837,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.65
+        },
+        {
+          "source": 1779,
+          "target": 1733,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.689655363559723,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.55
+        },
+        {
+          "source": 1346,
+          "target": 1709,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6894149899482727,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.65
+        },
+        {
+          "source": 1779,
+          "target": 289,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6888227939605713,
+          "num_candidates": 11,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.6363636363636362
+        },
+        {
+          "source": 1779,
+          "target": 341,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6887775301933288,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.15
+        },
+        {
+          "source": 1779,
+          "target": 1661,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6885700225830078,
+          "num_candidates": 14,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.7142857142857144
+        },
+        {
+          "source": 1757,
+          "target": 1805,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6879102826118468,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.65
+        },
+        {
+          "source": 1779,
+          "target": 1620,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.68714998960495,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.75
+        },
+        {
+          "source": 68,
+          "target": 1709,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6862172126770019,
+          "num_candidates": 10,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.2
+        },
+        {
+          "source": 68,
+          "target": 2045,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6860367178916933,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.1
+        },
+        {
+          "source": 1787,
+          "target": 1733,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.68489066362381,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.45
+        },
+        {
+          "source": 1787,
+          "target": 289,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6840580940246581,
+          "num_candidates": 7,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.2857142857142856
+        },
+        {
+          "source": 1787,
+          "target": 341,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6840128302574158,
+          "num_candidates": 7,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.4285714285714284
+        },
+        {
+          "source": 1779,
+          "target": 1546,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6839717984199525,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.65
+        },
+        {
+          "source": 1787,
+          "target": 1661,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6838053226470948,
+          "num_candidates": 7,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.142857142857143
+        },
+        {
+          "source": 1709,
+          "target": 2045,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6836597800254822,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.1
+        },
+        {
+          "source": 68,
+          "target": 519,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6836493968963624,
+          "num_candidates": 17,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.7058823529411766
+        },
+        {
+          "source": 1757,
+          "target": 236,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6833699584007262,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.6
+        },
+        {
+          "source": 1787,
+          "target": 1620,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6823852896690368,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.75
+        },
+        {
+          "source": 1346,
+          "target": 1733,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6818262577056884,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.65
+        },
+        {
+          "source": 1709,
+          "target": 519,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6812724590301513,
+          "num_candidates": 17,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.764705882352941
+        },
+        {
+          "source": 1779,
+          "target": 173,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6805866360664368,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.85
+        },
+        {
+          "source": 1709,
+          "target": 308,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6801092624664307,
+          "num_candidates": 16,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.5
+        },
+        {
+          "source": 68,
+          "target": 153,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6799478054046633,
+          "num_candidates": 16,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.3125
+        },
+        {
+          "source": 1787,
+          "target": 326,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6796002388000488,
+          "num_candidates": 17,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.764705882352941
+        },
+        {
+          "source": 68,
+          "target": 139,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.67820063829422,
+          "num_candidates": 17,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.588235294117647
+        },
+        {
+          "source": 68,
+          "target": 2080,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.67806556224823,
+          "num_candidates": 10,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.6
+        },
+        {
+          "source": 1346,
+          "target": 758,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6778922200202941,
+          "num_candidates": 18,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 5.0
+        },
+        {
+          "source": 1787,
+          "target": 1568,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6775779962539672,
+          "num_candidates": 16,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.6875
+        },
+        {
+          "source": 1709,
+          "target": 153,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6775708675384522,
+          "num_candidates": 16,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.3125
+        },
+        {
+          "source": 68,
+          "target": 1661,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6775431394577027,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.8
+        },
+        {
+          "source": 1346,
+          "target": 326,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6765358328819273,
+          "num_candidates": 18,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 5.0
+        },
+        {
+          "source": 1757,
+          "target": 126,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.676507830619812,
+          "num_candidates": 15,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.666666666666667
+        },
+        {
+          "source": 1709,
+          "target": 139,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.675823700428009,
+          "num_candidates": 17,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.588235294117647
+        },
+        {
+          "source": 1787,
+          "target": 173,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6758219361305238,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.8
+        },
+        {
+          "source": 1709,
+          "target": 2080,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.675688624382019,
+          "num_candidates": 10,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.6
+        },
+        {
+          "source": 1757,
+          "target": 1245,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6754164576530457,
+          "num_candidates": 14,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 5.142857142857143
+        },
+        {
+          "source": 68,
+          "target": 426,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6753749012947083,
+          "num_candidates": 17,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.529411764705882
+        },
+        {
+          "source": 68,
+          "target": 1772,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6751936316490172,
+          "num_candidates": 18,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.444444444444445
+        },
+        {
+          "source": 1709,
+          "target": 1661,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6751662015914917,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.8
+        },
+        {
+          "source": 1346,
+          "target": 1568,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.674513590335846,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.85
+        },
+        {
+          "source": 519,
+          "target": 1762,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6732619524002075,
+          "num_candidates": 14,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.428571428571429
+        },
+        {
+          "source": 1709,
+          "target": 426,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6729979634284973,
+          "num_candidates": 17,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.529411764705882
+        },
+        {
+          "source": 1709,
+          "target": 1772,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6728166937828064,
+          "num_candidates": 18,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.444444444444445
+        },
+        {
+          "source": 68,
+          "target": 1805,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.680523979663849,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.6
+        },
+        {
+          "source": 1346,
+          "target": 1620,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6793208837509155,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.8
+        },
+        {
+          "source": 1787,
+          "target": 1546,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6792070984840395,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.65
+        },
+        {
+          "source": 68,
+          "target": 1733,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6786284804344178,
+          "num_candidates": 5,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.2
+        },
+        {
+          "source": 68,
+          "target": 1762,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.678206706047058,
+          "num_candidates": 6,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.1666666666666665
+        },
+        {
+          "source": 1709,
+          "target": 1805,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6781470417976379,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.6
+        },
+        {
+          "source": 68,
+          "target": 289,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.677795910835266,
+          "num_candidates": 6,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.5
+        },
+        {
+          "source": 68,
+          "target": 341,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6777506470680237,
+          "num_candidates": 8,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.375
+        },
+        {
+          "source": 1779,
+          "target": 754,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6770272850990295,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.75
+        },
+        {
+          "source": 1346,
+          "target": 1546,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.676142692565918,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.6
+        },
+        {
+          "source": 68,
+          "target": 1620,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6761231064796447,
+          "num_candidates": 8,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.625
+        },
+        {
+          "source": 2045,
+          "target": 1733,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.676071047782898,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.2
+        },
+        {
+          "source": 68,
+          "target": 236,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6759836554527283,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.45
+        },
+        {
+          "source": 2045,
+          "target": 1762,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6756492733955384,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.45
+        },
+        {
+          "source": 2045,
+          "target": 289,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6752384781837464,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.35
+        },
+        {
+          "source": 2045,
+          "target": 1661,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6749857068061829,
+          "num_candidates": 17,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.1176470588235294
+        },
+        {
+          "source": 68,
+          "target": 758,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6746944427490233,
+          "num_candidates": 7,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.4285714285714284
+        },
+        {
+          "source": 519,
+          "target": 1733,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.673683726787567,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.3
+        },
+        {
+          "source": 1709,
+          "target": 236,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6736067175865172,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.45
+        },
+        {
+          "source": 2045,
+          "target": 1620,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.673565673828125,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.15
+        },
+        {
+          "source": 68,
+          "target": 326,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6733380556106567,
+          "num_candidates": 5,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.2
+        },
+        {
+          "source": 68,
+          "target": 1546,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6729449152946474,
+          "num_candidates": 7,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.4285714285714284
+        },
+        {
+          "source": 519,
+          "target": 289,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6728511571884155,
+          "num_candidates": 13,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.5384615384615383
+        },
+        {
+          "source": 1762,
+          "target": 236,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6655962109565734,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.75
+        },
+        {
+          "source": 2080,
+          "target": 1620,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6655945181846619,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.85
+        },
+        {
+          "source": 1733,
+          "target": 426,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.665409231185913,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.5
+        },
+        {
+          "source": 1805,
+          "target": 326,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6652678847312927,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.8
+        },
+        {
+          "source": 1733,
+          "target": 1772,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6652279615402221,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.3
+        },
+        {
+          "source": 289,
+          "target": 236,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6651854157447814,
+          "num_candidates": 8,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.25
+        },
+        {
+          "source": 341,
+          "target": 236,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.665140151977539,
+          "num_candidates": 15,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.466666666666667
+        },
+        {
+          "source": 1661,
+          "target": 236,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.664932644367218,
+          "num_candidates": 11,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.4545454545454546
+        },
+        {
+          "source": 1805,
+          "target": 1546,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6648747444152834,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.45
+        },
+        {
+          "source": 289,
+          "target": 426,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6645766615867614,
+          "num_candidates": 10,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.4
+        },
+        {
+          "source": 341,
+          "target": 426,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6645313978195189,
+          "num_candidates": 16,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.1875
+        },
+        {
+          "source": 289,
+          "target": 1772,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6643953919410706,
+          "num_candidates": 13,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.6153846153846154
+        },
+        {
+          "source": 341,
+          "target": 1772,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6643501281738282,
+          "num_candidates": 14,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.7142857142857144
+        },
+        {
+          "source": 1661,
+          "target": 426,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.664323890209198,
+          "num_candidates": 12,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.5
+        },
+        {
+          "source": 153,
+          "target": 1546,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6642985701560975,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.55
+        },
+        {
+          "source": 1661,
+          "target": 1772,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.664142620563507,
+          "num_candidates": 14,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.5714285714285716
+        },
+        {
+          "source": 1620,
+          "target": 236,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.66351261138916,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.6
+        },
+        {
+          "source": 2045,
+          "target": 754,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6634429693222046,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.2
+        },
+        {
+          "source": 1805,
+          "target": 1568,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.663245642185211,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.8
+        },
+        {
+          "source": 1620,
+          "target": 426,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.66290385723114,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.7
+        },
+        {
+          "source": 1620,
+          "target": 1772,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6627225875854492,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.75
+        },
+        {
+          "source": 139,
+          "target": 1546,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6625514030456543,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.7
+        },
+        {
+          "source": 2080,
+          "target": 1546,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6624163269996644,
+          "num_candidates": 18,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.722222222222222
+        },
+        {
+          "source": 308,
+          "target": 1568,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.665207862854004,
+          "num_candidates": 15,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.866666666666666
+        },
+        {
+          "source": 1661,
+          "target": 1620,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6650720953941345,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.95
+        },
+        {
+          "source": 1762,
+          "target": 426,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6649874567985534,
+          "num_candidates": 11,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.636363636363637
+        },
+        {
+          "source": 1762,
+          "target": 1772,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6648061871528625,
+          "num_candidates": 12,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.666666666666667
+        },
+        {
+          "source": 153,
+          "target": 326,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6646917104721068,
+          "num_candidates": 13,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.615384615384615
+        },
+        {
+          "source": 519,
+          "target": 173,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.664614999294281,
+          "num_candidates": 17,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.470588235294118
+        },
+        {
+          "source": 139,
+          "target": 758,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6643009305000305,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.95
+        },
+        {
+          "source": 2080,
+          "target": 758,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6641658544540405,
+          "num_candidates": 11,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 5.181818181818182
+        },
+        {
+          "source": 1661,
+          "target": 758,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6636434316635131,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 5.3
+        },
+        {
+          "source": 308,
+          "target": 173,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6634518027305603,
+          "num_candidates": 19,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 5.0
+        },
+        {
+          "source": 139,
+          "target": 326,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6629445433616636,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.95
+        },
+        {
+          "source": 2080,
+          "target": 326,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.662809467315674,
+          "num_candidates": 11,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 5.181818181818182
+        },
+        {
+          "source": 153,
+          "target": 1568,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6626694679260254,
+          "num_candidates": 13,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.538461538461538
+        },
+        {
+          "source": 1661,
+          "target": 326,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6622870445251463,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 5.25
+        },
+        {
+          "source": 1661,
+          "target": 1546,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.661893904209137,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.75
+        },
+        {
+          "source": 426,
+          "target": 758,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6614751935005188,
+          "num_candidates": 10,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.6
+        },
+        {
+          "source": 1772,
+          "target": 758,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6612939238548279,
+          "num_candidates": 19,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.7894736842105265
+        },
+        {
+          "source": 139,
+          "target": 1568,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6609223008155822,
+          "num_candidates": 17,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.764705882352941
+        },
+        {
+          "source": 153,
+          "target": 173,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6609134078025818,
+          "num_candidates": 17,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.705882352941177
+        },
+        {
+          "source": 2080,
+          "target": 1568,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6607872247695923,
+          "num_candidates": 12,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 5.166666666666667
+        },
+        {
+          "source": 426,
+          "target": 326,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.660118806362152,
+          "num_candidates": 10,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.6
+        },
+        {
+          "source": 1772,
+          "target": 326,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6599375367164613,
+          "num_candidates": 19,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.7894736842105265
+        },
+        {
+          "source": 139,
+          "target": 173,
+          "shortest_len": 4,
+          "same_community": false,
+          "pair_score": 1.6591662406921386,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.85
+        },
+        {
+          "source": 1346,
+          "target": 289,
+          "shortest_len": 2,
+          "same_community": false,
+          "pair_score": 1.6809936881065368,
+          "num_candidates": 6,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.3333333333333335
+        },
+        {
+          "source": 1346,
+          "target": 341,
+          "shortest_len": 3,
+          "same_community": false,
+          "pair_score": 1.6809484243392943,
+          "num_candidates": 18,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 4.333333333333333
+        },
+        {
+          "source": 1779,
+          "target": 1787,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.7058832168579103,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.5
+        },
+        {
+          "source": 1779,
+          "target": 1346,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.7028188109397888,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.6
+        },
+        {
+          "source": 1787,
+          "target": 1346,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6980541110038758,
+          "num_candidates": 16,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.3125
+        },
+        {
+          "source": 1779,
+          "target": 2045,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6970636010169984,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 2.9
+        },
+        {
+          "source": 1779,
+          "target": 519,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6946762800216675,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.45
+        },
+        {
+          "source": 1757,
+          "target": 1709,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.693603515625,
+          "num_candidates": 9,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.4444444444444446
+        },
+        {
+          "source": 1779,
+          "target": 308,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6935130834579468,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.65
+        },
+        {
+          "source": 1779,
+          "target": 1805,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6915508627891542,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.5
+        },
+        {
+          "source": 1779,
+          "target": 153,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6909746885299684,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.3
+        },
+        {
+          "source": 1787,
+          "target": 519,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6899115800857545,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.35
+        },
+        {
+          "source": 1346,
+          "target": 2045,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6892344951629639,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 2.85
+        },
+        {
+          "source": 1779,
+          "target": 139,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6892275214195251,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.35
+        },
+        {
+          "source": 1779,
+          "target": 2080,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6890924453735352,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.35
+        },
+        {
+          "source": 1787,
+          "target": 308,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6887483835220336,
+          "num_candidates": 19,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.5789473684210527
+        },
+        {
+          "source": 1779,
+          "target": 236,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6870105385780336,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.1
+        },
+        {
+          "source": 1787,
+          "target": 1805,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.686786162853241,
+          "num_candidates": 19,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.4210526315789473
+        },
+        {
+          "source": 1779,
+          "target": 426,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6864017844200134,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.15
+        },
+        {
+          "source": 1779,
+          "target": 1772,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6862205147743226,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.25
+        },
+        {
+          "source": 1787,
+          "target": 153,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6862099885940554,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.3
+        },
+        {
+          "source": 1757,
+          "target": 1733,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6860147833824157,
+          "num_candidates": 6,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.1666666666666665
+        },
+        {
+          "source": 1757,
+          "target": 326,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6807243585586549,
+          "num_candidates": 4,
+          "num_candidates_after_coarse": 4,
+          "mean_candidate_length": 2.75
+        },
+        {
+          "source": 1757,
+          "target": 1546,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6803312182426453,
+          "num_candidates": 7,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.142857142857143
+        },
+        {
+          "source": 1779,
+          "target": 126,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6801484107971192,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.5
+        },
+        {
+          "source": 1346,
+          "target": 236,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6791814327239991,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.1
+        },
+        {
+          "source": 1779,
+          "target": 1245,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6790570378303529,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.55
+        },
+        {
+          "source": 1757,
+          "target": 1568,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6787021160125732,
+          "num_candidates": 5,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 2.8
+        },
+        {
+          "source": 1346,
+          "target": 426,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.678572678565979,
+          "num_candidates": 16,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.125
+        },
+        {
+          "source": 1346,
+          "target": 1772,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.678391408920288,
+          "num_candidates": 19,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.263157894736842
+        },
+        {
+          "source": 2045,
+          "target": 1805,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6779665470123293,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 2.9
+        },
+        {
+          "source": 519,
+          "target": 308,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.677541446685791,
+          "num_candidates": 17,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.2941176470588234
+        },
+        {
+          "source": 1757,
+          "target": 173,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6769460558891296,
+          "num_candidates": 3,
+          "num_candidates_after_coarse": 3,
+          "mean_candidate_length": 2.6666666666666665
+        },
+        {
+          "source": 1709,
+          "target": 1733,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6762515425682067,
+          "num_candidates": 10,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.4
+        },
+        {
+          "source": 1709,
+          "target": 1762,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6758297681808472,
+          "num_candidates": 11,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.3636363636363638
+        },
+        {
+          "source": 519,
+          "target": 1805,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6755792260169984,
+          "num_candidates": 19,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.3157894736842106
+        },
+        {
+          "source": 2045,
+          "target": 2080,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6755081295967102,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 2.95
+        },
+        {
+          "source": 1709,
+          "target": 289,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6754189729690552,
+          "num_candidates": 11,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.5454545454545454
+        },
+        {
+          "source": 1787,
+          "target": 126,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.675383710861206,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.45
+        },
+        {
+          "source": 1709,
+          "target": 341,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6753737092018128,
+          "num_candidates": 13,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.4615384615384617
+        },
+        {
+          "source": 519,
+          "target": 153,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6750030517578125,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.2
+        },
+        {
+          "source": 308,
+          "target": 1805,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6744160294532775,
+          "num_candidates": 16,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.5
+        },
+        {
+          "source": 139,
+          "target": 236,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6655901432037354,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 2.95
+        },
+        {
+          "source": 2045,
+          "target": 1245,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.665472722053528,
+          "num_candidates": 17,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 2.9411764705882355
+        },
+        {
+          "source": 2080,
+          "target": 236,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6654550671577453,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.1
+        },
+        {
+          "source": 289,
+          "target": 1620,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.665324866771698,
+          "num_candidates": 8,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.5
+        },
+        {
+          "source": 341,
+          "target": 1620,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6652796030044557,
+          "num_candidates": 10,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.4
+        },
+        {
+          "source": 139,
+          "target": 426,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6649813890457152,
+          "num_candidates": 18,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.1666666666666665
+        },
+        {
+          "source": 2080,
+          "target": 426,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6648463129997253,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.05
+        },
+        {
+          "source": 139,
+          "target": 1772,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6648001194000244,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.1
+        },
+        {
+          "source": 1733,
+          "target": 758,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6647287726402282,
+          "num_candidates": 7,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.142857142857143
+        },
+        {
+          "source": 2080,
+          "target": 1772,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6646650433540344,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 2.9
+        },
+        {
+          "source": 519,
+          "target": 126,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6641767740249633,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.4
+        },
+        {
+          "source": 289,
+          "target": 758,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6638962030410767,
+          "num_candidates": 6,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.1666666666666665
+        },
+        {
+          "source": 341,
+          "target": 758,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6638509392738343,
+          "num_candidates": 8,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.125
+        },
+        {
+          "source": 1709,
+          "target": 754,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6636234641075134,
+          "num_candidates": 12,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.5833333333333335
+        },
+        {
+          "source": 1733,
+          "target": 326,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6633723855018614,
+          "num_candidates": 5,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 2.8
+        },
+        {
+          "source": 519,
+          "target": 1245,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.663085401058197,
+          "num_candidates": 12,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.3333333333333335
+        },
+        {
+          "source": 308,
+          "target": 126,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6630135774612427,
+          "num_candidates": 18,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.4444444444444446
+        },
+        {
+          "source": 1733,
+          "target": 1546,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.662979245185852,
+          "num_candidates": 8,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 3.125
+        },
+        {
+          "source": 1762,
+          "target": 326,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.662950611114502,
+          "num_candidates": 6,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 2.8333333333333335
+        },
+        {
+          "source": 236,
+          "target": 426,
+          "shortest_len": 2,
+          "same_community": true,
+          "pair_score": 1.6627644062042237,
+          "num_candidates": 20,
+          "num_candidates_after_coarse": 5,
+          "mean_candidate_length": 2.9
+        }
+      ],
+      "feature_ranges": {
+        "avg_node_importance": {
+          "mean": 0.81852644620246,
+          "std": 0.013283313840858532,
+          "min": 0.7182095921039581,
+          "max": 0.8447865188121797
+        },
+        "avg_edge_bc": {
+          "mean": 0.003928146902597968,
+          "std": 0.0032749848406645812,
+          "min": 5.229307092101203e-05,
+          "max": 0.01598414503278315
+        },
+        "cross_comm_ratio": {
+          "mean": 0.2166873320934077,
+          "std": 0.175182325395502,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "fragility_score": {
+          "mean": 0.06997184575983628,
+          "std": 0.046958161927269114,
+          "min": 0.0001477104874445967,
+          "max": 0.19474688752893482
+        }
+      },
+      "fragility_cache": {
+        "hits": 0,
+        "misses": 996,
+        "size": 996
+      }
+    }
+  },
+  "comparison": {
+    "shared_base_metrics": {
+      "global_efficiency": 0.14956171398046283,
+      "lcc_ratio": 0.9176514032496307,
+      "avg_shortest_path_lcc": 6.286087208132045
+    },
+    "methods": {
+      "rule": {
+        "num_paths": 10,
+        "eval_mode": "exact",
+        "eval_early_stop": false,
+        "eval_tol": 0.0001,
+        "k_list": [
+          1,
+          3,
+          5,
+          10
+        ],
+        "delta_E_curve": [
+          0.01254579910081513,
+          0.022572622202964965,
+          0.025069636806503745,
+          0.03224560564405139
+        ],
+        "delta_LCC_curve": [
+          0.00553914327917282,
+          0.016986706056129952,
+          0.019940915805022108,
+          0.034711964549483
+        ],
+        "delta_ASP_curve": [
+          0.510778870514426,
+          0.8786369001426717,
+          1.0132172153553851,
+          1.2909025144853716
+        ],
+        "fragility_score_curve": [
+          0.1093897510548804,
+          0.19155111133217234,
+          0.22064766411568737,
+          0.2849635309744881
+        ],
+        "num_removed_nodes": [
+          4,
+          10,
+          15,
+          24
+        ],
+        "base_metrics": {
+          "global_efficiency": 0.14956171398046283,
+          "lcc_ratio": 0.9176514032496307,
+          "avg_shortest_path_lcc": 6.286087208132045
+        }
+      },
+      "shortest": {
+        "num_paths": 200,
+        "eval_mode": "exact",
+        "eval_early_stop": false,
+        "eval_tol": 0.0001,
+        "k_list": [
+          1,
+          3,
+          5,
+          10
+        ],
+        "delta_E_curve": [
+          0.011568602230202785,
+          0.01576785440632214,
+          0.01576785440632214,
+          0.01576785440632214
+        ],
+        "delta_LCC_curve": [
+          0.00553914327917282,
+          0.006277695716395804,
+          0.006277695716395804,
+          0.006277695716395804
+        ],
+        "delta_ASP_curve": [
+          0.4456070148073019,
+          0.6516904849695706,
+          0.6516904849695706,
+          0.6516904849695706
+        ],
+        "fragility_score_curve": [
+          0.09596450116521063,
+          0.1391563170430013,
+          0.1391563170430013,
+          0.1391563170430013
+        ],
+        "num_removed_nodes": [
+          3,
+          5,
+          5,
+          5
+        ],
+        "base_metrics": {
+          "global_efficiency": 0.14956171398046283,
+          "lcc_ratio": 0.9176514032496307,
+          "avg_shortest_path_lcc": 6.286087208132045
+        }
+      },
+      "random": {
+        "num_paths": 93,
+        "eval_mode": "exact",
+        "eval_early_stop": false,
+        "eval_tol": 0.0001,
+        "k_list": [
+          1,
+          3,
+          5,
+          10
+        ],
+        "delta_E_curve": [
+          0.011133475948865795,
+          0.014297612497160134,
+          0.014297612497160134,
+          0.015290946814492196
+        ],
+        "delta_LCC_curve": [
+          0.00553914327917282,
+          0.009601181683899562,
+          0.009601181683899562,
+          0.015509601181683874
+        ],
+        "delta_ASP_curve": [
+          0.435084634456949,
+          0.5928437775266548,
+          0.5928437775266548,
+          0.6140020673153961
+        ],
+        "fragility_score_curve": [
+          0.09368597458260525,
+          0.12812827317775485,
+          0.12812827317775485,
+          0.13512063266154967
+        ],
+        "num_removed_nodes": [
+          4,
+          14,
+          14,
+          24
+        ],
+        "base_metrics": {
+          "global_efficiency": 0.14956171398046283,
+          "lcc_ratio": 0.9176514032496307,
+          "avg_shortest_path_lcc": 6.286087208132045
+        }
+      },
+      "betweenness": {
+        "num_paths": 200,
+        "eval_mode": "exact",
+        "eval_early_stop": false,
+        "eval_tol": 0.0001,
+        "k_list": [
+          1,
+          3,
+          5,
+          10
+        ],
+        "delta_E_curve": [
+          0.015246670215016078,
+          0.019767571536857514,
+          0.019767571536857514,
+          0.02209445576140895
+        ],
+        "delta_LCC_curve": [
+          0.009601181683899562,
+          0.012555391432791718,
+          0.012555391432791718,
+          0.01477104874446078
+        ],
+        "delta_ASP_curve": [
+          0.5752047827974742,
+          0.7693144188590209,
+          0.7693144188590209,
+          0.8738888946060994
+        ],
+        "fragility_score_curve": [
+          0.12498009731906111,
+          0.16679206895966386,
+          0.16679206895966386,
+          0.1895239807235678
+        ],
+        "num_removed_nodes": [
+          3,
+          5,
+          5,
+          7
+        ],
+        "base_metrics": {
+          "global_efficiency": 0.14956171398046283,
+          "lcc_ratio": 0.9176514032496307,
+          "avg_shortest_path_lcc": 6.286087208132045
+        }
+      },
+      "node_score": {
+        "num_paths": 200,
+        "eval_mode": "exact",
+        "eval_early_stop": false,
+        "eval_tol": 0.0001,
+        "k_list": [
+          1,
+          3,
+          5,
+          10
+        ],
+        "delta_E_curve": [
+          0.015200151766573688,
+          0.01606090237780919,
+          0.01689380937868304,
+          0.01689380937868304
+        ],
+        "delta_LCC_curve": [
+          0.009601181683899562,
+          0.010709010339734037,
+          0.012186115214180115,
+          0.012186115214180115
+        ],
+        "delta_ASP_curve": [
+          0.5725447216680184,
+          0.6100315284754236,
+          0.6421190105901466,
+          0.6421190105901466
+        ],
+        "fragility_score_curve": [
+          0.124429477713793,
+          0.13271427078210202,
+          0.1400557719551746,
+          0.1400557719551746
+        ],
+        "num_removed_nodes": [
+          3,
+          5,
+          8,
+          8
+        ],
+        "base_metrics": {
+          "global_efficiency": 0.14956171398046283,
+          "lcc_ratio": 0.9176514032496307,
+          "avg_shortest_path_lcc": 6.286087208132045
+        }
+      }
+    }
+  },
+  "top_paths": {
+    "rule": [
+      {
+        "rank": 1,
+        "source": 2080,
+        "target": 758,
+        "nodes": [
+          2080,
+          487,
+          1798,
+          1072,
+          1358,
+          758
+        ],
+        "length": 6,
+        "score": 0.6467316513396507,
+        "method": "rule",
+        "features": {
+          "avg_node_importance": 0.8205828090508778,
+          "internal_node_importance": 0.8148327499628066,
+          "avg_edge_bc": 0.006144032002660215,
+          "cross_comm_ratio": 0.2,
+          "path_length": 5.0,
+          "delta_E": 0.013489398101898004,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.8897620729534141,
+          "fragility_score": 0.18556383114311117,
+          "norm_avg_edge_bc": 0.41550783507981526,
+          "norm_avg_node_importance": 0.6654508724575836,
+          "norm_cross_comm_ratio": 0.2,
+          "norm_fragility_score": 0.9528104048257833,
+          "norm_path_length": 1.0
+        },
+        "fragility": {
+          "delta_E": 0.013489398101898004,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.8897620729534141,
+          "fragility_score": 0.18556383114311117
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6641658544540405,
+          "shortest_len": 4,
+          "cheap_score": -0.09889452632630691,
+          "scorer": "RulePathScorer",
+          "fragility_gate": 0.5,
+          "gate_penalty": 0.08,
+          "score_weights": {
+            "avg_node_importance": 0.12,
+            "avg_edge_bc": 0.1,
+            "cross_comm_ratio": 0.03,
+            "fragility_score": 0.65,
+            "path_length": 0.1
+          },
+          "set_level": {
+            "single_score": 0.6467316513396507,
+            "raw_marginal_gain": 2.774316053877298,
+            "norm_marginal_gain": 0.9904682889994743,
+            "num_new_internal_nodes": 4,
+            "avg_node_importance": 0.8205828090508778,
+            "fragility_score": 0.18556383114311117,
+            "max_node_overlap": 0.0,
+            "node_reuse_term": 0.0,
+            "hard_penalty": 0.0,
+            "low_single_threshold": 0.15,
+            "low_single_penalty": 0.0,
+            "min_single_score_after_first": 0.25,
+            "extra_guard_penalty": 0.0,
+            "reuse_penalty": 0.15,
+            "set_level_value": 0.8014131382865713
+          }
+        }
+      },
+      {
+        "rank": 2,
+        "source": 1709,
+        "target": 236,
+        "nodes": [
+          1709,
+          1986,
+          476,
+          306,
+          236
+        ],
+        "length": 5,
+        "score": 0.5353006691603168,
+        "method": "rule",
+        "features": {
+          "avg_node_importance": 0.808932547569275,
+          "internal_node_importance": 0.7903520067532858,
+          "avg_edge_bc": 0.006172583176605333,
+          "cross_comm_ratio": 0.75,
+          "path_length": 4.0,
+          "delta_E": 0.006119335525585495,
+          "delta_LCC": 0.006646971935007295,
+          "delta_ASP": 0.6895185299052624,
+          "fragility_score": 0.1430102289652896,
+          "norm_avg_edge_bc": 0.4174787713496859,
+          "norm_avg_node_importance": 0.5044183343570454,
+          "norm_cross_comm_ratio": 0.75,
+          "norm_fragility_score": 0.7341373208756452,
+          "norm_path_length": 0.6666666666666666
+        },
+        "fragility": {
+          "delta_E": 0.006119335525585495,
+          "delta_LCC": 0.006646971935007295,
+          "delta_ASP": 0.6895185299052624,
+          "fragility_score": 0.1430102289652896
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6736067175865172,
+          "shortest_len": 3,
+          "cheap_score": 0.07837142135915537,
+          "scorer": "RulePathScorer",
+          "fragility_gate": 0.5,
+          "gate_penalty": 0.08,
+          "score_weights": {
+            "avg_node_importance": 0.12,
+            "avg_edge_bc": 0.1,
+            "cross_comm_ratio": 0.03,
+            "fragility_score": 0.65,
+            "path_length": 0.1
+          },
+          "set_level": {
+            "single_score": 0.5353006691603168,
+            "raw_marginal_gain": 2.027244251545434,
+            "norm_marginal_gain": 0.752407000949891,
+            "num_new_internal_nodes": 3,
+            "avg_node_importance": 0.808932547569275,
+            "fragility_score": 0.1430102289652896,
+            "max_node_overlap": 0.0,
+            "node_reuse_term": 0.0,
+            "hard_penalty": 0.0,
+            "low_single_threshold": 0.15,
+            "low_single_penalty": 0.0,
+            "min_single_score_after_first": 0.25,
+            "extra_guard_penalty": 0.0,
+            "reuse_penalty": 0.15,
+            "set_level_value": 0.6329985184656253
+          }
+        }
+      },
+      {
+        "rank": 3,
+        "source": 1779,
+        "target": 341,
+        "nodes": [
+          1779,
+          1623,
+          1776,
+          2045,
+          341
+        ],
+        "length": 5,
+        "score": 0.40833057526834593,
+        "method": "rule",
+        "features": {
+          "avg_node_importance": 0.8263220882415772,
+          "internal_node_importance": 0.8142776370048525,
+          "avg_edge_bc": 0.0018412455391695237,
+          "cross_comm_ratio": 0.75,
+          "path_length": 4.0,
+          "delta_E": 0.0,
+          "delta_LCC": 0.0022156573116690614,
+          "delta_ASP": 0.5221376708025796,
+          "fragility_score": 0.10531379708518354,
+          "norm_avg_edge_bc": 0.11847914131388473,
+          "norm_avg_node_importance": 0.7447804820466363,
+          "norm_cross_comm_ratio": 0.75,
+          "norm_fragility_score": 0.540424107627735,
+          "norm_path_length": 0.6666666666666666
+        },
+        "fragility": {
+          "delta_E": 0.0,
+          "delta_LCC": 0.0022156573116690614,
+          "delta_ASP": 0.5221376708025796,
+          "fragility_score": 0.10531379708518354
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6887775301933288,
+          "shortest_len": 3,
+          "cheap_score": 0.08489731337046058,
+          "scorer": "RulePathScorer",
+          "fragility_gate": 0.5,
+          "gate_penalty": 0.08,
+          "score_weights": {
+            "avg_node_importance": 0.12,
+            "avg_edge_bc": 0.1,
+            "cross_comm_ratio": 0.03,
+            "fragility_score": 0.65,
+            "path_length": 0.1
+          },
+          "set_level": {
+            "single_score": 0.40833057526834593,
+            "raw_marginal_gain": 2.0463612900308954,
+            "norm_marginal_gain": 0.7802473560501042,
+            "num_new_internal_nodes": 3,
+            "avg_node_importance": 0.8263220882415772,
+            "fragility_score": 0.10531379708518354,
+            "max_node_overlap": 0.0,
+            "node_reuse_term": 0.0,
+            "hard_penalty": 0.0,
+            "low_single_threshold": 0.15,
+            "low_single_penalty": 0.0,
+            "min_single_score_after_first": 0.25,
+            "extra_guard_penalty": 0.0,
+            "reuse_penalty": 0.15,
+            "set_level_value": 0.5756931266201372
+          }
+        }
+      },
+      {
+        "rank": 4,
+        "source": 1346,
+        "target": 758,
+        "nodes": [
+          1346,
+          519,
+          836,
+          708,
+          1358,
+          758
+        ],
+        "length": 6,
+        "score": 0.6085555921466992,
+        "method": "rule",
+        "features": {
+          "avg_node_importance": 0.8121496737003326,
+          "internal_node_importance": 0.7987514555454254,
+          "avg_edge_bc": 0.0032205734388678258,
+          "cross_comm_ratio": 0.6,
+          "path_length": 5.0,
+          "delta_E": 0.012279764679764882,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.8682199506366874,
+          "fragility_score": 0.18077155331091257,
+          "norm_avg_edge_bc": 0.2136965005295026,
+          "norm_avg_node_importance": 0.5488861763099372,
+          "norm_cross_comm_ratio": 0.6,
+          "norm_fragility_score": 0.9281840014408561,
+          "norm_path_length": 1.0
+        },
+        "fragility": {
+          "delta_E": 0.012279764679764882,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.8682199506366874,
+          "fragility_score": 0.18077155331091257
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6778922200202941,
+          "shortest_len": 4,
+          "cheap_score": -0.04356647480318998,
+          "scorer": "RulePathScorer",
+          "fragility_gate": 0.5,
+          "gate_penalty": 0.08,
+          "score_weights": {
+            "avg_node_importance": 0.12,
+            "avg_edge_bc": 0.1,
+            "cross_comm_ratio": 0.03,
+            "fragility_score": 0.65,
+            "path_length": 0.1
+          },
+          "set_level": {
+            "single_score": 0.6085555921466992,
+            "raw_marginal_gain": 2.0576221488673463,
+            "norm_marginal_gain": 0.7845409553166646,
+            "num_new_internal_nodes": 3,
+            "avg_node_importance": 0.8121496737003326,
+            "fragility_score": 0.18077155331091257,
+            "max_node_overlap": 0.14285714285714285,
+            "node_reuse_term": 1.0,
+            "hard_penalty": 0.0,
+            "low_single_threshold": 0.15,
+            "low_single_penalty": 0.0,
+            "min_single_score_after_first": 0.25,
+            "extra_guard_penalty": 0.0,
+            "reuse_penalty": 0.15,
+            "set_level_value": 0.509177577001755
+          }
+        }
+      },
+      {
+        "rank": 5,
+        "source": 2045,
+        "target": 1661,
+        "nodes": [
+          2045,
+          153,
+          109,
+          1661
+        ],
+        "length": 4,
+        "score": 0.2698810853185576,
+        "method": "rule",
+        "features": {
+          "avg_node_importance": 0.8282759457826614,
+          "internal_node_importance": 0.8190590381622315,
+          "avg_edge_bc": 0.0013776854034521812,
+          "cross_comm_ratio": 0.3333333333333333,
+          "path_length": 3.0,
+          "delta_E": 0.00043093087468040747,
+          "delta_LCC": 0.0011078286558344752,
+          "delta_ASP": 0.4047506596631987,
+          "fragility_score": 0.0815656357448457,
+          "norm_avg_edge_bc": 0.08647879391984362,
+          "norm_avg_node_importance": 0.7717871410323182,
+          "norm_cross_comm_ratio": 0.3333333333333333,
+          "norm_fragility_score": 0.41838781897850524,
+          "norm_path_length": 0.3333333333333333
+        },
+        "fragility": {
+          "delta_E": 0.00043093087468040747,
+          "delta_LCC": 0.0011078286558344752,
+          "delta_ASP": 0.4047506596631987,
+          "fragility_score": 0.0815656357448457
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6749857068061829,
+          "shortest_len": 2,
+          "cheap_score": 0.1231374812232332,
+          "scorer": "RulePathScorer",
+          "fragility_gate": 0.5,
+          "gate_penalty": 0.08,
+          "score_weights": {
+            "avg_node_importance": 0.12,
+            "avg_edge_bc": 0.1,
+            "cross_comm_ratio": 0.03,
+            "fragility_score": 0.65,
+            "path_length": 0.1
+          },
+          "set_level": {
+            "single_score": 0.2698810853185576,
+            "raw_marginal_gain": 1.3578677675501967,
+            "norm_marginal_gain": 0.5177349379398702,
+            "num_new_internal_nodes": 2,
+            "avg_node_importance": 0.8282759457826614,
+            "fragility_score": 0.0815656357448457,
+            "max_node_overlap": 0.0,
+            "node_reuse_term": 0.0,
+            "hard_penalty": 0.0,
+            "low_single_threshold": 0.15,
+            "low_single_penalty": 0.0,
+            "min_single_score_after_first": 0.25,
+            "extra_guard_penalty": 0.0,
+            "reuse_penalty": 0.15,
+            "set_level_value": 0.3814153189981483
+          }
+        }
+      },
+      {
+        "rank": 6,
+        "source": 1787,
+        "target": 1709,
+        "nodes": [
+          1787,
+          1810,
+          1095,
+          1986,
+          1709
+        ],
+        "length": 5,
+        "score": 0.453156010062136,
+        "method": "rule",
+        "features": {
+          "avg_node_importance": 0.7924335789680481,
+          "internal_node_importance": 0.7565628329912822,
+          "avg_edge_bc": 0.011214270682515223,
+          "cross_comm_ratio": 0.75,
+          "path_length": 4.0,
+          "delta_E": 0.008045415491371083,
+          "delta_LCC": 0.009601181683899562,
+          "delta_ASP": 0.5456611645286547,
+          "fragility_score": 0.11619087177583919,
+          "norm_avg_edge_bc": 0.7655150652636394,
+          "norm_avg_node_importance": 0.27636587441078647,
+          "norm_cross_comm_ratio": 0.75,
+          "norm_fragility_score": 0.5963188696509913,
+          "norm_path_length": 0.6666666666666666
+        },
+        "fragility": {
+          "delta_E": 0.008045415491371083,
+          "delta_LCC": 0.009601181683899562,
+          "delta_ASP": 0.5456611645286547,
+          "fragility_score": 0.11619087177583919
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.692479395866394,
+          "shortest_len": 4,
+          "cheap_score": 0.07245939174037619,
+          "scorer": "RulePathScorer",
+          "fragility_gate": 0.5,
+          "gate_penalty": 0.08,
+          "score_weights": {
+            "avg_node_importance": 0.12,
+            "avg_edge_bc": 0.1,
+            "cross_comm_ratio": 0.03,
+            "fragility_score": 0.65,
+            "path_length": 0.1
+          },
+          "set_level": {
+            "single_score": 0.453156010062136,
+            "raw_marginal_gain": 1.3143700750592127,
+            "norm_marginal_gain": 0.6604244545283877,
+            "num_new_internal_nodes": 2,
+            "avg_node_importance": 0.7924335789680481,
+            "fragility_score": 0.11619087177583919,
+            "max_node_overlap": 0.2,
+            "node_reuse_term": 1.0,
+            "hard_penalty": 0.0,
+            "low_single_threshold": 0.15,
+            "low_single_penalty": 0.0,
+            "min_single_score_after_first": 0.25,
+            "extra_guard_penalty": 0.0,
+            "reuse_penalty": 0.15,
+            "set_level_value": 0.3564268100719492
+          }
+        }
+      },
+      {
+        "rank": 7,
+        "source": 1779,
+        "target": 1787,
+        "nodes": [
+          1779,
+          1624,
+          1787
+        ],
+        "length": 3,
+        "score": 0.318509939407097,
+        "method": "rule",
+        "features": {
+          "avg_node_importance": 0.826393989721934,
+          "internal_node_importance": 0.7732987523078918,
+          "avg_edge_bc": 0.0009073867968897085,
+          "cross_comm_ratio": 0.0,
+          "path_length": 2.0,
+          "delta_E": 0.0020111589799088614,
+          "delta_LCC": 0.00036927621861149174,
+          "delta_ASP": 0.4504650975465694,
+          "fragility_score": 0.09104519358872203,
+          "norm_avg_edge_bc": 0.054013278381835374,
+          "norm_avg_node_importance": 0.7457743205019648,
+          "norm_cross_comm_ratio": 0.0,
+          "norm_fragility_score": 0.4671010663210426,
+          "norm_path_length": 0.0
+        },
+        "fragility": {
+          "delta_E": 0.0020111589799088614,
+          "delta_LCC": 0.00036927621861149174,
+          "delta_ASP": 0.4504650975465694,
+          "fragility_score": 0.09104519358872203
+        },
+        "metadata": {
+          "same_community": true,
+          "pair_score": 1.7058832168579103,
+          "shortest_len": 2,
+          "cheap_score": 0.1721495114139372,
+          "scorer": "RulePathScorer",
+          "fragility_gate": 0.5,
+          "gate_penalty": 0.08,
+          "score_weights": {
+            "avg_node_importance": 0.12,
+            "avg_edge_bc": 0.1,
+            "cross_comm_ratio": 0.03,
+            "fragility_score": 0.65,
+            "path_length": 0.1
+          },
+          "set_level": {
+            "single_score": 0.318509939407097,
+            "raw_marginal_gain": 0.6793242304952917,
+            "norm_marginal_gain": 0.34133638834751945,
+            "num_new_internal_nodes": 1,
+            "avg_node_importance": 0.826393989721934,
+            "fragility_score": 0.09104519358872203,
+            "max_node_overlap": 0.0,
+            "node_reuse_term": 0.0,
+            "hard_penalty": 0.0,
+            "low_single_threshold": 0.15,
+            "low_single_penalty": 0.0,
+            "min_single_score_after_first": 0.25,
+            "extra_guard_penalty": 0.0,
+            "reuse_penalty": 0.15,
+            "set_level_value": 0.3287818414302871
+          }
+        }
+      },
+      {
+        "rank": 8,
+        "source": 139,
+        "target": 1546,
+        "nodes": [
+          139,
+          910,
+          239,
+          1759,
+          1358,
+          1546
+        ],
+        "length": 6,
+        "score": 0.37906319407017786,
+        "method": "rule",
+        "features": {
+          "avg_node_importance": 0.7894823094209036,
+          "internal_node_importance": 0.7685856133699417,
+          "avg_edge_bc": 0.003871053318957369,
+          "cross_comm_ratio": 0.6,
+          "path_length": 5.0,
+          "delta_E": 0.012536720713926586,
+          "delta_LCC": 0.00738552437223039,
+          "delta_ASP": 0.570041038621202,
+          "fragility_score": 0.12197710575870321,
+          "norm_avg_edge_bc": 0.2586002369206576,
+          "norm_avg_node_importance": 0.23557276203764443,
+          "norm_cross_comm_ratio": 0.6,
+          "norm_fragility_score": 0.6260529829747612,
+          "norm_path_length": 1.0
+        },
+        "fragility": {
+          "delta_E": 0.012536720713926586,
+          "delta_LCC": 0.00738552437223039,
+          "delta_ASP": 0.570041038621202,
+          "fragility_score": 0.12197710575870321
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6625514030456543,
+          "shortest_len": 3,
+          "cheap_score": -0.05357164476490617,
+          "scorer": "RulePathScorer",
+          "fragility_gate": 0.5,
+          "gate_penalty": 0.08,
+          "score_weights": {
+            "avg_node_importance": 0.12,
+            "avg_edge_bc": 0.1,
+            "cross_comm_ratio": 0.03,
+            "fragility_score": 0.65,
+            "path_length": 0.1
+          },
+          "set_level": {
+            "single_score": 0.37906319407017786,
+            "raw_marginal_gain": 1.9679438060653904,
+            "norm_marginal_gain": 0.9888221280484524,
+            "num_new_internal_nodes": 3,
+            "avg_node_importance": 0.7894823094209036,
+            "fragility_score": 0.12197710575870321,
+            "max_node_overlap": 0.14285714285714285,
+            "node_reuse_term": 2.0,
+            "hard_penalty": 0.0,
+            "low_single_threshold": 0.15,
+            "low_single_penalty": 0.0,
+            "min_single_score_after_first": 0.25,
+            "extra_guard_penalty": 0.0,
+            "reuse_penalty": 0.15,
+            "set_level_value": 0.3248832857889729
+          }
+        }
+      },
+      {
+        "rank": 9,
+        "source": 341,
+        "target": 236,
+        "nodes": [
+          341,
+          2045,
+          2046,
+          236
+        ],
+        "length": 4,
+        "score": 0.42606017251152667,
+        "method": "rule",
+        "features": {
+          "avg_node_importance": 0.828432348370552,
+          "internal_node_importance": 0.8242946207523346,
+          "avg_edge_bc": 0.0012833351362011444,
+          "cross_comm_ratio": 0.3333333333333333,
+          "path_length": 3.0,
+          "delta_E": 0.0018591845654344075,
+          "delta_LCC": 0.0007385524372229835,
+          "delta_ASP": 0.5172530920291152,
+          "fragility_score": 0.10448971320688599,
+          "norm_avg_edge_bc": 0.07996563393018741,
+          "norm_avg_node_importance": 0.7739489728275352,
+          "norm_cross_comm_ratio": 0.3333333333333333,
+          "norm_fragility_score": 0.5361893318654415,
+          "norm_path_length": 0.3333333333333333
+        },
+        "fragility": {
+          "delta_E": 0.0018591845654344075,
+          "delta_LCC": 0.0007385524372229835,
+          "delta_ASP": 0.5172530920291152,
+          "fragility_score": 0.10448971320688599
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.665140151977539,
+          "shortest_len": 2,
+          "cheap_score": 0.12317955730760871,
+          "scorer": "RulePathScorer",
+          "fragility_gate": 0.5,
+          "gate_penalty": 0.08,
+          "score_weights": {
+            "avg_node_importance": 0.12,
+            "avg_edge_bc": 0.1,
+            "cross_comm_ratio": 0.03,
+            "fragility_score": 0.65,
+            "path_length": 0.1
+          },
+          "set_level": {
+            "single_score": 0.42606017251152667,
+            "raw_marginal_gain": 0.6836438213378189,
+            "norm_marginal_gain": 0.3435068298997842,
+            "num_new_internal_nodes": 1,
+            "avg_node_importance": 0.828432348370552,
+            "fragility_score": 0.10448971320688599,
+            "max_node_overlap": 0.25,
+            "node_reuse_term": 1.0,
+            "hard_penalty": 0.0,
+            "low_single_threshold": 0.15,
+            "low_single_penalty": 0.0,
+            "min_single_score_after_first": 0.25,
+            "extra_guard_penalty": 0.0,
+            "reuse_penalty": 0.15,
+            "set_level_value": 0.18891116833624264
+          }
+        }
+      },
+      {
+        "rank": 10,
+        "source": 68,
+        "target": 2045,
+        "nodes": [
+          68,
+          1358,
+          1729,
+          1013,
+          2045
+        ],
+        "length": 5,
+        "score": 0.6379905001343611,
+        "method": "rule",
+        "features": {
+          "avg_node_importance": 0.8070019817352294,
+          "internal_node_importance": 0.782991063594818,
+          "avg_edge_bc": 0.013344381345192004,
+          "cross_comm_ratio": 0.75,
+          "path_length": 4.0,
+          "delta_E": 0.013883205683205724,
+          "delta_LCC": 0.006646971935007295,
+          "delta_ASP": 0.7583927188752542,
+          "fragility_score": 0.15989061482233607,
+          "norm_avg_edge_bc": 0.9125602400777472,
+          "norm_avg_node_importance": 0.4777336185918695,
+          "norm_cross_comm_ratio": 0.75,
+          "norm_fragility_score": 0.8208817054803521,
+          "norm_path_length": 0.6666666666666666
+        },
+        "fragility": {
+          "delta_E": 0.013883205683205724,
+          "delta_LCC": 0.006646971935007295,
+          "delta_ASP": 0.7583927188752542,
+          "fragility_score": 0.15989061482233607
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6860367178916933,
+          "shortest_len": 3,
+          "cheap_score": 0.07965420618441083,
+          "scorer": "RulePathScorer",
+          "fragility_gate": 0.5,
+          "gate_penalty": 0.08,
+          "score_weights": {
+            "avg_node_importance": 0.12,
+            "avg_edge_bc": 0.1,
+            "cross_comm_ratio": 0.03,
+            "fragility_score": 0.65,
+            "path_length": 0.1
+          },
+          "set_level": {
+            "single_score": 0.6379905001343611,
+            "raw_marginal_gain": 1.3551594167053016,
+            "norm_marginal_gain": 0.6809196553994032,
+            "num_new_internal_nodes": 2,
+            "avg_node_importance": 0.8070019817352294,
+            "fragility_score": 0.15989061482233607,
+            "max_node_overlap": 0.16666666666666666,
+            "node_reuse_term": 3.0,
+            "hard_penalty": 0.0,
+            "low_single_threshold": 0.15,
+            "low_single_penalty": 0.0,
+            "min_single_score_after_first": 0.25,
+            "extra_guard_penalty": 0.0,
+            "reuse_penalty": 0.15,
+            "set_level_value": 0.17397528667029682
+          }
+        }
+      }
+    ],
+    "shortest": [
+      {
+        "rank": 1,
+        "source": 153,
+        "target": 173,
+        "nodes": [
+          153,
+          109,
+          289,
+          1358,
+          173
+        ],
+        "length": 5,
+        "score": 0.190326285331943,
+        "method": "shortest",
+        "features": {
+          "avg_node_importance": 0.8235896468162537,
+          "internal_node_importance": 0.8190116087595621,
+          "avg_edge_bc": 0.0049205110897796705,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.013194237502693607,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.9141646650959823,
+          "fragility_score": 0.190326285331943
+        },
+        "fragility": {
+          "delta_E": 0.013194237502693607,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.9141646650959823,
+          "fragility_score": 0.190326285331943
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6609134078025818,
+          "shortest_len": 4
+        }
+      },
+      {
+        "rank": 2,
+        "source": 139,
+        "target": 326,
+        "nodes": [
+          139,
+          306,
+          1072,
+          1358,
+          326
+        ],
+        "length": 5,
+        "score": 0.1783363983689718,
+        "method": "shortest",
+        "features": {
+          "avg_node_importance": 0.8198939228057862,
+          "internal_node_importance": 0.8121750235557555,
+          "avg_edge_bc": 0.010810916506510811,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.014955244061494094,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.8514317696007483,
+          "fragility_score": 0.1783363983689718
+        },
+        "fragility": {
+          "delta_E": 0.014955244061494094,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.8514317696007483,
+          "fragility_score": 0.1783363983689718
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6629445433616636,
+          "shortest_len": 4
+        }
+      },
+      {
+        "rank": 3,
+        "source": 519,
+        "target": 173,
+        "nodes": [
+          519,
+          109,
+          289,
+          1358,
+          173
+        ],
+        "length": 5,
+        "score": 0.16005234053233142,
+        "method": "shortest",
+        "features": {
+          "avg_node_importance": 0.8243299651145936,
+          "internal_node_importance": 0.8190116087595621,
+          "avg_edge_bc": 0.005953500599261146,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.010191888666888416,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7687996387695346,
+          "fragility_score": 0.16005234053233142
+        },
+        "fragility": {
+          "delta_E": 0.010191888666888416,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7687996387695346,
+          "fragility_score": 0.16005234053233142
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.664614999294281,
+          "shortest_len": 4
+        }
+      },
+      {
+        "rank": 4,
+        "source": 1757,
+        "target": 1245,
+        "nodes": [
+          1757,
+          1358,
+          1072,
+          306,
+          1245
+        ],
+        "length": 5,
+        "score": 0.1564497462929776,
+        "method": "shortest",
+        "features": {
+          "avg_node_importance": 0.8223883056640625,
+          "internal_node_importance": 0.8121750235557555,
+          "avg_edge_bc": 0.010899953990816438,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.015473305167055168,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.7409623870096551,
+          "fragility_score": 0.1564497462929776
+        },
+        "fragility": {
+          "delta_E": 0.015473305167055168,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.7409623870096551,
+          "fragility_score": 0.1564497462929776
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6754164576530457,
+          "shortest_len": 4
+        }
+      },
+      {
+        "rank": 5,
+        "source": 1346,
+        "target": 326,
+        "nodes": [
+          1346,
+          109,
+          289,
+          1358,
+          326
+        ],
+        "length": 5,
+        "score": 0.15542093273700808,
+        "method": "shortest",
+        "features": {
+          "avg_node_importance": 0.8267141318321227,
+          "internal_node_importance": 0.8190116087595621,
+          "avg_edge_bc": 0.004826935202511958,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.012694221750471663,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7406379336257514,
+          "fragility_score": 0.15542093273700808
+        },
+        "fragility": {
+          "delta_E": 0.012694221750471663,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7406379336257514,
+          "fragility_score": 0.15542093273700808
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6765358328819273,
+          "shortest_len": 4
+        }
+      },
+      {
+        "rank": 6,
+        "source": 308,
+        "target": 1568,
+        "nodes": [
+          308,
+          306,
+          1072,
+          1358,
+          1568
+        ],
+        "length": 5,
+        "score": 0.15387021821871286,
+        "method": "shortest",
+        "features": {
+          "avg_node_importance": 0.8203465867042542,
+          "internal_node_importance": 0.8121750235557555,
+          "avg_edge_bc": 0.010707969660570736,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.014964515345765511,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.7290823262809107,
+          "fragility_score": 0.15387021821871286
+        },
+        "fragility": {
+          "delta_E": 0.014964515345765511,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.7290823262809107,
+          "fragility_score": 0.15387021821871286
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.665207862854004,
+          "shortest_len": 4
+        }
+      },
+      {
+        "rank": 7,
+        "source": 1787,
+        "target": 758,
+        "nodes": [
+          1787,
+          109,
+          289,
+          1358,
+          758
+        ],
+        "length": 5,
+        "score": 0.15343324234585465,
+        "method": "shortest",
+        "features": {
+          "avg_node_importance": 0.8275982904434205,
+          "internal_node_importance": 0.8190116087595621,
+          "avg_edge_bc": 0.005282333907215372,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.012218211649461436,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7316515018720047,
+          "fragility_score": 0.15343324234585465
+        },
+        "fragility": {
+          "delta_E": 0.012218211649461436,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7316515018720047,
+          "fragility_score": 0.15343324234585465
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6809566259384154,
+          "shortest_len": 4
+        }
+      },
+      {
+        "rank": 8,
+        "source": 308,
+        "target": 173,
+        "nodes": [
+          308,
+          306,
+          1072,
+          1358,
+          173
+        ],
+        "length": 5,
+        "score": 0.15142205429199618,
+        "method": "shortest",
+        "features": {
+          "avg_node_importance": 0.8199953746795654,
+          "internal_node_importance": 0.8121750235557555,
+          "avg_edge_bc": 0.010838466481789474,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.013749849456099444,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.7192708384266595,
+          "fragility_score": 0.15142205429199618
+        },
+        "fragility": {
+          "delta_E": 0.013749849456099444,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.7192708384266595,
+          "fragility_score": 0.15142205429199618
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6634518027305603,
+          "shortest_len": 4
+        }
+      },
+      {
+        "rank": 9,
+        "source": 1757,
+        "target": 1661,
+        "nodes": [
+          1757,
+          1358,
+          289,
+          109,
+          1661
+        ],
+        "length": 5,
+        "score": 0.1480831341403031,
+        "method": "shortest",
+        "features": {
+          "avg_node_importance": 0.8283928537368774,
+          "internal_node_importance": 0.8190116087595621,
+          "avg_edge_bc": 0.005779251158700681,
+          "cross_comm_ratio": 0.5,
+          "path_length": 4.0,
+          "delta_E": 0.01307884129759132,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7031797015479873,
+          "fragility_score": 0.1480831341403031
+        },
+        "fragility": {
+          "delta_E": 0.01307884129759132,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7031797015479873,
+          "fragility_score": 0.1480831341403031
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6849294424057006,
+          "shortest_len": 4
+        }
+      },
+      {
+        "rank": 10,
+        "source": 1346,
+        "target": 1762,
+        "nodes": [
+          1346,
+          109,
+          289,
+          1358,
+          1762
+        ],
+        "length": 5,
+        "score": 0.1477761353519784,
+        "method": "shortest",
+        "features": {
+          "avg_node_importance": 0.8276878619194031,
+          "internal_node_importance": 0.8190116087595621,
+          "avg_edge_bc": 0.004827523368407284,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.012618275270481288,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7025658396605836,
+          "fragility_score": 0.1477761353519784
+        },
+        "fragility": {
+          "delta_E": 0.012618275270481288,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7025658396605836,
+          "fragility_score": 0.1477761353519784
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6814044833183288,
+          "shortest_len": 4
+        }
+      }
+    ],
+    "random": [
+      {
+        "rank": 1,
+        "source": 1709,
+        "target": 236,
+        "nodes": [
+          1709,
+          1358,
+          708,
+          836,
+          2078,
+          236
+        ],
+        "length": 6,
+        "score": 0.15238827110574077,
+        "method": "random",
+        "features": {
+          "avg_node_importance": 0.8060920735200247,
+          "internal_node_importance": 0.7907364308834076,
+          "avg_edge_bc": 0.004644058509950593,
+          "cross_comm_ratio": 0.6,
+          "path_length": 5.0,
+          "delta_E": 0.013171878121878172,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7245193127266019,
+          "fragility_score": 0.15238827110574077
+        },
+        "fragility": {
+          "delta_E": 0.013171878121878172,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7245193127266019,
+          "fragility_score": 0.15238827110574077
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6736067175865172,
+          "shortest_len": 3,
+          "num_random_samples": 5,
+          "num_trials": 30,
+          "cheap_score": -0.04586534936300379
+        }
+      },
+      {
+        "rank": 2,
+        "source": 1346,
+        "target": 1762,
+        "nodes": [
+          1346,
+          1670,
+          308,
+          2045,
+          236,
+          1072,
+          1740,
+          1358,
+          1762
+        ],
+        "length": 9,
+        "score": 0.14383916842809766,
+        "method": "random",
+        "features": {
+          "avg_node_importance": 0.8196517215834723,
+          "internal_node_importance": 0.8136372872761317,
+          "avg_edge_bc": 0.0011993690414752903,
+          "cross_comm_ratio": 0.125,
+          "path_length": 8.0,
+          "delta_E": 0.013048359973359847,
+          "delta_LCC": 0.006646971935007295,
+          "delta_ASP": 0.679805178323754,
+          "fragility_score": 0.14383916842809766
+        },
+        "fragility": {
+          "delta_E": 0.013048359973359847,
+          "delta_LCC": 0.006646971935007295,
+          "delta_ASP": 0.679805178323754,
+          "fragility_score": 0.14383916842809766
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6814044833183288,
+          "shortest_len": 4,
+          "num_random_samples": 5,
+          "num_trials": 30,
+          "cheap_score": -0.4120469145749949
+        }
+      },
+      {
+        "rank": 3,
+        "source": 1757,
+        "target": 68,
+        "nodes": [
+          1757,
+          957,
+          1358,
+          1565,
+          2365,
+          391,
+          68
+        ],
+        "length": 7,
+        "score": 0.13469182772920274,
+        "method": "random",
+        "features": {
+          "avg_node_importance": 0.7918965884617396,
+          "internal_node_importance": 0.7694591331481934,
+          "avg_edge_bc": 0.0007526341328132686,
+          "cross_comm_ratio": 0.16666666666666666,
+          "path_length": 6.0,
+          "delta_E": 0.010173375929626,
+          "delta_LCC": 0.006277695716395804,
+          "delta_ASP": 0.64055699535397,
+          "fragility_score": 0.13469182772920274
+        },
+        "fragility": {
+          "delta_E": 0.010173375929626,
+          "delta_LCC": 0.006277695716395804,
+          "delta_ASP": 0.64055699535397,
+          "fragility_score": 0.13469182772920274
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6959804534912108,
+          "shortest_len": 2,
+          "num_random_samples": 5,
+          "num_trials": 30,
+          "cheap_score": -0.21842074495237324
+        }
+      },
+      {
+        "rank": 4,
+        "source": 289,
+        "target": 758,
+        "nodes": [
+          289,
+          1358,
+          758
+        ],
+        "length": 3,
+        "score": 0.13011632247429208,
+        "method": "random",
+        "features": {
+          "avg_node_importance": 0.828321615854899,
+          "internal_node_importance": 0.8210686445236206,
+          "avg_edge_bc": 0.0049791304186728915,
+          "cross_comm_ratio": 0.0,
+          "path_length": 2.0,
+          "delta_E": 0.01372042471417495,
+          "delta_LCC": 0.004431314623338234,
+          "delta_ASP": 0.614278133696434,
+          "fragility_score": 0.13011632247429208
+        },
+        "fragility": {
+          "delta_E": 0.01372042471417495,
+          "delta_LCC": 0.004431314623338234,
+          "delta_ASP": 0.614278133696434,
+          "fragility_score": 0.13011632247429208
+        },
+        "metadata": {
+          "same_community": true,
+          "pair_score": 1.6638962030410767,
+          "shortest_len": 2,
+          "num_random_samples": 5,
+          "num_trials": 30,
+          "cheap_score": 0.17423846626030642
+        }
+      },
+      {
+        "rank": 5,
+        "source": 68,
+        "target": 1620,
+        "nodes": [
+          68,
+          1358,
+          1620
+        ],
+        "length": 3,
+        "score": 0.1253448480553721,
+        "method": "random",
+        "features": {
+          "avg_node_importance": 0.8323972503344218,
+          "internal_node_importance": 0.8210686445236206,
+          "avg_edge_bc": 0.00708849162247501,
+          "cross_comm_ratio": 0.5,
+          "path_length": 2.0,
+          "delta_E": 0.01346940351315365,
+          "delta_LCC": 0.004431314623338234,
+          "delta_ASP": 0.5909228040038768,
+          "fragility_score": 0.1253448480553721
+        },
+        "fragility": {
+          "delta_E": 0.01346940351315365,
+          "delta_LCC": 0.004431314623338234,
+          "delta_ASP": 0.5909228040038768,
+          "fragility_score": 0.1253448480553721
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6761231064796447,
+          "shortest_len": 2,
+          "num_random_samples": 5,
+          "num_trials": 30,
+          "cheap_score": 0.25170531013723235
+        }
+      },
+      {
+        "rank": 6,
+        "source": 341,
+        "target": 1620,
+        "nodes": [
+          341,
+          613,
+          1358,
+          1620
+        ],
+        "length": 4,
+        "score": 0.12240990867682618,
+        "method": "random",
+        "features": {
+          "avg_node_importance": 0.8205465167760849,
+          "internal_node_importance": 0.808453232049942,
+          "avg_edge_bc": 0.0005806708145320239,
+          "cross_comm_ratio": 0.0,
+          "path_length": 3.0,
+          "delta_E": 0.008715376984127027,
+          "delta_LCC": 0.004800590841949726,
+          "delta_ASP": 0.5850176077319773,
+          "fragility_score": 0.12240990867682618
+        },
+        "fragility": {
+          "delta_E": 0.008715376984127027,
+          "delta_LCC": 0.004800590841949726,
+          "delta_ASP": 0.5850176077319773,
+          "fragility_score": 0.12240990867682618
+        },
+        "metadata": {
+          "same_community": true,
+          "pair_score": 1.6652796030044557,
+          "shortest_len": 2,
+          "num_random_samples": 5,
+          "num_trials": 30,
+          "cheap_score": 0.0694201337935978
+        }
+      },
+      {
+        "rank": 7,
+        "source": 1787,
+        "target": 758,
+        "nodes": [
+          1787,
+          2045,
+          341,
+          1358,
+          758
+        ],
+        "length": 5,
+        "score": 0.11943875664826009,
+        "method": "random",
+        "features": {
+          "avg_node_importance": 0.8354436969757082,
+          "internal_node_importance": 0.8320872863133748,
+          "avg_edge_bc": 0.002200624186850883,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.013688432196888256,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.5587386322891783,
+          "fragility_score": 0.11943875664826009
+        },
+        "fragility": {
+          "delta_E": 0.013688432196888256,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.5587386322891783,
+          "fragility_score": 0.11943875664826009
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6809566259384154,
+          "shortest_len": 4,
+          "num_random_samples": 5,
+          "num_trials": 30,
+          "cheap_score": 0.014109850895123899
+        }
+      },
+      {
+        "rank": 8,
+        "source": 68,
+        "target": 758,
+        "nodes": [
+          68,
+          1358,
+          552,
+          524,
+          1169,
+          301,
+          2492,
+          758
+        ],
+        "length": 8,
+        "score": 0.11154658491711238,
+        "method": "random",
+        "features": {
+          "avg_node_importance": 0.7804473459720612,
+          "internal_node_importance": 0.7614807208379109,
+          "avg_edge_bc": 0.0029339622152976504,
+          "cross_comm_ratio": 0.14285714285714285,
+          "path_length": 7.0,
+          "delta_E": 0.011560690004440072,
+          "delta_LCC": 0.009601181683899562,
+          "delta_ASP": 0.5154091812088826,
+          "fragility_score": 0.11154658491711238
+        },
+        "fragility": {
+          "delta_E": 0.011560690004440072,
+          "delta_LCC": 0.009601181683899562,
+          "delta_ASP": 0.5154091812088826,
+          "fragility_score": 0.11154658491711238
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6746944427490233,
+          "shortest_len": 2,
+          "num_random_samples": 5,
+          "num_trials": 30,
+          "cheap_score": -0.3264899342194118
+        }
+      },
+      {
+        "rank": 9,
+        "source": 68,
+        "target": 326,
+        "nodes": [
+          68,
+          1358,
+          326
+        ],
+        "length": 3,
+        "score": 0.11089536867552874,
+        "method": "random",
+        "features": {
+          "avg_node_importance": 0.8314689000447592,
+          "internal_node_importance": 0.8210686445236206,
+          "avg_edge_bc": 0.006892412530303748,
+          "cross_comm_ratio": 0.5,
+          "path_length": 2.0,
+          "delta_E": 0.010605717199467096,
+          "delta_LCC": 0.004431314623338234,
+          "delta_ASP": 0.524402779732033,
+          "fragility_score": 0.11089536867552874
+        },
+        "fragility": {
+          "delta_E": 0.010605717199467096,
+          "delta_LCC": 0.004431314623338234,
+          "delta_ASP": 0.524402779732033,
+          "fragility_score": 0.11089536867552874
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6733380556106567,
+          "shortest_len": 2,
+          "num_random_samples": 5,
+          "num_trials": 30,
+          "cheap_score": 0.25122872877923275
+        }
+      },
+      {
+        "rank": 10,
+        "source": 1733,
+        "target": 758,
+        "nodes": [
+          1733,
+          1358,
+          853,
+          1762,
+          111,
+          758
+        ],
+        "length": 6,
+        "score": 0.11039499880770524,
+        "method": "random",
+        "features": {
+          "avg_node_importance": 0.8205961982409159,
+          "internal_node_importance": 0.8147121042013168,
+          "avg_edge_bc": 0.0002079255174921098,
+          "cross_comm_ratio": 0.0,
+          "path_length": 5.0,
+          "delta_E": 0.01251996683871709,
+          "delta_LCC": 0.005908419497784312,
+          "delta_ASP": 0.5151182213655234,
+          "fragility_score": 0.11039499880770524
+        },
+        "fragility": {
+          "delta_E": 0.01251996683871709,
+          "delta_LCC": 0.005908419497784312,
+          "delta_ASP": 0.5151182213655234,
+          "fragility_score": 0.11039499880770524
+        },
+        "metadata": {
+          "same_community": true,
+          "pair_score": 1.6647287726402282,
+          "shortest_len": 2,
+          "num_random_samples": 5,
+          "num_trials": 30,
+          "cheap_score": -0.13066933313634022
+        }
+      }
+    ],
+    "betweenness": [
+      {
+        "rank": 1,
+        "source": 68,
+        "target": 1620,
+        "nodes": [
+          68,
+          1986,
+          1149,
+          1358,
+          1620
+        ],
+        "length": 5,
+        "score": 0.21423211476449125,
+        "method": "betweenness",
+        "features": {
+          "avg_node_importance": 0.8241516375541688,
+          "internal_node_importance": 0.8148783604303995,
+          "avg_edge_bc": 0.01274456436346816,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.01886887487512509,
+          "delta_LCC": 0.009601181683899562,
+          "delta_ASP": 1.014220460704407,
+          "fragility_score": 0.21423211476449125
+        },
+        "fragility": {
+          "delta_E": 0.01886887487512509,
+          "delta_LCC": 0.009601181683899562,
+          "delta_ASP": 1.014220460704407,
+          "fragility_score": 0.21423211476449125
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6761231064796447,
+          "shortest_len": 2,
+          "selection_metric": "avg_edge_bc",
+          "coarse_avg_edge_bc": 0.01274456436346816
+        }
+      },
+      {
+        "rank": 2,
+        "source": 1779,
+        "target": 1762,
+        "nodes": [
+          1779,
+          306,
+          1072,
+          1358,
+          1762
+        ],
+        "length": 5,
+        "score": 0.19929473720849494,
+        "method": "betweenness",
+        "features": {
+          "avg_node_importance": 0.825151731967926,
+          "internal_node_importance": 0.8121750235557555,
+          "avg_edge_bc": 0.010818755894119788,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.01475430472305475,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.9566253424752427,
+          "fragility_score": 0.19929473720849494
+        },
+        "fragility": {
+          "delta_E": 0.01475430472305475,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.9566253424752427,
+          "fragility_score": 0.19929473720849494
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6892335891723633,
+          "shortest_len": 4,
+          "selection_metric": "avg_edge_bc",
+          "coarse_avg_edge_bc": 0.010818755894119788
+        }
+      },
+      {
+        "rank": 3,
+        "source": 1787,
+        "target": 326,
+        "nodes": [
+          1787,
+          306,
+          1072,
+          1358,
+          326
+        ],
+        "length": 5,
+        "score": 0.18068599297027693,
+        "method": "betweenness",
+        "features": {
+          "avg_node_importance": 0.823225061893463,
+          "internal_node_importance": 0.8121750235557555,
+          "avg_edge_bc": 0.011409949113336329,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.016650966394716415,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.8597882979408293,
+          "fragility_score": 0.18068599297027693
+        },
+        "fragility": {
+          "delta_E": 0.016650966394716415,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.8597882979408293,
+          "fragility_score": 0.18068599297027693
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6796002388000488,
+          "shortest_len": 4,
+          "selection_metric": "avg_edge_bc",
+          "coarse_avg_edge_bc": 0.011409949113336329
+        }
+      },
+      {
+        "rank": 4,
+        "source": 1779,
+        "target": 173,
+        "nodes": [
+          1779,
+          306,
+          1072,
+          1358,
+          173
+        ],
+        "length": 5,
+        "score": 0.1798927763769288,
+        "method": "betweenness",
+        "features": {
+          "avg_node_importance": 0.8234223413467407,
+          "internal_node_importance": 0.8121750235557555,
+          "avg_edge_bc": 0.01091518379261204,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.015063294344544537,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.8589975590744325,
+          "fragility_score": 0.1798927763769288
+        },
+        "fragility": {
+          "delta_E": 0.015063294344544537,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.8589975590744325,
+          "fragility_score": 0.1798927763769288
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6805866360664368,
+          "shortest_len": 4,
+          "selection_metric": "avg_edge_bc",
+          "coarse_avg_edge_bc": 0.01091518379261204
+        }
+      },
+      {
+        "rank": 5,
+        "source": 308,
+        "target": 1568,
+        "nodes": [
+          308,
+          306,
+          1072,
+          1358,
+          1568
+        ],
+        "length": 5,
+        "score": 0.17783982171463208,
+        "method": "betweenness",
+        "features": {
+          "avg_node_importance": 0.8203465867042542,
+          "internal_node_importance": 0.8121750235557555,
+          "avg_edge_bc": 0.010707969660570736,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.015405983599733691,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.8480474072525706,
+          "fragility_score": 0.17783982171463208
+        },
+        "fragility": {
+          "delta_E": 0.015405983599733691,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.8480474072525706,
+          "fragility_score": 0.17783982171463208
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.665207862854004,
+          "shortest_len": 4,
+          "selection_metric": "avg_edge_bc",
+          "coarse_avg_edge_bc": 0.010707969660570736
+        }
+      },
+      {
+        "rank": 6,
+        "source": 1779,
+        "target": 1620,
+        "nodes": [
+          1779,
+          306,
+          1072,
+          1358,
+          1620
+        ],
+        "length": 5,
+        "score": 0.17704291578430506,
+        "method": "betweenness",
+        "features": {
+          "avg_node_importance": 0.8247350120544434,
+          "internal_node_importance": 0.8121750235557555,
+          "avg_edge_bc": 0.010916207274310093,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.014438516344766505,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.8459978121108698,
+          "fragility_score": 0.17704291578430506
+        },
+        "fragility": {
+          "delta_E": 0.014438516344766505,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.8459978121108698,
+          "fragility_score": 0.17704291578430506
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.68714998960495,
+          "shortest_len": 3,
+          "selection_metric": "avg_edge_bc",
+          "coarse_avg_edge_bc": 0.010916207274310093
+        }
+      },
+      {
+        "rank": 7,
+        "source": 1346,
+        "target": 1762,
+        "nodes": [
+          1346,
+          306,
+          1072,
+          1358,
+          1762
+        ],
+        "length": 5,
+        "score": 0.17561305473891775,
+        "method": "betweenness",
+        "features": {
+          "avg_node_importance": 0.8235859107971191,
+          "internal_node_importance": 0.8121750235557555,
+          "avg_edge_bc": 0.010683339972345123,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.01502947607947619,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.8376665874145139,
+          "fragility_score": 0.17561305473891775
+        },
+        "fragility": {
+          "delta_E": 0.01502947607947619,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.8376665874145139,
+          "fragility_score": 0.17561305473891775
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6814044833183288,
+          "shortest_len": 4,
+          "selection_metric": "avg_edge_bc",
+          "coarse_avg_edge_bc": 0.010683339972345123
+        }
+      },
+      {
+        "rank": 8,
+        "source": 68,
+        "target": 2080,
+        "nodes": [
+          68,
+          1358,
+          1072,
+          306,
+          2080
+        ],
+        "length": 5,
+        "score": 0.17286983836464856,
+        "method": "betweenness",
+        "features": {
+          "avg_node_importance": 0.8229181265830994,
+          "internal_node_importance": 0.8121750235557555,
+          "avg_edge_bc": 0.014611042187261464,
+          "cross_comm_ratio": 0.5,
+          "path_length": 4.0,
+          "delta_E": 0.01385842907092899,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.8262925995602624,
+          "fragility_score": 0.17286983836464856
+        },
+        "fragility": {
+          "delta_E": 0.01385842907092899,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.8262925995602624,
+          "fragility_score": 0.17286983836464856
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.67806556224823,
+          "shortest_len": 4,
+          "selection_metric": "avg_edge_bc",
+          "coarse_avg_edge_bc": 0.014611042187261464
+        }
+      },
+      {
+        "rank": 9,
+        "source": 1661,
+        "target": 758,
+        "nodes": [
+          1661,
+          1013,
+          1729,
+          1358,
+          758
+        ],
+        "length": 5,
+        "score": 0.16954760755790554,
+        "method": "betweenness",
+        "features": {
+          "avg_node_importance": 0.8025233244895935,
+          "internal_node_importance": 0.7829910635948182,
+          "avg_edge_bc": 0.007297418017738812,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.009693494699744926,
+          "delta_LCC": 0.006646971935007295,
+          "delta_ASP": 0.8150571045200232,
+          "fragility_score": 0.16954760755790554
+        },
+        "fragility": {
+          "delta_E": 0.009693494699744926,
+          "delta_LCC": 0.006646971935007295,
+          "delta_ASP": 0.8150571045200232,
+          "fragility_score": 0.16954760755790554
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6636434316635131,
+          "shortest_len": 4,
+          "selection_metric": "avg_edge_bc",
+          "coarse_avg_edge_bc": 0.007297418017738812
+        }
+      },
+      {
+        "rank": 10,
+        "source": 2080,
+        "target": 1568,
+        "nodes": [
+          2080,
+          306,
+          1072,
+          1358,
+          1568
+        ],
+        "length": 5,
+        "score": 0.16795722656124756,
+        "method": "betweenness",
+        "features": {
+          "avg_node_importance": 0.8194624590873719,
+          "internal_node_importance": 0.8121750235557555,
+          "avg_edge_bc": 0.0114674266883182,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.01765103923853953,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.7941443202080363,
+          "fragility_score": 0.16795722656124756
+        },
+        "fragility": {
+          "delta_E": 0.01765103923853953,
+          "delta_LCC": 0.005169867060561217,
+          "delta_ASP": 0.7941443202080363,
+          "fragility_score": 0.16795722656124756
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6607872247695923,
+          "shortest_len": 4,
+          "selection_metric": "avg_edge_bc",
+          "coarse_avg_edge_bc": 0.0114674266883182
+        }
+      }
+    ],
+    "node_score": [
+      {
+        "rank": 1,
+        "source": 519,
+        "target": 1762,
+        "nodes": [
+          519,
+          1986,
+          68,
+          1358,
+          1762
+        ],
+        "length": 5,
+        "score": 0.19051241157463356,
+        "method": "node_score",
+        "features": {
+          "avg_node_importance": 0.8287488293647766,
+          "internal_node_importance": 0.8234940648078918,
+          "avg_edge_bc": 0.008901332893200518,
+          "cross_comm_ratio": 0.5,
+          "path_length": 4.0,
+          "delta_E": 0.016497886835386888,
+          "delta_LCC": 0.009601181683899562,
+          "delta_ASP": 0.9003639208345948,
+          "fragility_score": 0.19051241157463356
+        },
+        "fragility": {
+          "delta_E": 0.016497886835386888,
+          "delta_LCC": 0.009601181683899562,
+          "delta_ASP": 0.9003639208345948,
+          "fragility_score": 0.19051241157463356
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6732619524002075,
+          "shortest_len": 4,
+          "selection_metric": "avg_node_importance",
+          "coarse_node_score": 0.8287488293647766
+        }
+      },
+      {
+        "rank": 2,
+        "source": 1757,
+        "target": 1546,
+        "nodes": [
+          1757,
+          1358,
+          1546
+        ],
+        "length": 3,
+        "score": 0.18149291981695967,
+        "method": "node_score",
+        "features": {
+          "avg_node_importance": 0.8337999542554219,
+          "internal_node_importance": 0.8210686445236206,
+          "avg_edge_bc": 0.001439680323147807,
+          "cross_comm_ratio": 0.0,
+          "path_length": 2.0,
+          "delta_E": 0.010654661800617499,
+          "delta_LCC": 0.004431314623338234,
+          "delta_ASP": 0.8772926462368869,
+          "fragility_score": 0.18149291981695967
+        },
+        "fragility": {
+          "delta_E": 0.010654661800617499,
+          "delta_LCC": 0.004431314623338234,
+          "delta_ASP": 0.8772926462368869,
+          "fragility_score": 0.18149291981695967
+        },
+        "metadata": {
+          "same_community": true,
+          "pair_score": 1.6803312182426453,
+          "shortest_len": 2,
+          "selection_metric": "avg_node_importance",
+          "coarse_node_score": 0.8337999542554219
+        }
+      },
+      {
+        "rank": 3,
+        "source": 1346,
+        "target": 758,
+        "nodes": [
+          1346,
+          109,
+          289,
+          1358,
+          758
+        ],
+        "length": 5,
+        "score": 0.15940051907277308,
+        "method": "node_score",
+        "features": {
+          "avg_node_importance": 0.8269854092597961,
+          "internal_node_importance": 0.8190116087595621,
+          "avg_edge_bc": 0.004861399573419444,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.01270748487623466,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7605093390530504,
+          "fragility_score": 0.15940051907277308
+        },
+        "fragility": {
+          "delta_E": 0.01270748487623466,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7605093390530504,
+          "fragility_score": 0.15940051907277308
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6778922200202941,
+          "shortest_len": 4,
+          "selection_metric": "avg_node_importance",
+          "coarse_node_score": 0.8269854092597961
+        }
+      },
+      {
+        "rank": 4,
+        "source": 1787,
+        "target": 758,
+        "nodes": [
+          1787,
+          2045,
+          341,
+          1358,
+          758
+        ],
+        "length": 5,
+        "score": 0.15066632529908355,
+        "method": "node_score",
+        "features": {
+          "avg_node_importance": 0.8354436969757082,
+          "internal_node_importance": 0.8320872863133748,
+          "avg_edge_bc": 0.002200624186850883,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.011964801171051143,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7183237375949698,
+          "fragility_score": 0.15066632529908355
+        },
+        "fragility": {
+          "delta_E": 0.011964801171051143,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7183237375949698,
+          "fragility_score": 0.15066632529908355
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6809566259384154,
+          "shortest_len": 4,
+          "selection_metric": "avg_node_importance",
+          "coarse_node_score": 0.8354436969757082
+        }
+      },
+      {
+        "rank": 5,
+        "source": 68,
+        "target": 758,
+        "nodes": [
+          68,
+          1358,
+          1762,
+          758
+        ],
+        "length": 4,
+        "score": 0.14882535688930007,
+        "method": "node_score",
+        "features": {
+          "avg_node_importance": 0.8324181795120239,
+          "internal_node_importance": 0.8274891376495361,
+          "avg_edge_bc": 0.004595925983837086,
+          "cross_comm_ratio": 0.3333333333333333,
+          "path_length": 3.0,
+          "delta_E": 0.01417313450438476,
+          "delta_LCC": 0.004800590841949726,
+          "delta_ASP": 0.7061793337538314,
+          "fragility_score": 0.14882535688930007
+        },
+        "fragility": {
+          "delta_E": 0.01417313450438476,
+          "delta_LCC": 0.004800590841949726,
+          "delta_ASP": 0.7061793337538314,
+          "fragility_score": 0.14882535688930007
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6746944427490233,
+          "shortest_len": 2,
+          "selection_metric": "avg_node_importance",
+          "coarse_node_score": 0.8324181795120239
+        }
+      },
+      {
+        "rank": 6,
+        "source": 1757,
+        "target": 1661,
+        "nodes": [
+          1757,
+          1358,
+          289,
+          109,
+          1661
+        ],
+        "length": 5,
+        "score": 0.1480831341403031,
+        "method": "node_score",
+        "features": {
+          "avg_node_importance": 0.8283928537368774,
+          "internal_node_importance": 0.8190116087595621,
+          "avg_edge_bc": 0.005779251158700681,
+          "cross_comm_ratio": 0.5,
+          "path_length": 4.0,
+          "delta_E": 0.01307884129759132,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7031797015479873,
+          "fragility_score": 0.1480831341403031
+        },
+        "fragility": {
+          "delta_E": 0.01307884129759132,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7031797015479873,
+          "fragility_score": 0.1480831341403031
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6849294424057006,
+          "shortest_len": 4,
+          "selection_metric": "avg_node_importance",
+          "coarse_node_score": 0.8283928537368774
+        }
+      },
+      {
+        "rank": 7,
+        "source": 1346,
+        "target": 1762,
+        "nodes": [
+          1346,
+          109,
+          289,
+          1358,
+          1762
+        ],
+        "length": 5,
+        "score": 0.1477761353519784,
+        "method": "node_score",
+        "features": {
+          "avg_node_importance": 0.8276878619194031,
+          "internal_node_importance": 0.8190116087595621,
+          "avg_edge_bc": 0.004827523368407284,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.012618275270481288,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7025658396605836,
+          "fragility_score": 0.1477761353519784
+        },
+        "fragility": {
+          "delta_E": 0.012618275270481288,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7025658396605836,
+          "fragility_score": 0.1477761353519784
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6814044833183288,
+          "shortest_len": 4,
+          "selection_metric": "avg_node_importance",
+          "coarse_node_score": 0.8276878619194031
+        }
+      },
+      {
+        "rank": 8,
+        "source": 308,
+        "target": 1568,
+        "nodes": [
+          308,
+          2045,
+          341,
+          1358,
+          1568
+        ],
+        "length": 5,
+        "score": 0.1470825118612726,
+        "method": "node_score",
+        "features": {
+          "avg_node_importance": 0.8322939443588258,
+          "internal_node_importance": 0.8320872863133748,
+          "avg_edge_bc": 0.0017845725345021243,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.011710082278832329,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7009141081903527,
+          "fragility_score": 0.1470825118612726
+        },
+        "fragility": {
+          "delta_E": 0.011710082278832329,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.7009141081903527,
+          "fragility_score": 0.1470825118612726
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.665207862854004,
+          "shortest_len": 4,
+          "selection_metric": "avg_node_importance",
+          "coarse_node_score": 0.8322939443588258
+        }
+      },
+      {
+        "rank": 9,
+        "source": 1757,
+        "target": 519,
+        "nodes": [
+          1757,
+          1358,
+          289,
+          109,
+          519
+        ],
+        "length": 5,
+        "score": 0.1393246579695182,
+        "method": "node_score",
+        "features": {
+          "avg_node_importance": 0.8296141052246094,
+          "internal_node_importance": 0.8190116087595621,
+          "avg_edge_bc": 0.005955826583909927,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.010671183677433471,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.6642026359343784,
+          "fragility_score": 0.1393246579695182
+        },
+        "fragility": {
+          "delta_E": 0.010671183677433471,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.6642026359343784,
+          "fragility_score": 0.1393246579695182
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6910356998443603,
+          "shortest_len": 4,
+          "selection_metric": "avg_node_importance",
+          "coarse_node_score": 0.8296141052246094
+        }
+      },
+      {
+        "rank": 10,
+        "source": 1779,
+        "target": 1762,
+        "nodes": [
+          1779,
+          109,
+          289,
+          1358,
+          1762
+        ],
+        "length": 5,
+        "score": 0.13917907281550668,
+        "method": "node_score",
+        "features": {
+          "avg_node_importance": 0.82925368309021,
+          "internal_node_importance": 0.8190116087595621,
+          "avg_edge_bc": 0.004968037014527856,
+          "cross_comm_ratio": 0.25,
+          "path_length": 4.0,
+          "delta_E": 0.012560157203907102,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.6596967631113735,
+          "fragility_score": 0.13917907281550668
+        },
+        "fragility": {
+          "delta_E": 0.012560157203907102,
+          "delta_LCC": 0.00553914327917282,
+          "delta_ASP": 0.6596967631113735,
+          "fragility_score": 0.13917907281550668
+        },
+        "metadata": {
+          "same_community": false,
+          "pair_score": 1.6892335891723633,
+          "shortest_len": 4,
+          "selection_metric": "avg_node_importance",
+          "coarse_node_score": 0.82925368309021
+        }
+      }
+    ]
+  }
+}

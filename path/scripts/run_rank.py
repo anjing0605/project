@@ -466,6 +466,14 @@ def main() -> None:
     _dbg_df(debug, "all_samples", df, max_rows=5)
 
     feature_cols = rank_cfg.get("feature_cols") or PathRankingDatasetBuilder.feature_columns(df)
+
+    missing_cols = [c for c in feature_cols if c not in df.columns]
+    if missing_cols:
+        raise ValueError(
+            f"Configured feature columns are missing from ranking dataframe: {missing_cols}\n"
+            f"Available columns: {list(df.columns)}"
+        )
+
     _dbg_list(debug, "feature_cols", feature_cols, max_items=50)
 
     # -------------------------

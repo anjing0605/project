@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple,Optional,Set
 import random
 import numpy as np
 import networkx as nx
@@ -9,6 +9,138 @@ from path.src.core.types import TaskPair
 
 
 class TaskPairBuilder:
+    """
+        Build and sample (source, target) task pairs.
+        """
+
+    @staticmethod
+    def _make_taskpair(
+            s: int,
+            t: int,
+            d: int,
+            community: np.ndarray,
+            importance: np.ndarray,
+            q_high: Optional[float] = None,
+            q_mid: Optional[float] = None,
+    ) -> TaskPair:
+        same_community = bool(community[s] == community[t])
+        pair_score = float(importance[s] + importance[t])
+
+        if q_high is None or q_mid is None:
+            score_level = "mid"
+        else:
+            score_level = TaskPairBuilder._score_level_from_pair_score(
+                pair_score=pair_score,
+                q_high=q_high,
+                q_mid=q_mid,
+            )
+
+        distance_level = TaskPairBuilder._distance_level_from_shortest_len(d)
+        community_type = "same" if same_community else "cross"
+
+        return TaskPair(
+            source=int(s),
+            target=int(t),
+            shortest_len=int(d),
+            same_community=same_community,
+            pair_score=pair_score,
+            metadata={
+                "community_type": community_type,
+                "score_level": score_level,
+                "distance_level": distance_level,
+                "task_origin": "random",  # 默认给 random 用；key 任务后面覆盖
+            },
+        )
+
+    @staticmethod
+    def build_random_task_pairs(
+            G: nx.Graph,
+            community: np.ndarray,
+            importance: np.ndarray,
+            num_samples: int,
+            min_shortest_len: int = 2,
+            random_seed: int = 42,
+            exclude_pairs: Optional[Set[Tuple[int, int]]] = None,
+            max_trials: int = 10000,
+    ) -> List[TaskPair]:
+        """
+        Randomly sample legal node pairs from the whole graph.
+
+        Rules:
+            - source != target
+            - connected
+            - shortest path length >= min_shortest_len
+            - avoid duplicates
+            - avoid exclude_pairs if provided
+        """
+        if num_samples <= 0:
+            return []
+
+        community = np.asarray(community).reshape(-1)
+        importance = np.asarray(importance, dtype=float).reshape(-1)
+
+        rng = random.Random(random_seed)
+        nodes = list(G.nodes())
+
+        if exclude_pairs is None:
+            exclude_pairs = set()
+
+        sampled_pairs: Set[Tuple[int, int]] = set()
+        raw_rows: List[Tuple[int, int, int, float]] = []
+
+        trials = 0
+        while len(raw_rows) < num_samples and trials < max_trials:
+            trials += 1
+            s, t = rng.sample(nodes, 2)
+            a, b = (s, t) if s < t else (t, s)
+
+            if (a, b) in sampled_pairs or (a, b) in exclude_pairs:
+                continue
+
+            try:
+                d = nx.shortest_path_length(G, s, t)
+            except nx.NetworkXNoPath:
+                continue
+
+            if d < min_shortest_len:
+                continue
+
+            pair_score = float(importance[s] + importance[t])
+            sampled_pairs.add((a, b))
+            raw_rows.append((s, t, d, pair_score))
+
+        if not raw_rows:
+            return []
+
+        pair_scores = np.array([x[3] for x in raw_rows], dtype=float)
+        q_high = float(np.quantile(pair_scores, 0.80))
+        q_mid = float(np.quantile(pair_scores, 0.40))
+
+        tasks: List[TaskPair] = []
+        for s, t, d, _ in raw_rows:
+            task = TaskPairBuilder._make_taskpair(
+                s=s,
+                t=t,
+                d=d,
+                community=community,
+                importance=importance,
+                q_high=q_high,
+                q_mid=q_mid,
+            )
+            task.metadata["task_origin"] = "random"
+            tasks.append(task)
+
+        tasks.sort(
+            key=lambda x: (
+                x.pair_score,
+                x.shortest_len,
+                int(not x.same_community),
+                -x.source,
+                -x.target,
+            ),
+            reverse=True,
+        )
+        return tasks
     """
     Build and sample (source, target) task pairs from key nodes.
     """
@@ -124,6 +256,7 @@ class TaskPairBuilder:
                         "community_type": community_type,
                         "score_level": score_level,
                         "distance_level": distance_level,
+                        "task_origin": "key",
                     },
                 )
             )
@@ -165,10 +298,15 @@ class TaskPairBuilder:
 
     @staticmethod
     def sample_task_pairs(
-        task_pairs: List[TaskPair],
-        num_samples: int,
-        mode: str = "paper_default",
-        random_seed: int = 42,
+            task_pairs: List[TaskPair],
+            num_samples: int,
+            mode: str = "paper_default",
+            random_seed: int = 42,
+            G: Optional[nx.Graph] = None,
+            community: Optional[np.ndarray] = None,
+            importance: Optional[np.ndarray] = None,
+            min_shortest_len: int = 2,
+            random_ratio: float = 0.10,
     ) -> List[TaskPair]:
         """
         Sample task pairs for experiments/training.
@@ -211,6 +349,60 @@ class TaskPairBuilder:
             sorted_pairs = sorted(task_pairs, key=lambda x: x.shortest_len, reverse=True)
             return sorted_pairs[: min(num_samples, len(sorted_pairs))]
 
+        elif mode == "hybrid":
+            if G is None or community is None or importance is None:
+                raise ValueError(
+                    "G, community, and importance must be provided when mode='hybrid'"
+                )
+            if random_ratio < 0 or random_ratio >= 1:
+                raise ValueError(
+                    f"random_ratio must be in [0, 1), got {random_ratio}"
+                )
+
+            # 先从 key-node task pool 中按 paper_default 采大头
+            n_random = int(round(num_samples * random_ratio))
+            n_key = max(0, num_samples - n_random)
+
+            key_sampled = TaskPairBuilder.sample_task_pairs(
+                task_pairs=task_pairs,
+                num_samples=n_key,
+                mode="paper_default",
+                random_seed=random_seed,
+            )
+
+            existing = set()
+            for t in task_pairs:
+                a, b = (t.source, t.target) if t.source < t.target else (t.target, t.source)
+                existing.add((a, b))
+
+            random_sampled = TaskPairBuilder.build_random_task_pairs(
+                G=G,
+                community=community,
+                importance=importance,
+                num_samples=n_random,
+                min_shortest_len=min_shortest_len,
+                random_seed=random_seed,
+                exclude_pairs=existing,
+            )
+
+            sampled = key_sampled + random_sampled
+
+            # 若 random 部分不足，则再用 key pool 补齐
+            if len(sampled) < num_samples:
+                used = {(t.source, t.target) for t in sampled}
+                remain = [
+                    t for t in TaskPairBuilder.sample_task_pairs(
+                        task_pairs=task_pairs,
+                        num_samples=len(task_pairs),
+                        mode="paper_default",
+                        random_seed=random_seed,
+                    )
+                    if (t.source, t.target) not in used
+                ]
+                sampled.extend(remain[: max(0, num_samples - len(sampled))])
+
+            rng.shuffle(sampled)
+            return sampled[:num_samples]
         elif mode in ("stratified", "paper_default"):
             grouped = TaskPairBuilder._group_tasks(task_pairs)
 

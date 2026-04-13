@@ -108,10 +108,14 @@ class KeyNodeSelector:
         mid_pool = order[high_end:mid_end].tolist()
         low_pool = order[mid_end:].tolist()
 
-        counts = np.floor(ratios * total_k).astype(int)
+        raw = ratios * total_k
+        counts = np.floor(raw).astype(int)
+        remainders = raw - counts
+
         while counts.sum() < total_k:
-            idx = int(np.argmax(ratios - counts / max(1, total_k)))
+            idx = int(np.argmax(remainders))
             counts[idx] += 1
+            remainders[idx] = -1.0
 
         high_k, mid_k, low_k = counts.tolist()
 

@@ -227,11 +227,6 @@ class FragilityEvaluator:
                 return True
         return False
 
-    def compute_base_metrics(G: nx.Graph) -> Dict[str, float]:
-        raise RuntimeError(
-            "Please call instance method compute_base_metrics(...) instead of "
-            "FragilityEvaluator.compute_base_metrics(G)."
-        )
 
     def compute_base_metrics(self, G: nx.Graph) -> Dict[str, float]:
         num_nodes = G.number_of_nodes()

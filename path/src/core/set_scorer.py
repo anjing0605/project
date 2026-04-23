@@ -1,19 +1,22 @@
 from __future__ import annotations
-
-from typing import Dict, List, Tuple, Any
-
+from typing import Any, Dict, List, Optional, Tuple
+import math
+import heapq
 import networkx as nx
 
 from path.src.core.fragility import FragilityEvaluator
 
 
-class MarginalGainPathSelector:
+class SubmodularPathSelector:
     """
-    Greedy path-set selector:
-    1. start from empty selected set S
-    2. each round choose path p maximizing marginal gain:
-           gain(p | S) = Fragility(S U {p}) - Fragility(S)
-    3. meanwhile enforce redundancy constraints
+    Submodular (or near-submodular) greedy selector with (1-1/e) guarantee
+    under monotone submodular assumption.
+
+    Objective:
+        F(S) = Fragility(S) - lambda_red * Redundancy(S)
+
+    - Greedy maximization with lazy (CELF) acceleration.
+    - pred_score is used only as a PRIOR for queue ordering (not in F).
     """
 
     def __init__(
@@ -21,168 +24,195 @@ class MarginalGainPathSelector:
         lambda_E: float = 0.4,
         lambda_LCC: float = 0.4,
         lambda_ASP: float = 0.2,
-        edge_overlap_threshold: float = 0.5,
-        max_shared_internal_nodes: int = 1,
-        alpha_pred: float = 0.35,
-        alpha_gain: float = 0.65,
+        lambda_red: float = 0.2,                 # 冗余惩罚权重
+        edge_overlap_threshold: float = 0.7,     # 仅作为“极端冗余”硬过滤（可选）
+        max_shared_internal_nodes: int = 3,      # 同上
+        min_marginal_gain: float = 1e-8,         # 单调性阈值（严格版）
+        allow_negative_gain: float = 0.0,        # 若<0 则允许轻微负增益
+        use_lazy: bool = True,                  # CELF
     ) -> None:
         self.evaluator = FragilityEvaluator(
             lambda_E=lambda_E,
             lambda_LCC=lambda_LCC,
             lambda_ASP=lambda_ASP,
         )
+        self.lambda_red = float(lambda_red)
         self.edge_overlap_threshold = float(edge_overlap_threshold)
         self.max_shared_internal_nodes = int(max_shared_internal_nodes)
+        self.min_marginal_gain = float(min_marginal_gain)
+        self.allow_negative_gain = float(allow_negative_gain)
+        self.use_lazy = bool(use_lazy)
 
-        # rerank score = alpha_pred * pred_score + alpha_gain * marginal_gain
-        self.alpha_pred = float(alpha_pred)
-        self.alpha_gain = float(alpha_gain)
-
+    # ---------- utils ----------
     @staticmethod
     def path_to_edges(path: List[int]) -> List[Tuple[int, int]]:
-        return [tuple(sorted((int(u), int(v)))) for u, v in zip(path[:-1], path[1:])]
+        return [tuple(sorted((u, v))) for u, v in zip(path[:-1], path[1:])]
 
     @staticmethod
-    def edge_jaccard(path_a: List[int], path_b: List[int]) -> float:
-        ea = set(MarginalGainPathSelector.path_to_edges(path_a))
-        eb = set(MarginalGainPathSelector.path_to_edges(path_b))
+    def edge_jaccard(a: List[int], b: List[int]) -> float:
+        ea = set(SubmodularPathSelector.path_to_edges(a))
+        eb = set(SubmodularPathSelector.path_to_edges(b))
         inter = len(ea & eb)
         union = len(ea | eb)
         return inter / max(union, 1)
 
     @staticmethod
-    def shared_internal_nodes(path_a: List[int], path_b: List[int]) -> int:
-        na = set(int(x) for x in path_a[1:-1])
-        nb = set(int(x) for x in path_b[1:-1])
-        return len(na & nb)
+    def shared_internal_nodes(a: List[int], b: List[int]) -> int:
+        return len(set(a[1:-1]) & set(b[1:-1]))
 
     @staticmethod
     def union_edge_set(records: List[Any]) -> set[Tuple[int, int]]:
-        out = set()
+        s = set()
         for r in records:
-            out.update(MarginalGainPathSelector.path_to_edges(r.nodes))
-        return out
+            s.update(SubmodularPathSelector.path_to_edges(r.nodes))
+        return s
 
-    def evaluate_edge_set_fragility(
+    # ---------- objective ----------
+    def _fragility(
         self,
         G: nx.Graph,
         removed_edges: List[Tuple[int, int]],
         base_metrics: Dict[str, float],
         num_nodes: int,
-    ) -> Dict[str, float]:
+    ) -> float:
         H = G.copy()
         H.remove_edges_from(removed_edges)
 
-        E0 = float(base_metrics["global_efficiency"])
-        L0 = float(base_metrics["lcc_ratio"])
-        A0 = float(base_metrics["avg_shortest_path_lcc"])
+        E0 = base_metrics["global_efficiency"]
+        L0 = base_metrics["lcc_ratio"]
+        A0 = base_metrics["avg_shortest_path_lcc"]
 
         E1 = self.evaluator.global_efficiency_approx(H)
         L1 = self.evaluator.lcc_ratio(H, num_nodes=num_nodes)
         A1 = self.evaluator.avg_shortest_path_of_lcc_approx(H)
 
-        delta_E = max(E0 - E1, 0.0)
-        delta_LCC = max(L0 - L1, 0.0)
-        delta_ASP = max(A1 - A0, 0.0)
+        dE = max(E0 - E1, 0.0)
+        dL = max(L0 - L1, 0.0)
+        dA = max(A1 - A0, 0.0)
 
-        fragility_score = (
-            self.evaluator.lambda_E * delta_E
-            + self.evaluator.lambda_LCC * delta_LCC
-            + self.evaluator.lambda_ASP * delta_ASP
+        return (
+            self.evaluator.lambda_E * dE
+            + self.evaluator.lambda_LCC * dL
+            + self.evaluator.lambda_ASP * dA
         )
 
-        return {
-            "delta_E": float(delta_E),
-            "delta_LCC": float(delta_LCC),
-            "delta_ASP": float(delta_ASP),
-            "fragility_score": float(fragility_score),
-        }
-
-    def is_too_redundant(self, candidate, selected: List[Any]) -> bool:
+    def _redundancy_penalty(self, cand: Any, selected: List[Any]) -> float:
+        if not selected:
+            return 0.0
+        # 平均重叠作为惩罚（可替换为更复杂形式）
+        ej = 0.0
+        sn = 0.0
         for s in selected:
-            ej = self.edge_jaccard(candidate.nodes, s.nodes)
-            if ej >= self.edge_overlap_threshold:
-                return True
+            ej += self.edge_jaccard(cand.nodes, s.nodes)
+            sn += self.shared_internal_nodes(cand.nodes, s.nodes)
+        ej /= len(selected)
+        sn /= len(selected)
+        return ej + 0.1 * sn  # 可调比例
 
-            shared = self.shared_internal_nodes(candidate.nodes, s.nodes)
-            if shared > self.max_shared_internal_nodes:
+    def _hard_redundant(self, cand: Any, selected: List[Any]) -> bool:
+        for s in selected:
+            if self.edge_jaccard(cand.nodes, s.nodes) >= self.edge_overlap_threshold:
+                return True
+            if self.shared_internal_nodes(cand.nodes, s.nodes) > self.max_shared_internal_nodes:
                 return True
         return False
 
+    def _marginal_gain(
+        self,
+        G: nx.Graph,
+        base_metrics: Dict[str, float],
+        num_nodes: int,
+        current_edges: set[Tuple[int, int]],
+        current_F: float,
+        selected: List[Any],
+        cand: Any,
+    ) -> Tuple[float, float, float]:
+        # 价值项
+        cand_edges = set(self.path_to_edges(cand.nodes))
+        merged_edges = sorted(current_edges | cand_edges)
+        frag = self._fragility(G, merged_edges, base_metrics, num_nodes)
+
+        # 冗余惩罚
+        red = self._redundancy_penalty(cand, selected)
+
+        F_new = frag - self.lambda_red * red
+        gain = F_new - current_F
+        return gain, frag, red
+
+    # ---------- main ----------
     def select(
         self,
         G: nx.Graph,
         candidates: List[Any],
         top_q: int,
+        shared_base_metrics: Optional[Dict[str, float]] = None,
     ) -> List[Any]:
-        if not candidates:
+
+        if not candidates or top_q <= 0:
             return []
 
-        base_metrics = self.evaluator.compute_base_metrics(G)
+        if shared_base_metrics is None:
+            base = self.evaluator.compute_base_metrics(G)
+        else:
+            base = shared_base_metrics
+
         num_nodes = G.number_of_nodes()
 
         selected: List[Any] = []
-        current_union_edges: set[Tuple[int, int]] = set()
-        current_metrics = {
-            "delta_E": 0.0,
-            "delta_LCC": 0.0,
-            "delta_ASP": 0.0,
-            "fragility_score": 0.0,
-        }
+        current_edges: set[Tuple[int, int]] = set()
+        current_F = 0.0
 
-        remaining = list(candidates)
+        # ---------- Lazy Greedy (CELF) ----------
+        # heap 存 (-upper_bound_gain, idx, cand, last_updated_round)
+        heap = []
+        for i, c in enumerate(candidates):
+            # 用 pred_score 作为初始上界（仅排序，不进目标函数）
+            ub = float(getattr(c, "score", 0.0))
+            heap.append((-ub, i, c, -1))
+        heapq.heapify(heap)
 
-        for step in range(int(top_q)):
-            best_idx = -1
-            best_rerank_score = float("-inf")
-            best_gain = float("-inf")
-            best_metrics = None
+        round_id = 0
 
-            for i, cand in enumerate(remaining):
-                if self.is_too_redundant(cand, selected):
-                    continue
+        while heap and len(selected) < top_q:
+            neg_ub, i, cand, last_round = heapq.heappop(heap)
 
-                cand_edges = set(self.path_to_edges(cand.nodes))
-                merged_edges = sorted(current_union_edges | cand_edges)
+            if self._hard_redundant(cand, selected):
+                continue
 
-                merged_metrics = self.evaluate_edge_set_fragility(
-                    G=G,
-                    removed_edges=merged_edges,
-                    base_metrics=base_metrics,
-                    num_nodes=num_nodes,
+            # 若不是本轮更新过的，重新计算真实 gain 并放回
+            if self.use_lazy and last_round != round_id:
+                gain, _, _ = self._marginal_gain(
+                    G, base, num_nodes, current_edges, current_F, selected, cand
                 )
+                heapq.heappush(heap, (-gain, i, cand, round_id))
+                continue
 
-                marginal_gain = (
-                    merged_metrics["fragility_score"] - current_metrics["fragility_score"]
-                )
+            # 计算真实 gain（若不用 lazy 或已更新）
+            gain, frag_new, red_new = self._marginal_gain(
+                G, base, num_nodes, current_edges, current_F, selected, cand
+            )
 
-                pred_score = float(cand.score) if getattr(cand, "score", None) is not None else 0.0
-                rerank_score = (
-                    self.alpha_pred * pred_score
-                    + self.alpha_gain * float(marginal_gain)
-                )
+            # 单调性/放松阈值
+            if gain <= max(self.min_marginal_gain, self.allow_negative_gain):
+                continue
 
-                if rerank_score > best_rerank_score:
-                    best_idx = i
-                    best_rerank_score = float(rerank_score)
-                    best_gain = float(marginal_gain)
-                    best_metrics = dict(merged_metrics)
+            # 接受
+            if getattr(cand, "metadata", None) is None:
+                cand.metadata = {}
 
-            if best_idx < 0:
-                break
+            cand.metadata.update({
+                "selector": "submodular_greedy",
+                "marginal_gain": float(gain),
+                "set_fragility_after_select": float(frag_new),
+                "selection_step": len(selected) + 1,
+                "redundancy_penalty": float(red_new),
+                "lambda_red": float(self.lambda_red),
+            })
 
-            chosen = remaining.pop(best_idx)
+            selected.append(cand)
+            current_edges = self.union_edge_set(selected)
+            current_F = frag_new - self.lambda_red * red_new
 
-            if getattr(chosen, "metadata", None) is None:
-                chosen.metadata = {}
-
-            chosen.metadata["selector"] = "greedy_marginal_gain"
-            chosen.metadata["marginal_gain"] = float(best_gain)
-            chosen.metadata["set_fragility_after_select"] = float(best_metrics["fragility_score"])
-            chosen.metadata["selection_step"] = int(step + 1)
-
-            selected.append(chosen)
-            current_union_edges = self.union_edge_set(selected)
-            current_metrics = dict(best_metrics)
+            round_id += 1
 
         return selected

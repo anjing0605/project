@@ -18,19 +18,28 @@ keynode:
   random_task_ratio: 0.1
   random_seed: 42
 paths:
-  k_shortest: 20
-  max_hops: 8
-  delta: 2
+  k_shortest: 12
+  final_k: 12
+  raw_k_multiplier: 5
+  raw_k_min_extra: 20
+  max_hops: 10
+  delta: 3
+  max_internal_overlap: 0.8
+  fallback_relax_overlap: 0.98
+  fallback_extra_hops: 3
   top_q: 10
-  overlap_threshold: 0.6
+  overlap_threshold: 0.8
   top_m_for_fragility: 5
 fragility:
   lambda_E: 0.4
   lambda_LCC: 0.4
   lambda_ASP: 0.2
 ranking:
+  mode: pure_rank
+  selector: pred_score_selector
+  global_top_q: 10
   train_ratio: 0.8
-  top_per_task: 5
+  top_per_task: 10
   random_state: 42
   fragility_mode: hybrid
   exact_every_n_tasks: 10
@@ -41,9 +50,14 @@ ranking:
   eval_early_stop: true
   eval_tol: 0.0001
   eval_debug: false
-  max_shared_internal_nodes: 2
-  alpha_pred: 0.45
-  alpha_gain: 0.55
+  lambda_red: 0.1
+  allow_negative_gain: -0.005
+  max_shared_internal_nodes: 5
+  min_marginal_gain: 1.0e-06
+  alpha_pred: 1.0
+  alpha_gain: 0.0
+  normalize_pred_score: false
+  normalize_marginal_gain: false
   feature_cols:
   - shortest_len
   - same_community
@@ -67,7 +81,7 @@ ranking:
 tensorboard:
   enabled: true
   log_root: outputs/tb
-  run_name: pubmed_rank
+  run_name: pubmed_rank_pure_rank
 debug:
   enabled: false
 scorer:
@@ -80,8 +94,8 @@ output:
   - 5
   - 10
   top_n_summary: 10
-  metrics_json: outputs/metrics/pubmed_rank_metrics.json
-  paths_json: outputs/paths/pubmed_rank_paths.json
-  dataset_csv: outputs/metrics/pubmed_rank_dataset.csv
-  scored_test_csv: outputs/metrics/pubmed_rank_scored_test.csv
-  fragility_cache_json: path/outputs/cache/pubmed_rank_fragility_cache.json
+  metrics_json: outputs/metrics/pubmed_rank_pure_rank_metrics.json
+  paths_json: outputs/paths/pubmed_rank_pure_rank_paths.json
+  dataset_csv: outputs/metrics/pubmed_rank_pure_rank_dataset.csv
+  scored_test_csv: outputs/metrics/pubmed_rank_pure_rank_scored_test.csv
+  fragility_cache_json: path/outputs/cache/pubmed_rank_pure_rank_fragility_cache.json

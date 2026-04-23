@@ -2,12 +2,15 @@ import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.gridspec import GridSpec
+import matplotlib as mpl
+
 from scipy.stats import ttest_rel
 import scikit_posthocs as sp
 from scipy.stats import friedmanchisquare
 plt.style.use("seaborn-v0_8-whitegrid")
-
-BASE = "scratch/keynode/project/public_process/extract"
+mpl.rcParams['font.family'] = 'DejaVu Sans'
+BASE = "public_process/extract"
 
 DATASETS = [
     "Cora",
@@ -19,7 +22,7 @@ DATASETS = [
     "Physics"
 ]
 
-OUT = "scratch/keynode/project/public_process/train/ablation_results"
+OUT = "public_process/train/ablation_results"
 os.makedirs(OUT, exist_ok=True)
 
 
@@ -173,38 +176,55 @@ def plot_dataset_grid(df):
 
     save_fig("fig_dataset_grid")
 def plot_dataset_grid_improvement(df):
-
     datasets = df["dataset"].unique()
+    ORDER = ["L0", "L1", "L2", "L3_Full"]
 
-    fig, axes = plt.subplots(2, 4, figsize=(16,8), sharey=True)
+    fig = plt.figure(figsize=(16, 8))
+    gs = GridSpec(2, 12, figure=fig)  # 2行12列，方便灵活控制位置
 
-    axes = axes.flatten()
+    axes = []
 
-    ORDER = ["L0","L1","L2","L3_Full"]
+    # ===== 第一行：4张图，均匀铺满 =====
+    top_positions = [
+        (0, slice(0, 3)),
+        (0, slice(3, 6)),
+        (0, slice(6, 9)),
+        (0, slice(9, 12)),
+    ]
+
+    # ===== 第二行：3张图，居中显示 =====
+    bottom_positions = [
+        (1, slice(1, 4)),
+        (1, slice(4, 7)),
+        (1, slice(7, 10)),
+    ]
+
+    all_positions = top_positions + bottom_positions
 
     for i, d in enumerate(datasets):
+        if i >= len(all_positions):
+            break  # 防止数据集数量超过7时报错
+
+        row, col_slice = all_positions[i]
+        ax = fig.add_subplot(gs[row, col_slice])
+        axes.append(ax)
 
         sub = df[df["dataset"] == d].copy()
-
         sub["method"] = pd.Categorical(
             sub["method"],
             categories=ORDER,
             ordered=True
         )
-
         sub = sub.sort_values("method")
 
         methods = sub["method"].values
         scores = sub["SP_mean"].values
-
         x = np.arange(len(methods))
 
         gain = np.diff(scores)
-        gain = np.insert(gain,0,0)
+        gain = np.insert(gain, 0, 0)
 
-        ax = axes[i]
-
-        # bar → gain
+        # bar → incremental gain
         ax.bar(
             x,
             gain,
@@ -212,7 +232,7 @@ def plot_dataset_grid_improvement(df):
             alpha=0.5
         )
 
-        # line → performance
+        # line → absolute performance
         ax.plot(
             x,
             scores,
@@ -221,24 +241,20 @@ def plot_dataset_grid_improvement(df):
         )
 
         ax.set_title(d)
-
         ax.set_xticks(x)
         ax.set_xticklabels(methods, rotation=45, fontsize=8)
-
         ax.grid(axis="y", linestyle="--", alpha=0.4)
 
-        if i % 4 == 0:
+        # 第一列和第二行最左图可加 y 轴标签
+        if i in [0, 4]:
             ax.set_ylabel("Spearman / Gain")
-
-    # 关闭最后一个空子图
-    axes[len(datasets)].axis("off")
 
     fig.suptitle(
         "Progressive Model Improvement Across Datasets",
         fontsize=14
     )
 
-    plt.tight_layout()
+    plt.tight_layout(rect=[0, 0, 1, 0.95])
 
     save_fig("fig_dataset_grid_improvement")
 def plot_dataset_heatmap(df):

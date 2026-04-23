@@ -23,7 +23,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 PATH_ROOT = Path(__file__).resolve().parents[1]      # D:/project/keynode/project/path
 
-from path.src.core.deduplicate import PathDeduplicator
+from path.src.core.fragility import FragilityEvaluator
 from path.src.core.evaluator import MethodEvaluator
 from path.src.core.keynode import KeyNodeSelector
 from path.src.core.task_sampler import TaskPairBuilder
@@ -31,10 +31,16 @@ from path.src.data.preprocess import GraphPreprocessor
 from path.src.ranking.dataset import PathRankingDatasetBuilder
 from path.src.ranking.xgb_ranker import XGBPathRanker
 from path.src.utils.tb_logger import TBLogger
-from path.src.core.set_scorer import MarginalGainPathSelector
+from path.src.core.set_scorer import SubmodularPathSelector
+from path.src.core.pred_score_selector import PredScoreSelector
 """
 cd D:\project\keynode\project
-python -m path.scripts.run_rank --config path/configs/cora_rank.yaml --debug
+跑纯 rank
+python -m path.scripts.run_rank --config path/configs/cora_rank_pure.yaml --debug
+跑 rank + pred score set selection
+python -m path.scripts.run_rank --config path/configs/cora_rank_set_pred.yaml --debug
+跑 rank + submodular greedy保留的“更强集合选择”版本：
+python -m path.scripts.run_rank --config path/configs/cora_rank_set_submod.yaml --debug
 
 """
 '''
@@ -446,9 +452,18 @@ def main() -> None:
     df = PathRankingDatasetBuilder.build_path_samples(
         bundle=bundle,
         tasks=tasks,
-        path_k=int(path_cfg.get("k_shortest", 3)),
-        max_hops=int(path_cfg.get("max_hops", 8)),
-        delta=int(path_cfg.get("delta", 2)),
+        path_k=int(path_cfg.get("k_shortest", 12)),
+        max_hops=int(path_cfg.get("max_hops", 10)),
+        delta=int(path_cfg.get("delta", 3)),
+
+        # ===== NEW: enlarge candidate pool =====
+        raw_k_multiplier=int(path_cfg.get("raw_k_multiplier", 5)),
+        raw_k_min_extra=int(path_cfg.get("raw_k_min_extra", 20)),
+        final_k=int(path_cfg.get("final_k", path_cfg.get("k_shortest", 12))),
+        max_internal_overlap=float(path_cfg.get("max_internal_overlap", 0.80)),
+        fallback_relax_overlap=float(path_cfg.get("fallback_relax_overlap", 0.95)),
+        fallback_extra_hops=int(path_cfg.get("fallback_extra_hops", 2)),
+
         fragility_weights=fragility_weights,
         fragility_mode=rank_cfg.get("fragility_mode", "hybrid"),
         cache_path=out_cfg.get("fragility_cache_json", "outputs/cache/rank_fragility_cache.json"),
@@ -490,8 +505,14 @@ def main() -> None:
         raise RuntimeError("Training split is empty. Increase task count or train_ratio.")
 
     if test_df.empty:
-        test_df = train_df.copy()
-        _dbg(debug, "test_df was empty, fallback to train_df.copy()")
+        if debug:
+            test_df = train_df.copy()
+            _dbg(debug, "test_df was empty, fallback to train_df.copy() in debug mode")
+        else:
+            raise RuntimeError(
+                "Test split is empty in non-debug mode. "
+                "Increase task count or adjust train_ratio."
+            )
 
     _dbg_df(debug, "train_df", train_df, max_rows=3)
     _dbg_df(debug, "test_df", test_df, max_rows=3)
@@ -554,39 +575,92 @@ def main() -> None:
 
     _dbg_path_records(debug, "selected", selected, max_items=5)
     '''
+
     # -------------------------
-    # Stage 9: marginal-gain path set selection
+    # Stage 9: select paths
     # -------------------------
-    t0 = _stage_tic(debug, "marginal_gain_select")
-
-    # 先按模型预测分数做一个预排序
-    ranked_candidates = sorted(
-        path_records,
-        key=lambda r: float(r.score) if getattr(r, "score", None) is not None else 0.0,
-        reverse=True,
-    )
-
-    _dbg_path_records(debug, "ranked_candidates", ranked_candidates, max_items=5)
-
-    selector = MarginalGainPathSelector(
+    t0 = _stage_tic(debug, "select_paths")
+    shared_base_metrics = FragilityEvaluator(
         lambda_E=fragility_weights["lambda_E"],
         lambda_LCC=fragility_weights["lambda_LCC"],
         lambda_ASP=fragility_weights["lambda_ASP"],
-        edge_overlap_threshold=float(path_cfg.get("overlap_threshold", 0.6)),
-        max_shared_internal_nodes=int(rank_cfg.get("max_shared_internal_nodes", 1)),
-        alpha_pred=float(rank_cfg.get("alpha_pred", 0.35)),
-        alpha_gain=float(rank_cfg.get("alpha_gain", 0.65)),
-    )
+    ).compute_base_metrics(bundle.nx_graph)
 
-    selected = selector.select(
-        G=bundle.nx_graph,
-        candidates=ranked_candidates,
-        top_q=int(path_cfg.get("top_q", 10)),
-    )
+    rank_mode = str(rank_cfg.get("mode", "pure_rank")).strip().lower()
+    global_top_q = int(rank_cfg.get("global_top_q", path_cfg.get("top_q", 10)))
 
-    _stage_toc(debug, "marginal_gain_select", t0)
+    _dbg_kv(debug, "rank mode", {
+        "mode": rank_mode,
+        "top_per_task": int(rank_cfg.get("top_per_task", 5)),
+        "global_top_q": global_top_q,
+    })
 
-    _dbg_path_records(debug, "selected", selected, max_items=5)
+    if rank_mode == "pure_rank":
+        # 版本 1：纯 rank
+        # 只按 pred_score 全局排序，不做子模选择，不做冗余惩罚
+        ranked_candidates = sorted(
+            path_records,
+            key=lambda r: float(r.score) if getattr(r, "score", None) is not None else 0.0,
+            reverse=True,
+        )
+
+        selected = ranked_candidates[:global_top_q]
+
+        for i, cand in enumerate(selected):
+            if getattr(cand, "metadata", None) is None:
+                cand.metadata = {}
+            cand.metadata.update({
+                "selector": "pure_rank",
+                "selection_step": i + 1,
+            })
+
+    elif rank_mode == "rank_set":
+        # 版本 2：rank + set selection
+        ranked_candidates = sorted(
+            path_records,
+            key=lambda r: float(r.score) if getattr(r, "score", None) is not None else 0.0,
+            reverse=True,
+        )
+
+        selector_name = str(rank_cfg.get("selector", "pred_score_selector")).strip().lower()
+
+        if selector_name == "pred_score_selector":
+            selector = PredScoreSelector(
+                lambda_red=float(rank_cfg.get("lambda_red", 0.2)),
+                edge_overlap_threshold=float(path_cfg.get("overlap_threshold", 0.8)),
+                max_shared_internal_nodes=int(rank_cfg.get("max_shared_internal_nodes", 5)),
+                top_q=global_top_q,
+            )
+            selected = selector.select(ranked_candidates)
+
+        elif selector_name == "submodular_greedy":
+
+            selector = SubmodularPathSelector(
+                lambda_E=fragility_weights["lambda_E"],
+                lambda_LCC=fragility_weights["lambda_LCC"],
+                lambda_ASP=fragility_weights["lambda_ASP"],
+                lambda_red=float(rank_cfg.get("lambda_red", 0.2)),
+                edge_overlap_threshold=float(path_cfg.get("overlap_threshold", 0.8)),
+                max_shared_internal_nodes=int(rank_cfg.get("max_shared_internal_nodes", 5)),
+                min_marginal_gain=float(rank_cfg.get("min_marginal_gain", 1e-6)),
+                allow_negative_gain=float(rank_cfg.get("allow_negative_gain", -0.005)),
+                use_lazy=True,
+            )
+
+            selected = selector.select(
+                G=bundle.nx_graph,
+                candidates=ranked_candidates,
+                top_q=global_top_q,
+                shared_base_metrics=shared_base_metrics,
+            )
+        else:
+            raise ValueError(f"Unsupported selector: {selector_name}")
+
+    else:
+        raise ValueError(f"Unsupported ranking mode: {rank_mode}")
+
+    _stage_toc(debug, "select_paths", t0)
+    _dbg_path_records(debug, "selected", selected, max_items=10)
 
     # -------------------------
     # Stage 10: evaluate
@@ -598,24 +672,34 @@ def main() -> None:
         lambda_ASP=fragility_weights["lambda_ASP"],
     )
 
-    k_list = out_cfg.get("k_list", [1, 3, 5, 10])
+    requested_k_list = list(out_cfg.get("k_list", [1, 3, 5, 10]))
+    effective_k_list = [int(k) for k in requested_k_list if int(k) <= len(selected)]
+
     comparison = evaluator.compare_methods(
         {"xgb_rank": selected},
         bundle.nx_graph,
-        k_list,
+        effective_k_list,
         mode=rank_cfg.get("eval_mode", "hybrid"),
         early_stop=bool(rank_cfg.get("eval_early_stop", True)),
         tol=float(rank_cfg.get("eval_tol", 1e-4)),
-        debug=bool(rank_cfg.get("eval_debug", True)),
+        debug=bool(rank_cfg.get("eval_debug", False)),
+        shared_base_metrics=shared_base_metrics,
     )
+
     summary = evaluator.summarize_top_paths(
         selected,
         top_n=int(out_cfg.get("top_n_summary", 10)),
     )
     _stage_toc(debug, "evaluate_and_compare", t0)
 
-    _dbg_kv(debug, "comparison keys", {"methods": list(comparison.keys()), "k_list": k_list})
-    _dbg_kv(debug, "summary info", {"summary_len": len(summary) if hasattr(summary, "__len__") else None})
+    _dbg_kv(debug, "comparison keys", {
+        "methods": list(comparison.keys()),
+        "requested_k_list": requested_k_list,
+        "effective_k_list": effective_k_list,
+    })
+    _dbg_kv(debug, "summary info", {
+        "summary_len": len(summary) if hasattr(summary, "__len__") else None
+    })
 
     _log_dataset_info(
         tb=tb,
@@ -629,7 +713,7 @@ def main() -> None:
         backend=ranker.backend,
     )
     _log_selected_path_stats(tb, selected)
-    _log_comparison_to_tb(tb, comparison, k_list)
+    _log_comparison_to_tb(tb, comparison, effective_k_list)
 
     tb.add_text(
         "rank/info/xgb_params",
@@ -665,6 +749,26 @@ def main() -> None:
     _ensure_parent(dataset_out)
     _ensure_parent(scored_test_out)
 
+    # ===== 新增：统一读取 mode / selector =====
+    rank_mode = str(rank_cfg.get("mode", "pure_rank")).strip().lower()
+    selector_name = str(rank_cfg.get("selector", "none")).strip().lower()
+
+    # pure_rank 时，不应该显示 selector
+    effective_selector = selector_name if rank_mode == "rank_set" else "none"
+
+    # ===== 新增：兼容 shared_base_metrics 可能为空 =====
+    shared_base_metrics_payload = None
+    if "shared_base_metrics" in locals() and shared_base_metrics is not None:
+        shared_base_metrics_payload = {
+            "global_efficiency": float(shared_base_metrics["global_efficiency"]),
+            "lcc_ratio": float(shared_base_metrics["lcc_ratio"]),
+            "avg_shortest_path_lcc": float(shared_base_metrics["avg_shortest_path_lcc"]),
+        }
+
+    # ===== 新增：最终选中路径数 =====
+    num_selected_paths = int(len(selected)) if "selected" in locals() and selected is not None else 0
+
+
     metrics_payload = {
         "dataset": {
             "name": bundle.name,
@@ -673,10 +777,12 @@ def main() -> None:
             "community_mode": bundle.metadata.get("community_mode"),
             "importance_alignment": bundle.metadata.get("importance_alignment"),
         },
+
         "key_nodes": {
             "count": int(len(key_nodes)),
             "preview": [int(x) for x in key_nodes[: min(20, len(key_nodes))]],
         },
+
         "tasks": {
             "count": int(len(tasks)),
             "preview": [
@@ -690,23 +796,64 @@ def main() -> None:
                 for t in tasks[: min(20, len(tasks))]
             ],
         },
+
         "ranking": {
+            # ===== 新增：实验模式信息 =====
+            "mode": rank_mode,  # pure_rank | rank_set
+            "selector": effective_selector,  # none | pred_score_selector | submodular_greedy
+
+            # ===== 原有信息 =====
             "backend": ranker.backend,
             "feature_cols": list(feature_cols),
             "num_samples": int(len(df)),
             "num_train_samples": int(len(train_df)),
             "num_test_samples": int(len(test_df)),
             "top_per_task": int(rank_cfg.get("top_per_task", 1)),
-            "selector": "greedy_marginal_gain",
-            "max_shared_internal_nodes": int(rank_cfg.get("max_shared_internal_nodes", 1)),
-            "alpha_pred": float(rank_cfg.get("alpha_pred", 0.35)),
-            "alpha_gain": float(rank_cfg.get("alpha_gain", 0.65)),
-            "edge_overlap_threshold": float(path_cfg.get("overlap_threshold", 0.6)),
+            "global_top_q": int(rank_cfg.get("global_top_q", path_cfg.get("top_q", 10))),
+
+            # ===== selector / set selection 参数 =====
+            "lambda_red": float(rank_cfg.get("lambda_red", 0.2)),
+            "allow_negative_gain": float(rank_cfg.get("allow_negative_gain", -0.005)),
+            "max_shared_internal_nodes": int(rank_cfg.get("max_shared_internal_nodes", 3)),
+            "min_marginal_gain": float(rank_cfg.get("min_marginal_gain", 1e-6)),
+            "alpha_pred": float(rank_cfg.get("alpha_pred", 1.0)),
+            "alpha_gain": float(rank_cfg.get("alpha_gain", 0.0)),
+            "normalize_pred_score": bool(rank_cfg.get("normalize_pred_score", False)),
+            "normalize_marginal_gain": bool(rank_cfg.get("normalize_marginal_gain", False)),
+
+            # ===== 候选路径构造参数（新增，方便复现实验） =====
+            "path_k": int(path_cfg.get("k_shortest", 12)),
+            "final_k": int(path_cfg.get("final_k", path_cfg.get("k_shortest", 12))),
+            "raw_k_multiplier": int(path_cfg.get("raw_k_multiplier", 5)),
+            "raw_k_min_extra": int(path_cfg.get("raw_k_min_extra", 20)),
+            "max_hops": int(path_cfg.get("max_hops", 10)),
+            "delta": int(path_cfg.get("delta", 3)),
+            "max_internal_overlap": float(path_cfg.get("max_internal_overlap", 0.80)),
+            "edge_overlap_threshold": float(path_cfg.get("overlap_threshold", 0.80)),
+
+            # ===== fragility dataset/eval 配置（保留） =====
+            "fragility_mode": str(rank_cfg.get("fragility_mode", "hybrid")),
+            "exact_every_n_tasks": int(rank_cfg.get("exact_every_n_tasks", 10)),
+            "exact_top_ranks": int(rank_cfg.get("exact_top_ranks", 3)),
+            "exact_max_path_len": int(rank_cfg.get("exact_max_path_len", 5)),
+            "progress_every": int(rank_cfg.get("progress_every", 20)),
+            "eval_mode": str(rank_cfg.get("eval_mode", "hybrid")),
+            "eval_early_stop": bool(rank_cfg.get("eval_early_stop", True)),
+            "eval_tol": float(rank_cfg.get("eval_tol", 1e-4)),
+            "eval_debug": bool(rank_cfg.get("eval_debug", False)),
+
+            # ===== damage curve 相关（新增） =====
+            "requested_k_list": requested_k_list,
+            "effective_k_list": effective_k_list,
+            "num_selected_paths": num_selected_paths,
+
+            # ===== shared base metrics（兼容 None） =====
+            "shared_base_metrics": shared_base_metrics_payload,
         },
+
         "comparison": comparison,
         "top_summary": summary,
     }
-
     # -------------------------
     # Stage 12: save outputs
     # -------------------------

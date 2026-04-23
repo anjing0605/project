@@ -110,8 +110,14 @@ COMMON_KEYNODE = {
 
 COMMON_PATHS = {
     "k_shortest": 20,
+    "final_k": 15,
+    "raw_k_multiplier": 6,
+    "raw_k_min_extra": 30,
     "max_hops": 8,
-    "delta": 2,
+    "delta": 4,
+    "max_internal_overlap": 0.90,
+    "fallback_relax_overlap": 0.98,
+    "fallback_extra_hops": 3,
     "top_q": 10,
     "overlap_threshold": 0.6,
     "top_m_for_fragility": 5,
@@ -208,48 +214,95 @@ def build_rule_yaml(info: dict) -> dict:
     }
 
 
+from copy import deepcopy
+
 def build_rank_yaml(info: dict) -> dict:
     tag = info["tag"]
-    return {
+
+    # ===== 新增：支持从 info 控制 rank 模式 =====
+    rank_mode = info.get("rank_mode", "pure_rank")   # pure_rank | rank_set
+    selector = info.get("selector", "pred_score_selector")  # pred_score_selector | submodular_greedy
+
+    # ===== 新增：输出文件名后缀 =====
+    if rank_mode == "pure_rank":
+        suffix = "pure_rank"
+    else:
+        suffix = f"{rank_mode}_{selector}"
+
+    cfg = {
         "dataset": build_dataset_block(info),
         "keynode": deepcopy(COMMON_KEYNODE),
-        "paths": deepcopy(COMMON_PATHS),
+
+        # ===== 修改：paths 显式加入候选池扩展参数 =====
+        "paths": {
+            **deepcopy(COMMON_PATHS),
+
+            # 原有参数（如果 COMMON_PATHS 已有，会被覆盖成这里的值）
+            "k_shortest": 12,              # 原来通常偏小，建议增大
+            "final_k": 12,                 # 新增：最终保留的 diversified 候选数
+            "max_hops": 10,                # 放宽
+            "delta": 3,                    # 略放宽
+
+            # 新增：扩大 raw candidate pool
+            "raw_k_multiplier": 5,         # raw_k = max(final_k * 5, final_k + 20)
+            "raw_k_min_extra": 20,
+
+            # 新增：放宽 diversified k-shortest 的内部重叠约束
+            "max_internal_overlap": 0.80,
+
+            # 供 set selector 使用
+            "overlap_threshold": 0.80,
+        },
+
         "fragility": deepcopy(COMMON_FRAGILITY),
+
         "ranking": {
+            # ===== 新增：明确 rank 版本 =====
+            "mode": rank_mode,                 # pure_rank | rank_set
+            "selector": selector,              # pred_score_selector | submodular_greedy
+            "global_top_q": 10,                # 全局最终输出路径数
+
             "train_ratio": 0.8,
-            "top_per_task": 5,
+            "top_per_task": 10,                # 原来 5，建议扩大
             "random_state": 42,
 
-            # ===== 新增：dataset 构造阶段的 fragility 加速配置 =====
-            "fragility_mode": "hybrid",          # exact | cached | approx | hybrid
+            # ===== dataset 构造阶段的 fragility 加速配置 =====
+            "fragility_mode": "hybrid",        # exact | cached | approx | hybrid
             "exact_every_n_tasks": 10,
             "exact_top_ranks": 3,
             "exact_max_path_len": 5,
             "progress_every": 20,
 
-            # ===== 新增：compare_methods / evaluate_topk_damage 配置 =====
-            "eval_mode": "hybrid",               # exact | approx | hybrid
+            # ===== compare_methods / evaluate_topk_damage 配置 =====
+            "eval_mode": "hybrid",             # exact | approx | hybrid
             "eval_early_stop": True,
             "eval_tol": 1e-4,
             "eval_debug": False,
-            "max_shared_internal_nodes": 2,
-            "alpha_pred": 0.45,
-            "alpha_gain": 0.55,
 
+            # ===== rank_set / selector 参数 =====
+            "lambda_red": 0.1,                # 先比 0.2 更宽松
+            "allow_negative_gain": -0.005,
+            "max_shared_internal_nodes": 5,   # 原来 3，再稍微放宽
+            "min_marginal_gain": 1e-6,
+
+            # ===== 如果你后面还保留旧的混合 selector，可暂时留着 =====
+            "alpha_pred": 1.0,                # pure prediction selector 默认只用 pred_score
+            "alpha_gain": 0.0,
+            "normalize_pred_score": False,
+            "normalize_marginal_gain": False,
 
             "feature_cols": [
                 "shortest_len",
                 "same_community",
                 "pair_score",
-                #"candidate_rank",
                 "path_length_int",
                 "avg_node_importance",
                 "internal_node_importance",
                 "avg_edge_bc",
                 "cross_comm_ratio",
                 "path_length",
-                #"num_edges",
             ],
+
             "xgb_params": {
                 "n_estimators": 300,
                 "max_depth": 4,
@@ -262,30 +315,33 @@ def build_rank_yaml(info: dict) -> dict:
                 "objective": "reg:squarederror",
             },
         },
+
         "tensorboard": {
             **deepcopy(COMMON_TENSORBOARD),
-            "run_name": f"{tag}_rank",
+            "run_name": f"{tag}_rank_{suffix}",
         },
 
-        # ===== 可选：统一 debug 开关 =====
         "debug": {
             "enabled": False,
         },
+
         "scorer": deepcopy(COMMON_SCORER),
 
         "output": {
             "k_list": [1, 3, 5, 10],
             "top_n_summary": 10,
-            "metrics_json": f"outputs/metrics/{tag}_rank_metrics.json",
-            "paths_json": f"outputs/paths/{tag}_rank_paths.json",
-            "dataset_csv": f"outputs/metrics/{tag}_rank_dataset.csv",
-            "scored_test_csv": f"outputs/metrics/{tag}_rank_scored_test.csv",
 
-            # ===== 新增：fragility 缓存文件 =====
-            "fragility_cache_json": f"path/outputs/cache/{tag}_rank_fragility_cache.json",
+            # ===== 修改：输出文件名带 suffix，避免 pure_rank / rank_set 互相覆盖 =====
+            "metrics_json": f"outputs/metrics/{tag}_rank_{suffix}_metrics.json",
+            "paths_json": f"outputs/paths/{tag}_rank_{suffix}_paths.json",
+            "dataset_csv": f"outputs/metrics/{tag}_rank_{suffix}_dataset.csv",
+            "scored_test_csv": f"outputs/metrics/{tag}_rank_{suffix}_scored_test.csv",
+
+            "fragility_cache_json": f"path/outputs/cache/{tag}_rank_{suffix}_fragility_cache.json",
         },
     }
 
+    return cfg
 def build_rl_yaml(info: dict) -> dict:
     tag = info["tag"]
     return {
@@ -389,6 +445,9 @@ def main() -> None:
 
         dump_yaml(OUTPUT_CONFIG_DIR / f"{tag}_rule.yaml", rule_yaml)
         dump_yaml(OUTPUT_CONFIG_DIR / f"{tag}_rank.yaml", rank_yaml)
+        dump_yaml(OUTPUT_CONFIG_DIR/ f"{tag}_rank_pure.yaml", build_rank_yaml({**info, "rank_mode": "pure_rank"}))
+        dump_yaml(OUTPUT_CONFIG_DIR / f"{tag}_rank_set_pred.yaml", build_rank_yaml({**info, "rank_mode": "rank_set", "selector": "pred_score_selector"}))
+        dump_yaml(OUTPUT_CONFIG_DIR / f"{tag}_rank_set_submod.yaml",build_rank_yaml({**info, "rank_mode": "rank_set", "selector": "submodular_greedy"}))
         dump_yaml(OUTPUT_CONFIG_DIR / f"{tag}_rl.yaml", rl_yaml)
         dump_yaml(OUTPUT_CONFIG_DIR / f"{tag}_rl_surrogate.yaml", rl_surrogate_yaml)
         dump_yaml(OUTPUT_CONFIG_DIR / f"{tag}_rl_fragility.yaml", rl_fragility_yaml)

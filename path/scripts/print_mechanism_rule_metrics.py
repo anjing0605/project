@@ -259,6 +259,12 @@ def compute_overlap_metrics(path_records: List[Dict[str, Any]], top_k: int) -> D
         "incremental_mean_edge_overlap": incremental_mean_edge_overlap,
         "incremental_max_node_overlap": incremental_max_node_overlap,
         "incremental_mean_node_overlap": incremental_mean_node_overlap,
+        "avg_unique_edges_per_path": len(unique_edges) / max(len(recs), 1),
+        "avg_unique_internal_nodes_per_path": len(unique_internal_nodes) / max(len(recs), 1),
+        "total_path_edges": sum(len(es) for es in edge_sets),
+        "total_internal_nodes_with_repetition": sum(len(ns) for ns in node_sets),
+        "edge_coverage_ratio": len(unique_edges) / max(sum(len(es) for es in edge_sets), 1),
+        "internal_node_coverage_ratio": len(unique_internal_nodes) / max(sum(len(ns) for ns in node_sets), 1),
     }
 
 
@@ -373,6 +379,13 @@ def build_overlap_table(results: Dict[str, Dict[str, Any]]) -> pd.DataFrame:
             "max_pairwise_node_overlap": ov["max_pairwise_node_overlap"],
             "unique_edge_coverage": ov["unique_edge_coverage"],
             "unique_internal_node_coverage": ov["unique_internal_node_coverage"],
+
+            "avg_unique_edges_per_path": ov["avg_unique_edges_per_path"],
+            "avg_unique_internal_nodes_per_path": ov["avg_unique_internal_nodes_per_path"],
+            "total_path_edges": ov["total_path_edges"],
+            "total_internal_nodes_with_repetition": ov["total_internal_nodes_with_repetition"],
+            "edge_coverage_ratio": ov["edge_coverage_ratio"],
+            "internal_node_coverage_ratio": ov["internal_node_coverage_ratio"],
         })
     return pd.DataFrame(rows)
 
@@ -514,8 +527,8 @@ def main() -> None:
     parser.add_argument(
         "--output_dir",
         type=str,
-        default=" path/outputs/metrics_tables",
-        help="Optional output dir. Default: sibling directory to input file / mechanism_tables"
+        default="path/outputs/metrics_tables",
+        help="Output directory for mechanism tables."
     )
     args = parser.parse_args()
 

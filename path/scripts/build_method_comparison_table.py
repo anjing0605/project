@@ -9,9 +9,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 PATH_ROOT = Path(__file__).resolve().parents[1]
 '''python -m path.scripts.build_method_comparison_table
 python -m path.scripts.build_path_quality_table
-python -m path.scripts.plot_rl_training_curves
-python -m path.scripts.run_ablation_experiments
-python -m path.scripts.build_ablation_table'''
+'''
 
 def main() -> None:
     metrics_dir = PATH_ROOT / "outputs" / "metrics"

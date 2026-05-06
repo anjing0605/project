@@ -7,7 +7,6 @@ import time
 from pathlib import Path
 from typing import Any, Dict, List
 
-import networkx as nx
 
 try:
     import yaml
@@ -37,36 +36,19 @@ python -m path.scripts.run_rule --config path/configs/cora_rule.yaml
 tensorboard --logdir D:\project\keynode\project\path\outputs\tb --port 6006
 '''
 '''
-数据与任务信息
-rule/data/num_nodes
-rule/data/num_edges
-rule/data/num_key_nodes
-rule/data/num_tasks
-rule/data/importance_mean
-rule/data/importance_std
-rule/tasks/avg_shortest_len
-rule/tasks/avg_pair_score
-rule/tasks/cross_community_ratio
-各方法路径集合统计
-
-对 rule / shortest / random / betweenness / node_score 都会记录：
-
-*/paths/num_selected_paths
-*/paths/avg_path_length
-*/paths/max_path_length
-*/paths/min_path_length
-*/paths/avg_path_score（若有）
-*/paths/avg_fragility_score
-*/paths/avg_delta_E
-*/paths/avg_delta_LCC
-*/paths/avg_delta_ASP
-top-k damage 曲线
-
-对每个方法都会记录：
-
-*/damage/delta_E_at_k
-*/damage/delta_LCC_at_k
-*/damage/delta_ASP_at_k
+python -m path.scripts.run_rule --config path/configs/cora_rule.yaml
+打印 rule 对比表
+python -m path.scripts.print_comparison_rule_metrics --input path/outputs/metrics/cora_rule_metrics.json
+生成 overlap / coverage / path type / marginal damage 表
+python -m path.scripts.print_mechanism_rule_metrics --input path/outputs/metrics/cora_rule_metrics.json --topk 10 --output_dir path/outputs/metrics_tables
+生成普通 top-k 方法对比 CSV
+python -m path.scripts.build_method_comparison_table
+生成路径质量表
+python -m path.scripts.build_path_quality_table
+生成 fixed-node-budget CSV
+python -m path.scripts.build_fixed_node_budget_table
+生成论文机制图
+python -m path.scripts.plot_rule_mechanism_figures
 '''
 def resolve_output_path(path_str: str) -> str:
     p = Path(path_str)
@@ -223,6 +205,29 @@ def log_comparison_to_tb(
             tb.add_scalar(f"{method_name}/damage/top_last_delta_LCC", float(delta_LCC_curve[-1]), 0)
         if delta_ASP_curve:
             tb.add_scalar(f"{method_name}/damage/top_last_delta_ASP", float(delta_ASP_curve[-1]), 0)
+
+def log_fixed_budget_to_tb(tb, comparison):
+    method_dict = comparison.get("methods", comparison)
+
+    for method_name, metrics in method_dict.items():
+        budgets = metrics.get("node_budget_list", [])
+        frag_curve = metrics.get("fragility_score_curve", [])
+        delta_E_curve = metrics.get("delta_E_curve", [])
+        delta_LCC_curve = metrics.get("delta_LCC_curve", [])
+        delta_ASP_curve = metrics.get("delta_ASP_curve", [])
+
+        for b, v in zip(budgets, frag_curve):
+            tb.add_scalar(f"{method_name}/fixed_budget/fragility_at_budget", v, int(b))
+
+        for b, v in zip(budgets, delta_E_curve):
+            tb.add_scalar(f"{method_name}/fixed_budget/delta_E_at_budget", v, int(b))
+
+        for b, v in zip(budgets, delta_LCC_curve):
+            tb.add_scalar(f"{method_name}/fixed_budget/delta_LCC_at_budget", v, int(b))
+
+        for b, v in zip(budgets, delta_ASP_curve):
+            tb.add_scalar(f"{method_name}/fixed_budget/delta_ASP_at_budget", v, int(b))
+
 def check_shared_base_metrics_consistency(
     shared_base_metrics: Dict[str, float],
     comparison: Dict[str, Any],
@@ -244,6 +249,33 @@ def check_shared_base_metrics_consistency(
                     f"shared_base_metrics mismatch in method={method_name}, key={k}: "
                     f"method={mv}, shared={sv}"
                 )
+
+def compute_base_metrics_for_mode(
+    evaluator: FragilityEvaluator,
+    G,
+    mode: str,
+) -> Dict[str, float]:
+    mode = str(mode).lower().strip()
+
+    if mode == "exact":
+        return {
+            "global_efficiency": evaluator.global_efficiency_exact(G),
+            "lcc_ratio": evaluator.lcc_ratio(G, G.number_of_nodes()),
+            "avg_shortest_path_lcc": evaluator.avg_shortest_path_of_lcc_exact(G),
+        }
+
+    if mode == "approx":
+        return evaluator.compute_base_metrics(G)
+
+    if mode == "hybrid":
+        # hybrid 的 top-k 前几项会用 exact，base 也建议 exact，避免混合基准。
+        return {
+            "global_efficiency": evaluator.global_efficiency_exact(G),
+            "lcc_ratio": evaluator.lcc_ratio(G, G.number_of_nodes()),
+            "avg_shortest_path_lcc": evaluator.avg_shortest_path_of_lcc_exact(G),
+        }
+
+    raise ValueError(f"Unsupported eval mode: {mode}")
 def main() -> None:
     total_t0 = time.perf_counter()
 
@@ -385,23 +417,21 @@ def main() -> None:
         min_shortest_len=keynode_cfg.get("min_shortest_len", 2),
     )
 
-    task_sampling_mode = keynode_cfg.get("task_sampling_mode", "hybrid")
+    task_sampling_mode = str(
+        keynode_cfg.get("task_sampling_mode", "hybrid")
+    ).strip().lower()
 
     sample_kwargs = dict(
         task_pairs=all_task_pairs,
-        num_samples=keynode_cfg.get("max_pairs", 200),
+        num_samples=int(keynode_cfg.get("max_pairs", 200)),
         mode=task_sampling_mode,
-        random_seed=keynode_cfg.get("random_seed", 42),
+        random_seed=int(keynode_cfg.get("random_seed", 42)),
+        G=bundle.nx_graph,
+        community=bundle.community,
+        importance=bundle.importance,
+        min_shortest_len=int(keynode_cfg.get("min_shortest_len", 2)),
+        random_ratio=float(keynode_cfg.get("random_task_ratio", 0.10)),
     )
-
-    if task_sampling_mode == "hybrid":
-        sample_kwargs.update(
-            G=bundle.nx_graph,
-            community=bundle.community,
-            importance=bundle.importance,
-            min_shortest_len=keynode_cfg.get("min_shortest_len", 2),
-            random_ratio=keynode_cfg.get("random_task_ratio", 0.10),
-        )
 
     tasks = timed_call(
         "TaskPairBuilder.sample_task_pairs",
@@ -415,21 +445,67 @@ def main() -> None:
         )
     fragility_evaluator = FragilityEvaluator(**fragility_cfg)
 
-    shared_base_metrics = timed_call(
-        "compute shared_base_metrics",
+    selection_base_metrics = timed_call(
+        "compute selection_base_metrics",
         fragility_evaluator.compute_base_metrics,
         bundle.nx_graph,
     )
 
-    stage_print(f"[SHARED-BASE-METRICS] {shared_base_metrics}")
-    tb.add_scalar("rule/shared_base/global_efficiency", float(shared_base_metrics["global_efficiency"]), 0)
-    tb.add_scalar("rule/shared_base/lcc_ratio", float(shared_base_metrics["lcc_ratio"]), 0)
-    tb.add_scalar("rule/shared_base/avg_shortest_path_lcc", float(shared_base_metrics["avg_shortest_path_lcc"]), 0)
+    eval_mode = output_cfg.get("eval_mode", "exact")
+
+    eval_base_metrics = timed_call(
+        "compute eval_base_metrics",
+        compute_base_metrics_for_mode,
+        fragility_evaluator,
+        bundle.nx_graph,
+        eval_mode,
+    )
+
+    stage_print(f"[SELECTION-BASE-METRICS] {selection_base_metrics}")
+    stage_print(f"[EVAL-BASE-METRICS] {eval_base_metrics}")
+
+    tb.add_scalar(
+        "rule/selection_base/global_efficiency",
+        float(selection_base_metrics["global_efficiency"]),
+        0,
+    )
+    tb.add_scalar(
+        "rule/selection_base/lcc_ratio",
+        float(selection_base_metrics["lcc_ratio"]),
+        0,
+    )
+    tb.add_scalar(
+        "rule/selection_base/avg_shortest_path_lcc",
+        float(selection_base_metrics["avg_shortest_path_lcc"]),
+        0,
+    )
+
+    tb.add_scalar(
+        "rule/eval_base/global_efficiency",
+        float(eval_base_metrics["global_efficiency"]),
+        0,
+    )
+    tb.add_scalar(
+        "rule/eval_base/lcc_ratio",
+        float(eval_base_metrics["lcc_ratio"]),
+        0,
+    )
+    tb.add_scalar(
+        "rule/eval_base/avg_shortest_path_lcc",
+        float(eval_base_metrics["avg_shortest_path_lcc"]),
+        0,
+    )
 
     log_dataset_and_task_info(tb, bundle, key_nodes, tasks)
 
     rule_candidate_stats: Dict[str, Any] = {}
     stage_print(f"[DEBUG] effective top_m_for_fragility = {paths_cfg.get('top_m_for_fragility', 3)}")
+    baseline_top_m_for_fragility = int(
+        baselines_cfg.get(
+            "top_m_for_fragility",
+            paths_cfg.get("top_m_for_fragility", 1),
+        )
+    )
 
     rule_paths = timed_call(
         "RuleBasedCriticalPath.run",
@@ -446,8 +522,14 @@ def main() -> None:
         top_m_for_fragility=paths_cfg.get("top_m_for_fragility", 3),
         fragility_gate=cfg.get("scorer", {}).get("fragility_gate", 0.50),
         gate_penalty=cfg.get("scorer", {}).get("gate_penalty", 0.08),
-        shared_base_metrics=shared_base_metrics,
+        shared_base_metrics=selection_base_metrics,
         candidate_stats=rule_candidate_stats,
+        raw_k_multiplier=int(paths_cfg.get("raw_k_multiplier", 3)),
+        raw_k_min_extra=int(paths_cfg.get("raw_k_min_extra", 10)),
+        final_k=int(paths_cfg.get("final_k", paths_cfg.get("k_shortest", 3))),
+        max_internal_overlap=float(paths_cfg.get("max_internal_overlap", 0.60)),
+        fallback_relax_overlap=float(paths_cfg.get("fallback_relax_overlap", 0.95)),
+        fallback_extra_hops=int(paths_cfg.get("fallback_extra_hops", 2)),
     )
     stage_print(f"[RESULT] rule_paths count = {len(rule_paths)}")
 
@@ -457,7 +539,7 @@ def main() -> None:
         bundle=bundle,
         tasks=tasks,
         fragility_weights=fragility_cfg,
-        shared_base_metrics=shared_base_metrics,
+        shared_base_metrics=selection_base_metrics,
     )
     stage_print(f"[RESULT] shortest_paths count = {len(shortest_paths)}")
 
@@ -471,7 +553,8 @@ def main() -> None:
         num_samples=baselines_cfg.get("random_num_samples", 5),
         seed=baselines_cfg.get("random_seed", 42),
         fragility_weights=fragility_cfg,
-        shared_base_metrics=shared_base_metrics,
+        shared_base_metrics=selection_base_metrics,
+        top_m_for_fragility=baseline_top_m_for_fragility,
     )
     stage_print(f"[RESULT] random_paths count = {len(random_paths)}")
 
@@ -484,7 +567,8 @@ def main() -> None:
         max_hops=paths_cfg.get("max_hops", 8),
         delta=paths_cfg.get("delta", 2),
         fragility_weights=fragility_cfg,
-        shared_base_metrics=shared_base_metrics,
+        shared_base_metrics=selection_base_metrics,
+        top_m_for_fragility=baseline_top_m_for_fragility,
     )
     stage_print(f"[RESULT] betweenness_paths count = {len(betweenness_paths)}")
 
@@ -498,7 +582,8 @@ def main() -> None:
         delta=paths_cfg.get("delta", 2),
         use_internal_only=baselines_cfg.get("use_internal_node_importance", False),
         fragility_weights=fragility_cfg,
-        shared_base_metrics=shared_base_metrics,
+        shared_base_metrics=selection_base_metrics,
+        top_m_for_fragility=baseline_top_m_for_fragility,
     )
     stage_print(f"[RESULT] node_score_paths count = {len(node_score_paths)}")
 
@@ -524,22 +609,41 @@ def main() -> None:
         },
         G=bundle.nx_graph,
         k_list=k_list,
-        mode="exact",
+        mode=eval_mode,
         early_stop=False,
         tol=1e-4,
-        shared_base_metrics=shared_base_metrics,
+        shared_base_metrics=eval_base_metrics,
+    )
+    node_budget_list = output_cfg.get("node_budget_list", [5, 10, 20, 30, 50])
+
+    fixed_node_budget_comparison = timed_call(
+        "MethodEvaluator.compare_methods_fixed_node_budget",
+        evaluator.compare_methods_fixed_node_budget,
+        result_dict={
+            "rule": rule_paths,
+            "shortest": shortest_paths,
+            "random": random_paths,
+            "betweenness": betweenness_paths,
+            "node_score": node_score_paths,
+        },
+        G=bundle.nx_graph,
+        node_budget_list=node_budget_list,
+        mode=eval_mode,
+        shared_base_metrics=eval_base_metrics,
     )
 
-    comparison["shared_base_metrics"] = {
-        k: float(v) for k, v in shared_base_metrics.items()
-    }
+    comparison.setdefault(
+        "shared_base_metrics",
+        {k: float(v) for k, v in eval_base_metrics.items()},
+    )
 
     check_shared_base_metrics_consistency(
-        shared_base_metrics=shared_base_metrics,
+        shared_base_metrics=eval_base_metrics,
         comparison=comparison,
     )
 
     log_comparison_to_tb(tb, comparison, k_list)
+    log_fixed_budget_to_tb(tb, fixed_node_budget_comparison)
 
     top_n = output_cfg.get("top_n_summary", 10)
 
@@ -552,8 +656,11 @@ def main() -> None:
             "community_mode": bundle.metadata.get("community_mode"),
             "importance_alignment": bundle.metadata.get("importance_alignment"),
         },
-        "shared_base_metrics": {
-            k: float(v) for k, v in shared_base_metrics.items()
+        "selection_base_metrics": {
+            k: float(v) for k, v in selection_base_metrics.items()
+        },
+        "eval_base_metrics": {
+            k: float(v) for k, v in eval_base_metrics.items()
         },
         "key_nodes": {
             "count": int(len(key_nodes)),
@@ -572,6 +679,7 @@ def main() -> None:
                 for t in tasks[: min(20, len(tasks))]
             ],
         },
+        "fixed_node_budget_comparison": fixed_node_budget_comparison,
         "candidate_coverage": {
             "rule": rule_candidate_stats
         },

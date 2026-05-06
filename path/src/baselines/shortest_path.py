@@ -80,6 +80,9 @@ class ShortestPathBaseline:
                 importance=bundle.importance,
                 community=bundle.community,
                 edge_bc=bundle.edge_bc,
+                shortest_len=task.shortest_len,
+                source=task.source,
+                target=task.target,
             )
             t_feat = time.perf_counter() - t_feat0
             total_feat_time += t_feat

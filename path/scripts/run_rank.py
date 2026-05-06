@@ -41,41 +41,13 @@ python -m path.scripts.run_rank --config path/configs/cora_rank_pure.yaml --debu
 python -m path.scripts.run_rank --config path/configs/cora_rank_set_pred.yaml --debug
 跑 rank + submodular greedy保留的“更强集合选择”版本：
 python -m path.scripts.run_rank --config path/configs/cora_rank_set_submod.yaml --debug
-
+python -m path.scripts.build_method_comparison_table
+ D:\project\keynode\project\path\outputs\metrics\all_method_comparison.csv
+python -m path.scripts.build_path_quality_table
+D:\project\keynode\project\path\outputs\metrics\all_path_quality.csv
+python -m path.scripts.plot_rank_paper_figures
+ D:\project\keynode\project\path\outputs\figures\rank
 """
-'''
-数据与样本规模
-rank/data/num_nodes
-rank/data/num_edges
-rank/data/num_key_nodes
-rank/data/num_tasks
-rank/data/num_samples
-rank/data/num_train_samples
-rank/data/num_test_samples
-rank/data/importance_mean
-rank/data/importance_std
-任务统计
-rank/tasks/avg_shortest_len
-rank/tasks/avg_pair_score
-rank/tasks/cross_community_ratio
-结果路径统计
-rank/paths/num_selected_paths
-rank/paths/avg_path_length
-rank/paths/max_path_length
-rank/paths/min_path_length
-rank/paths/avg_path_score
-rank/paths/avg_delta_E
-rank/paths/avg_delta_LCC
-rank/paths/avg_delta_ASP
-rank/paths/avg_fragility_score
-top-k damage 曲线
-
-对 xgb_rank 会记录：
-
-xgb_rank/damage/delta_E_at_k
-xgb_rank/damage/delta_LCC_at_k
-xgb_rank/damage/delta_ASP_at_k
-'''
 
 def resolve_output_path(path_str: str) -> str:
     p = Path(path_str)
@@ -134,7 +106,11 @@ def _select_key_nodes_from_cfg(importance, key_cfg: Dict[str, Any]) -> List[int]
 
 
 def _build_tasks_from_cfg(bundle, key_nodes: List[int], key_cfg: Dict[str, Any]):
-    tasks = TaskPairBuilder.build_task_pairs(
+    """
+    Build full key-node task pool, then sample it according to task_sampling_mode.
+    This makes ranking stage consistent with rule/RL task sampling.
+    """
+    all_tasks = TaskPairBuilder.build_task_pairs(
         G=bundle.nx_graph,
         key_nodes=key_nodes,
         community=bundle.community,
@@ -143,8 +119,24 @@ def _build_tasks_from_cfg(bundle, key_nodes: List[int], key_cfg: Dict[str, Any])
     )
 
     max_pairs = key_cfg.get("max_pairs", None)
-    if max_pairs is not None and int(max_pairs) > 0:
-        tasks = tasks[: int(max_pairs)]
+    if max_pairs is None or int(max_pairs) <= 0:
+        return all_tasks
+
+    mode = str(key_cfg.get("task_sampling_mode", "paper_default")).strip().lower()
+    random_seed = int(key_cfg.get("random_seed", 42))
+    random_ratio = float(key_cfg.get("random_task_ratio", 0.1))
+
+    tasks = TaskPairBuilder.sample_task_pairs(
+        task_pairs=all_tasks,
+        num_samples=int(max_pairs),
+        mode=mode,
+        random_seed=random_seed,
+        G=bundle.nx_graph,
+        community=bundle.community,
+        importance=bundle.importance,
+        min_shortest_len=int(key_cfg.get("min_shortest_len", 2)),
+        random_ratio=random_ratio,
+    )
 
     return tasks
 
@@ -202,6 +194,68 @@ def _dbg_path_records(enabled: bool, name: str, records: List[Any], max_items: i
         print(f"    features={getattr(r, 'features', None)}")
         print(f"    fragility={getattr(r, 'fragility', None)}")
 
+def _round_robin_truncate_by_task(records: List[Any], top_q: int) -> List[Any]:
+    """
+    Truncate selected records without random sampling.
+
+    Purpose:
+    - avoid over-selecting from a few high-score tasks;
+    - preserve within-task selection utility ordering;
+    - keep deterministic behavior.
+    """
+    if top_q <= 0:
+        return []
+    if len(records) <= top_q:
+        return records
+
+    from collections import defaultdict
+
+    groups = defaultdict(list)
+    for r in records:
+        groups[(int(r.source), int(r.target))].append(r)
+
+    for key in groups:
+        groups[key].sort(
+            key=lambda r: float(
+                (getattr(r, "metadata", None) or {}).get(
+                    "selection_utility",
+                    getattr(r, "score", 0.0) or 0.0,
+                )
+            ),
+            reverse=True,
+        )
+
+    ordered_keys = sorted(
+        groups.keys(),
+        key=lambda key: float(
+            (groups[key][0].metadata or {}).get(
+                "selection_utility",
+                groups[key][0].score or 0.0,
+            )
+        ),
+        reverse=True,
+    )
+
+    out = []
+    cursor = 0
+
+    while len(out) < top_q:
+        progressed = False
+
+        for key in ordered_keys:
+            bucket = groups[key]
+            if cursor < len(bucket):
+                out.append(bucket[cursor])
+                progressed = True
+                if len(out) >= top_q:
+                    break
+
+        if not progressed:
+            break
+
+        cursor += 1
+
+    return out
 
 def _stage_tic(enabled: bool, name: str) -> float:
     if enabled:
@@ -442,6 +496,7 @@ def main() -> None:
         "lambda_E": float(frag_cfg.get("lambda_E", 0.4)),
         "lambda_LCC": float(frag_cfg.get("lambda_LCC", 0.4)),
         "lambda_ASP": float(frag_cfg.get("lambda_ASP", 0.2)),
+        "lambda_red": float(rank_cfg.get("lambda_red", 0.2)),
     }
     _dbg_kv(debug, "fragility weights", fragility_weights)
 
@@ -471,6 +526,7 @@ def main() -> None:
         exact_top_ranks=int(rank_cfg.get("exact_top_ranks", 1)),
         exact_max_path_len=int(rank_cfg.get("exact_max_path_len", 4)),
         progress_every=int(rank_cfg.get("progress_every", 10)),
+        label_mode=str(rank_cfg.get("label_mode", "marginal")),
         debug=debug,
     )
     _stage_toc(debug, "build_path_samples", t0)
@@ -530,7 +586,8 @@ def main() -> None:
         "xgb_params": rank_cfg.get("xgb_params", None),
     })
 
-    ranker.fit(train_df)
+    # 【修改点】：传入 val_df 以便在 TensorBoard 和控制台监控 NDCG 指标
+    ranker.fit(train_df, val_df=test_df)
     _stage_toc(debug, "ranker_fit", t0)
 
     _dbg_kv(debug, "ranker fitted", {
@@ -553,13 +610,18 @@ def main() -> None:
     # Stage 8: dataframe -> pathrecords
     # -------------------------
     t0 = _stage_tic(debug, "dataframe_to_pathrecords")
+
+    # 【修改点】：放宽提取限制。不要只取 top_per_task=1。
+    # 我们提取每个任务的 Top-15（或全量），交给下游的 MMR 去优中选优。
+    extract_top_k = int(rank_cfg.get("top_per_task", 15))
+    if extract_top_k <= 1:
+        extract_top_k = 15  # 强制保底，否则 MMR 无效
+
     path_records = XGBPathRanker.dataframe_to_pathrecords(
         scored_test_df,
-        top_per_task=int(rank_cfg.get("top_per_task", 1)),
+        top_per_task=extract_top_k,
     )
     _stage_toc(debug, "dataframe_to_pathrecords", t0)
-
-    _dbg_path_records(debug, "path_records", path_records, max_items=5)
     '''
     # -------------------------
     # Stage 9: deduplicate
@@ -598,14 +660,33 @@ def main() -> None:
     if rank_mode == "pure_rank":
         # 版本 1：纯 rank
         # 只按 pred_score 全局排序，不做子模选择，不做冗余惩罚
-        ranked_candidates = sorted(
-            path_records,
-            key=lambda r: float(r.score) if getattr(r, "score", None) is not None else 0.0,
-            reverse=True,
-        )
+        pure_global_sort = bool(rank_cfg.get("pure_global_sort", False))
 
-        selected = ranked_candidates[:global_top_q]
+        if pure_global_sort:
+            ranked_candidates = sorted(
+                path_records,
+                key=lambda r: float(r.score) if getattr(r, "score", None) is not None else 0.0,
+                reverse=True,
+            )
+            selected = ranked_candidates[:global_top_q]
 
+        else:
+            from collections import defaultdict
+
+            candidates_by_task = defaultdict(list)
+            for cand in path_records:
+                candidates_by_task[(cand.source, cand.target)].append(cand)
+
+            selected = []
+            for task_pair, cands in candidates_by_task.items():
+                cands = sorted(
+                    cands,
+                    key=lambda r: float(r.score) if getattr(r, "score", None) is not None else 0.0,
+                    reverse=True,
+                )
+                selected.extend(cands)
+
+            selected = _round_robin_truncate_by_task(selected, global_top_q)
         for i, cand in enumerate(selected):
             if getattr(cand, "metadata", None) is None:
                 cand.metadata = {}
@@ -614,46 +695,101 @@ def main() -> None:
                 "selection_step": i + 1,
             })
 
+
     elif rank_mode == "rank_set":
-        # 版本 2：rank + set selection
-        ranked_candidates = sorted(
-            path_records,
-            key=lambda r: float(r.score) if getattr(r, "score", None) is not None else 0.0,
-            reverse=True,
-        )
 
         selector_name = str(rank_cfg.get("selector", "pred_score_selector")).strip().lower()
 
         if selector_name == "pred_score_selector":
+
+            # 1. 实例化 MMR Selector
+
             selector = PredScoreSelector(
+
                 lambda_red=float(rank_cfg.get("lambda_red", 0.2)),
+
                 edge_overlap_threshold=float(path_cfg.get("overlap_threshold", 0.8)),
+
                 max_shared_internal_nodes=int(rank_cfg.get("max_shared_internal_nodes", 5)),
-                top_q=global_top_q,
+
+               top_q=int(rank_cfg.get("per_task_set_top_q", 3)),
+
             )
-            selected = selector.select(ranked_candidates)
+
+            # 2. 【核心修改】：XGBRanker 分数不可跨任务比较，必须按 Task 分组！
+
+            from collections import defaultdict
+
+            candidates_by_task = defaultdict(list)
+
+            for cand in path_records:
+                candidates_by_task[(cand.source, cand.target)].append(cand)
+
+            selected = []
+
+            for task_pair, cands in candidates_by_task.items():
+                # 3. 对每个任务内部的候选路径进行 MMR 多样性去重
+
+                task_selected = selector.select(cands)
+
+                selected.extend(task_selected)
+
+            if len(selected) > global_top_q:
+                selected = _round_robin_truncate_by_task(selected, global_top_q)
+
 
         elif selector_name == "submodular_greedy":
 
+            # SubmodularPathSelector 依赖的是计算真实的连通性下降值 (True Marginal Gain)
+
+            # 因为是真实物理指标，所以【可以】跨 Task 比较！这里保持全局队列逻辑不变
+
+            ranked_candidates = sorted(
+
+                path_records,
+
+                key=lambda r: float(r.score) if getattr(r, "score", None) is not None else 0.0,
+
+                reverse=True,
+
+            )
+
             selector = SubmodularPathSelector(
+
                 lambda_E=fragility_weights["lambda_E"],
+
                 lambda_LCC=fragility_weights["lambda_LCC"],
+
                 lambda_ASP=fragility_weights["lambda_ASP"],
+
                 lambda_red=float(rank_cfg.get("lambda_red", 0.2)),
+
                 edge_overlap_threshold=float(path_cfg.get("overlap_threshold", 0.8)),
+
                 max_shared_internal_nodes=int(rank_cfg.get("max_shared_internal_nodes", 5)),
+
                 min_marginal_gain=float(rank_cfg.get("min_marginal_gain", 1e-6)),
+
                 allow_negative_gain=float(rank_cfg.get("allow_negative_gain", -0.005)),
+
                 use_lazy=True,
+
             )
 
             selected = selector.select(
+
                 G=bundle.nx_graph,
+
                 candidates=ranked_candidates,
+
                 top_q=global_top_q,
+
                 shared_base_metrics=shared_base_metrics,
+
             )
+
         else:
+
             raise ValueError(f"Unsupported selector: {selector_name}")
 
     else:
@@ -801,6 +937,7 @@ def main() -> None:
             # ===== 新增：实验模式信息 =====
             "mode": rank_mode,  # pure_rank | rank_set
             "selector": effective_selector,  # none | pred_score_selector | submodular_greedy
+            "label_mode": str(rank_cfg.get("label_mode", "marginal")),
 
             # ===== 原有信息 =====
             "backend": ranker.backend,

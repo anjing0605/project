@@ -70,39 +70,56 @@ class PredScoreSelector:
         return False
 
     def select(self, candidates: List[Any]) -> List[Any]:
+        """
+        True greedy MMR selection.
+
+        At each step, choose:
+            argmax_p [ pred_score(p) - lambda_red * redundancy(p, selected) ]
+
+        not simply sorting once by pred_score.
+        """
         if not candidates:
             return []
 
-        ranked = sorted(
-            candidates,
-            key=lambda r: float(getattr(r, "score", 0.0)),
-            reverse=True,
-        )
-
         selected: List[Any] = []
-        for cand in ranked:
-            if len(selected) >= self.top_q:
+        remaining: List[Any] = list(candidates)
+
+        while remaining and len(selected) < self.top_q:
+            best = None
+            best_utility = -float("inf")
+            best_pred = 0.0
+            best_red = 0.0
+
+            for cand in remaining:
+                if self._hard_redundant(cand, selected):
+                    continue
+
+                pred_score = float(getattr(cand, "score", 0.0))
+                red_pen = self._redundancy_penalty(cand, selected)
+                utility = pred_score - self.lambda_red * red_pen
+
+                if utility > best_utility:
+                    best = cand
+                    best_utility = utility
+                    best_pred = pred_score
+                    best_red = red_pen
+
+            if best is None:
                 break
 
-            if self._hard_redundant(cand, selected):
-                continue
+            if getattr(best, "metadata", None) is None:
+                best.metadata = {}
 
-            pred_score = float(getattr(cand, "score", 0.0))
-            red_pen = self._redundancy_penalty(cand, selected)
-            utility = pred_score - self.lambda_red * red_pen
-
-            if getattr(cand, "metadata", None) is None:
-                cand.metadata = {}
-
-            cand.metadata.update({
+            best.metadata.update({
                 "selector": "pred_score_selector",
-                "pred_score_used": pred_score,
-                "redundancy_penalty": red_pen,
-                "selection_utility": utility,
+                "pred_score_used": float(best_pred),
+                "redundancy_penalty": float(best_red),
+                "selection_utility": float(best_utility),
                 "selection_step": len(selected) + 1,
-                "lambda_red": self.lambda_red,
+                "lambda_red": float(self.lambda_red),
             })
 
-            selected.append(cand)
+            selected.append(best)
+            remaining.remove(best)
 
         return selected

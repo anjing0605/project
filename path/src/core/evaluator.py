@@ -58,10 +58,24 @@ class MethodEvaluator:
 
         ks = self._sorted_k_list(k_list)
 
+
         if shared_base_metrics is None:
             base_metrics = self.fragility_evaluator.compute_base_metrics(G)
         else:
             base_metrics = dict(shared_base_metrics)
+        max_k = len(selected_paths)
+        ks = [k for k in ks if k <= max_k]
+
+        if not ks:
+            return {
+                "k_list": [],
+                "delta_E_curve": [],
+                "delta_LCC_curve": [],
+                "delta_ASP_curve": [],
+                "fragility_score_curve": [],
+                "num_removed_nodes": [],
+                "base_metrics": {k: float(v) for k, v in base_metrics.items()},
+            }
 
         num_nodes = int(G.number_of_nodes())
 
@@ -159,6 +173,125 @@ class MethodEvaluator:
             "base_metrics": {k: float(v) for k, v in base_metrics.items()},
         }
 
+    def evaluate_fixed_node_budget_damage(
+            self,
+            G: nx.Graph,
+            selected_paths: Sequence[PathRecord],
+            node_budget_list: Sequence[int],
+            mode: str = "exact",
+            shared_base_metrics: Dict[str, float] | None = None,
+    ) -> Dict[str, Any]:
+        """
+        Fixed internal-node budget evaluation.
+
+        与 top-k path evaluation 不同：
+        - top-k 是固定路径条数；
+        - fixed-node-budget 是固定删除的 unique internal nodes 数量。
+
+        删除顺序：
+        按 selected_paths 的顺序依次收集路径内部节点 P[1:-1]，
+        对每个 budget B，只删除前 B 个 unique internal nodes。
+        """
+        budgets = sorted({int(b) for b in node_budget_list if int(b) > 0})
+        if not budgets:
+            raise ValueError("node_budget_list must contain at least one positive integer.")
+
+        if shared_base_metrics is None:
+            base_metrics = self.fragility_evaluator.compute_base_metrics(G)
+        else:
+            base_metrics = dict(shared_base_metrics)
+
+        num_nodes = int(G.number_of_nodes())
+
+        ordered_unique_nodes: List[int] = []
+        seen_nodes = set()
+
+        for record in selected_paths:
+            for n in record.nodes[1:-1]:
+                n = int(n)
+                if n not in seen_nodes:
+                    seen_nodes.add(n)
+                    ordered_unique_nodes.append(n)
+
+        if not ordered_unique_nodes:
+            return {
+                "node_budget_list": [],
+                "delta_E_curve": [],
+                "delta_LCC_curve": [],
+                "delta_ASP_curve": [],
+                "fragility_score_curve": [],
+                "num_removed_nodes": [],
+                "base_metrics": {k: float(v) for k, v in base_metrics.items()},
+            }
+
+        effective_budgets = [b for b in budgets if b <= len(ordered_unique_nodes)]
+
+        # 如果某个方法 unique internal nodes 少于最小 budget，
+        # 仍然保留它的最大可删除节点数，避免整条曲线为空。
+        if not effective_budgets:
+            effective_budgets = [len(ordered_unique_nodes)]
+
+        delta_E_curve: List[float] = []
+        delta_LCC_curve: List[float] = []
+        delta_ASP_curve: List[float] = []
+        fragility_score_curve: List[float] = []
+        num_removed_nodes: List[int] = []
+
+        for budget in effective_budgets:
+            nodes = ordered_unique_nodes[:budget]
+
+            H = G.copy()
+            H.remove_nodes_from(nodes)
+
+            if mode == "approx":
+                E1 = self.fragility_evaluator.global_efficiency_approx(H)
+                ASP1 = self.fragility_evaluator.avg_shortest_path_of_lcc_approx(H)
+                LCC1 = self.fragility_evaluator.lcc_ratio(H, num_nodes)
+
+            elif mode == "exact":
+                E1 = self.fragility_evaluator.global_efficiency_exact(H)
+                ASP1 = self.fragility_evaluator.avg_shortest_path_of_lcc_exact(H)
+                LCC1 = self.fragility_evaluator.lcc_ratio(H, num_nodes)
+
+            elif mode == "hybrid":
+                # fixed-budget 建议前几个预算 exact，后面 approx。
+                # 如果你想完全严格，可直接把 hybrid 也改成 exact。
+                if budget <= 10:
+                    E1 = self.fragility_evaluator.global_efficiency_exact(H)
+                    ASP1 = self.fragility_evaluator.avg_shortest_path_of_lcc_exact(H)
+                else:
+                    E1 = self.fragility_evaluator.global_efficiency_approx(H)
+                    ASP1 = self.fragility_evaluator.avg_shortest_path_of_lcc_approx(H)
+                LCC1 = self.fragility_evaluator.lcc_ratio(H, num_nodes)
+
+            else:
+                raise ValueError(f"unknown mode={mode}")
+
+            delta_E = max(0.0, float(base_metrics["global_efficiency"]) - float(E1))
+            delta_LCC = max(0.0, float(base_metrics["lcc_ratio"]) - float(LCC1))
+            delta_ASP = max(0.0, float(ASP1) - float(base_metrics["avg_shortest_path_lcc"]))
+
+            fragility_score = (
+                    self.fragility_evaluator.lambda_E * delta_E
+                    + self.fragility_evaluator.lambda_LCC * delta_LCC
+                    + self.fragility_evaluator.lambda_ASP * delta_ASP
+            )
+
+            delta_E_curve.append(float(delta_E))
+            delta_LCC_curve.append(float(delta_LCC))
+            delta_ASP_curve.append(float(delta_ASP))
+            fragility_score_curve.append(float(fragility_score))
+            num_removed_nodes.append(int(len(nodes)))
+
+        return {
+            "node_budget_list": effective_budgets,
+            "delta_E_curve": delta_E_curve,
+            "delta_LCC_curve": delta_LCC_curve,
+            "delta_ASP_curve": delta_ASP_curve,
+            "fragility_score_curve": fragility_score_curve,
+            "num_removed_nodes": num_removed_nodes,
+            "base_metrics": {k: float(v) for k, v in base_metrics.items()},
+        }
     def compare_methods(
             self,
             result_dict: Dict[str, Sequence[PathRecord]],
@@ -214,6 +347,43 @@ class MethodEvaluator:
             "methods": comparison,
         }
 
+    def compare_methods_fixed_node_budget(
+            self,
+            result_dict: Dict[str, Sequence[PathRecord]],
+            G: nx.Graph,
+            node_budget_list: Sequence[int],
+            mode: str = "exact",
+            shared_base_metrics: Dict[str, float] | None = None,
+    ) -> Dict[str, Any]:
+        """
+        Compare methods under the same removed-internal-node budget.
+        """
+        if shared_base_metrics is None:
+            shared_base_metrics = self.fragility_evaluator.compute_base_metrics(G)
+
+        comparison: Dict[str, Any] = {}
+
+        for method_name, records in result_dict.items():
+            curves = self.evaluate_fixed_node_budget_damage(
+                G=G,
+                selected_paths=list(records),
+                node_budget_list=node_budget_list,
+                mode=mode,
+                shared_base_metrics=shared_base_metrics,
+            )
+
+            comparison[method_name] = {
+                "num_paths": int(len(records)),
+                "eval_mode": mode,
+                **curves,
+            }
+
+        return {
+            "shared_base_metrics": {
+                k: float(v) for k, v in shared_base_metrics.items()
+            },
+            "methods": comparison,
+        }
     @staticmethod
     def summarize_top_paths(records: Sequence[PathRecord], top_n: int = 10) -> List[Dict[str, Any]]:
         summary: List[Dict[str, Any]] = []

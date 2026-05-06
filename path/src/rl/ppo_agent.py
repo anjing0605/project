@@ -165,6 +165,18 @@ class PPOAgent:
 
         last_info: Dict[str, Any] = {}
         while not done:
+            if len(state.get("valid_actions", [])) == 0:
+                env.done = True
+                done = True
+                last_info = {
+                    "reached_target": 0,
+                    "fragility": {
+                        "terminal_reward": -1.0,
+                        "fail_reason": "no_valid_actions",
+                    },
+                }
+                break
+
             (
                 chosen_action_node_id,
                 chosen_action_index,
@@ -375,7 +387,10 @@ class PPOAgent:
         success_compressed_marginal_gains = []
         success_avg_bc = []
         success_overlaps = []
-
+        success_node_overlaps = []
+        success_new_internal_nodes = []
+        success_negative_marginal_flags = []
+        success_selection_scores = []
         for ep in episode_results:
             if ep.reached_target and ep.path.fragility is not None:
                 frag = ep.path.fragility
@@ -409,6 +424,18 @@ class PPOAgent:
                 success_overlaps.append(
                     float(frag.get("max_overlap", 0.0))
                 )
+                success_node_overlaps.append(
+                    float(frag.get("max_node_overlap", 0.0))
+                )
+                success_new_internal_nodes.append(
+                    float(frag.get("new_internal_nodes", 0.0))
+                )
+                success_negative_marginal_flags.append(
+                    1.0 if float(frag.get("marginal_gain", 0.0)) < 0.0 else 0.0
+                )
+                success_selection_scores.append(
+                    float(frag.get("selection_score", 0.0))
+                )
 
         return {
             "avg_reward": float(np.mean(rewards)) if rewards else 0.0,
@@ -434,6 +461,17 @@ class PPOAgent:
 
             "success_overlap_mean": float(np.mean(success_overlaps))
             if success_overlaps else 0.0,
+            "success_node_overlap_mean": float(np.mean(success_node_overlaps))
+            if success_node_overlaps else 0.0,
+
+            "success_new_internal_nodes_mean": float(np.mean(success_new_internal_nodes))
+            if success_new_internal_nodes else 0.0,
+
+            "success_negative_marginal_rate": float(np.mean(success_negative_marginal_flags))
+            if success_negative_marginal_flags else 0.0,
+
+            "success_selection_score_mean": float(np.mean(success_selection_scores))
+            if success_selection_scores else 0.0,
         }
 
     def train_epoch(
@@ -443,6 +481,17 @@ class PPOAgent:
     ) -> Tuple[Dict[str, float], List[EpisodeResult]]:
 
         batch, rollout_stats, episode_results = self.collect_rollouts(env, tasks)
+
+        if len(batch["state_vecs"]) == 0:
+            stats = {}
+            stats.update(rollout_stats)
+            stats.update({
+                "policy_loss": 0.0,
+                "value_loss": 0.0,
+                "entropy": 0.0,
+            })
+            return stats, episode_results
+
         update_stats = self.update(batch)
 
         stats = {}

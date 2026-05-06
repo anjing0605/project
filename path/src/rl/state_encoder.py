@@ -64,6 +64,8 @@ class StateEncoder:
         curr_node = int(state["curr_node"])
         target_node = int(state["target_node"])
         valid_actions = [int(a) for a in state["valid_actions"]]
+        selected_internal_nodes = set(int(x) for x in state.get("selected_internal_nodes", []))
+        path_nodes = set(int(x) for x in state.get("path_nodes", []))
 
         curr_emb = node_embeddings[curr_node].float()
         target_emb = node_embeddings[target_node].float()
@@ -88,6 +90,8 @@ class StateEncoder:
             delta_dist = float(d_curr_to_target - d_a_to_target)
             is_target = float(a == target_node)
             is_progress = float(d_a_to_target < d_curr_to_target)
+            is_selected_internal = float(a in selected_internal_nodes)
+            is_in_current_path = float(a in path_nodes)
 
             row = torch.cat(
                 [
@@ -110,6 +114,9 @@ class StateEncoder:
                             delta_dist,
                             is_target,
                             is_progress,
+                            # 新增：让策略知道这个动作是否会复用已有集合内部节点
+                            is_selected_internal,
+                            is_in_current_path,
                         ],
                         dtype=torch.float32,
                     ),
@@ -119,8 +126,8 @@ class StateEncoder:
             action_rows.append(row)
 
         if not action_rows:
-            # 3 * emb_dim + 9 scalar features
-            feat_dim = int(curr_emb.numel() * 3 + 9)
+            # 3 * emb_dim + 11 scalar features
+            feat_dim = int(curr_emb.numel() * 3 + 11)
             return torch.zeros(0, feat_dim, dtype=torch.float32), valid_actions
 
         return torch.stack(action_rows, dim=0), valid_actions

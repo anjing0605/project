@@ -29,12 +29,14 @@ paths:
   fallback_relax_overlap: 0.98
   fallback_extra_hops: 3
   top_q: 10
-  overlap_threshold: 0.6
+  overlap_threshold: 0.35
   top_m_for_fragility: 5
+  min_new_internal_nodes: 1
+  max_node_overlap: 0.35
 fragility:
-  lambda_E: 0.4
-  lambda_LCC: 0.4
-  lambda_ASP: 0.2
+  lambda_E: 0.55
+  lambda_LCC: 0.0
+  lambda_ASP: 0.45
 baselines:
   k_candidates: 5
   random_num_trials: 30
@@ -42,36 +44,78 @@ baselines:
   random_seed: 42
   use_internal_node_importance: false
 rl:
-  reward_mode: surrogate
-  eval_reward_mode: fragility
+  reward_mode: fragility_finetune
+  eval_reward_mode: fragility_finetune
   embedding_dim: 64
   gnn_hidden_dim: 128
   gnn_epochs: 120
   gnn_lr: 0.01
-  max_hops: 8
+  max_hops: 7
   hidden_dim: 128
   lr: 0.0001
+  policy_lr: 0.0001
+  value_lr: 0.0001
   gamma: 0.99
   gae_lambda: 0.95
   clip_eps: 0.2
   ppo_epochs: 4
-  epochs: 60
   entropy_coef: 0.01
   value_coef: 0.5
   importance_bias: 0.0
-  num_samples_per_task: 10
+  stage1_max_epochs: 120
+  stage1_eval_every: 5
+  stage1_gate_threshold: 0.2
+  stage1_target_threshold: 0.3
+  stage1_val_ratio: 0.2
+  stage1_gate_patience: 3
+  stage1_len2_pass_threshold: 0.4
+  stage1_len23_mix_threshold: 0.3
+  stage1_len3_pass_threshold: 0.2
+  stage2_epochs: 20
+  epochs: 60
+  num_samples_per_epoch: 120
+  stage2_min_arrival_for_ckpt: 0.25
+  num_samples_per_task: 120
+  deterministic_eval: false
+  eval_action_temperature: 1.3
   reward:
-    lambda_E: 0.4
-    lambda_LCC: 0.4
-    lambda_ASP: 0.2
-    node_bonus_weight: 0.1
-    bridge_bonus_weight: 0.1
-    cross_comm_bonus_weight: 0.05
+    lambda_E: 0.55
+    lambda_LCC: 0.0
+    lambda_ASP: 0.45
+    stage1_distance_weight: 1.0
+    stage1_reach_bonus: 4.0
+    stage2_distance_weight: 0.35
+    stage2_reach_bonus: 1.2
+    importance_weight: 0.03
+    edge_bc_weight: 0.15
+    cross_comm_weight: 0.1
+    node_bonus_weight: 0.03
+    bridge_bonus_weight: 0.15
+    cross_comm_bonus_weight: 0.1
     step_cost: 0.05
-    reach_bonus: 1.0
-    fail_penalty: 1.0
-    repeat_penalty: 0.3
-    hybrid_alpha: 1.0
+    fail_penalty: 1.2
+    repeat_penalty: 0.6
+    single_frag_weight: 0.3
+    marginal_gain_weight: 0.0
+    budget_eff_weight: 3.0
+    node_cost_weight: 0.02
+    overlap_penalty_weight: 0.0
+    node_overlap_penalty_weight: 0.0
+    negative_gain_penalty_weight: 0.0
+    low_new_node_penalty_weight: 0.0
+    min_new_internal_nodes: 1
+    gain_temp: 0.1
+    top_k: 10
+    overlap_threshold: 0.35
+    min_new_internal_nodes_for_commit: 1
+    hard_node_overlap_threshold: 0.35
+    hard_edge_overlap_threshold: 0.5
+    avoid_selected_internal_nodes: false
+    efficiency_num_pairs: 2000
+    asp_num_sources: 64
+    random_seed: 42
+    use_bridge_shortcut: false
+    hybrid_alpha: 0.0
     normalize_fragility: true
     normalize_surrogate: true
     surrogate_weights:
@@ -79,15 +123,36 @@ rl:
       avg_edge_bc: 0.25
       cross_comm_ratio: 0.15
       path_length: 0.25
+    stretch_bonus_weight: 0.15
+    stretch_min: 1.05
+    stretch_max: 1.5
+    stretch_hard_max: 2.0
+    stretch_over_penalty_weight: 0.5
+    selection_single_path_weight: 0.1
+    new_node_bonus_weight: 0.02
+    new_node_bonus_cap: 3
+    inference_set_gain_weight: 1.0
+    inference_budget_eff_weight: 1.5
+    inference_node_cost_weight: 0.02
+    inference_edge_overlap_penalty_weight: 1.0
+    inference_node_overlap_penalty_weight: 2.0
+    inference_single_path_weight: 0.05
+    inference_hard_edge_overlap: true
+    inference_min_marginal_gain: 0.0
+    inference_min_selection_score: 0.0
+    inference_fill_to_top_q: false
+    inference_relaxed_max_node_overlap: 0.35
+    inference_relaxed_edge_overlap: 0.5
 tensorboard:
   enabled: true
   log_root: outputs/tb
-  run_name: physics_rl_surrogate
+  run_name: physics_rl_surrogate_like
 scorer:
   fragility_gate: 0.5
   gate_penalty: 0.08
 output:
   embedding_ckpt: outputs/checkpoints/physics_node_embeddings.pt
+  rl_ckpt_stage1: outputs/checkpoints/physics_ppo_agent_surrogate_stage1.pt
   rl_ckpt: outputs/checkpoints/physics_ppo_agent_surrogate.pt
   train_log_json: outputs/logs/physics_rl_train_log_surrogate.json
   train_summary_json: outputs/logs/physics_rl_train_summary_surrogate.json
@@ -98,3 +163,10 @@ output:
   - 3
   - 5
   - 10
+  eval_mode: exact
+  fixed_node_budget_list:
+  - 5
+  - 10
+  - 20
+  - 30
+  - 50

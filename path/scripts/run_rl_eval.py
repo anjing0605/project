@@ -38,7 +38,16 @@ from path.src.rl.ppo_agent import PPOAgent
 from path.src.rl.state_encoder import StateEncoder
 from path.src.utils.tb_logger import TBLogger
 
+'''
+python -m path.scripts.run_rl_train --config path/configs/cora_rl_surrogate.yaml
+python -m path.scripts.run_rl_eval  --config path/configs/cora_rl_surrogate.yaml
 
+python -m path.scripts.run_rl_train --config path/configs/cora_rl_fragility.yaml
+python -m path.scripts.run_rl_eval  --config path/configs/cora_rl_fragility.yaml
+
+python -m path.scripts.run_rl_train --config path/configs/cora_rl.yaml
+python -m path.scripts.run_rl_eval --config path/configs/cora_rl.yaml
+'''
 def resolve_output_path(path_str: str) -> str:
     p = Path(path_str)
     if p.is_absolute():
@@ -110,7 +119,7 @@ def select_key_nodes_from_cfg(importance, keynode_cfg: Dict[str, Any]) -> List[i
 
 
 def build_tasks_from_cfg(bundle, key_nodes: List[int], keynode_cfg: Dict[str, Any]):
-    tasks = TaskPairBuilder.build_task_pairs(
+    all_tasks = TaskPairBuilder.build_task_pairs(
         G=bundle.nx_graph,
         key_nodes=key_nodes,
         community=bundle.community,
@@ -118,11 +127,21 @@ def build_tasks_from_cfg(bundle, key_nodes: List[int], keynode_cfg: Dict[str, An
         min_shortest_len=int(keynode_cfg.get("min_shortest_len", 2)),
     )
 
-    max_pairs = keynode_cfg.get("max_pairs", None)
-    if max_pairs is not None and int(max_pairs) > 0:
-        tasks = tasks[: int(max_pairs)]
+    max_pairs = int(keynode_cfg.get("max_pairs", 200))
+    if max_pairs <= 0:
+        return all_tasks
 
-    return tasks
+    return TaskPairBuilder.sample_task_pairs(
+        task_pairs=all_tasks,
+        num_samples=max_pairs,
+        mode=str(keynode_cfg.get("task_sampling_mode", "hybrid")),
+        random_seed=int(keynode_cfg.get("random_seed", 42)),
+        G=bundle.nx_graph,
+        community=bundle.community,
+        importance=bundle.importance,
+        min_shortest_len=int(keynode_cfg.get("min_shortest_len", 2)),
+        random_ratio=float(keynode_cfg.get("random_task_ratio", 0.10)),
+    )
 
 
 def load_agent_checkpoint(agent: PPOAgent, ckpt_path: str) -> None:
@@ -378,26 +397,56 @@ def main() -> None:
     )
     load_agent_checkpoint(agent, rl_ckpt)
 
+    agent.set_action_temperature(
+        float(rl_cfg.get("eval_action_temperature", 1.2))
+    )
     sampled = RLPathInferencer.sample_paths(
         agent=agent,
         env=env,
         tasks=tasks,
-        num_samples_per_task=int(rl_cfg.get("num_samples_per_task", 10)),
+        num_samples_per_task=int(rl_cfg.get("num_samples_per_task", 20)),
         keep_failed=True,
-        deterministic=bool(rl_cfg.get("deterministic_eval", True)),
+        deterministic=bool(rl_cfg.get("deterministic_eval", False)),
     )
 
     num_sampled_total = int(len(sampled))
     num_success_sampled = int(sum(1 for p in sampled if bool(getattr(p, "success", False))))
     success_rate = float(num_success_sampled / max(num_sampled_total, 1))
 
+    reward_cfg = rl_cfg.get("reward", {})
+
     rl_paths = RLPathInferencer.rescore_and_select(
         bundle=bundle,
         path_records=sampled,
-        top_q=int(paths_cfg.get("top_q", 10)),
-        overlap_threshold=float(paths_cfg.get("overlap_threshold", 0.6)),
+        top_q=int(paths_cfg.get("top_q", reward_cfg.get("top_k", 10))),
+        overlap_threshold=float(paths_cfg.get("overlap_threshold", reward_cfg.get("overlap_threshold", 0.4))),
         fragility_weights=fragility_cfg,
         require_success=True,
+        min_new_internal_nodes=int(
+            paths_cfg.get("min_new_internal_nodes", reward_cfg.get("min_new_internal_nodes", 1))),
+        max_node_overlap=float(paths_cfg.get("max_node_overlap", reward_cfg.get("hard_node_overlap_threshold", 0.55))),
+        edge_overlap_penalty_weight=float(reward_cfg.get("inference_edge_overlap_penalty_weight", 0.25)),
+        node_overlap_penalty_weight=float(reward_cfg.get("inference_node_overlap_penalty_weight", 0.50)),
+        single_path_weight=float(reward_cfg.get("inference_single_path_weight", 0.10)),
+        set_gain_weight=float(reward_cfg.get("inference_set_gain_weight", 1.0)),
+        budget_eff_weight=float(reward_cfg.get("inference_budget_eff_weight", 1.5)),
+        node_cost_weight=float(reward_cfg.get("inference_node_cost_weight", 0.02)),
+        hard_edge_overlap=bool(reward_cfg.get("inference_hard_edge_overlap", True)),
+        min_marginal_gain=float(
+            reward_cfg.get("inference_min_marginal_gain", -1e-6)
+        ),
+        min_selection_score=float(
+            reward_cfg.get("inference_min_selection_score", -1e-6)
+        ),
+        fill_to_top_q=bool(
+            reward_cfg.get("inference_fill_to_top_q", True)
+        ),
+        relaxed_max_node_overlap=float(
+            reward_cfg.get("inference_relaxed_max_node_overlap", 0.85)
+        ),
+        relaxed_edge_overlap=float(
+            reward_cfg.get("inference_relaxed_edge_overlap", 0.95)
+        ),
     )
 
     selection_rate = float(len(rl_paths) / max(num_success_sampled, 1))
@@ -456,17 +505,29 @@ def main() -> None:
     )
 
     k_list = output_cfg.get("k_list", [1, 3, 5, 10])
+    eval_mode = str(output_cfg.get("eval_mode", "exact"))
+
+    result_dict = {
+        "rl": rl_paths,
+        "rule_based": rule_paths,
+        "shortest": shortest_paths,
+        "random": random_paths,
+        "betweenness": betweenness_paths,
+        "node_score": node_score_paths,
+    }
+
     comparison = evaluator.compare_methods(
-        result_dict={
-            "rl": rl_paths,
-            "rule_based": rule_paths,
-            "shortest": shortest_paths,
-            "random": random_paths,
-            "betweenness": betweenness_paths,
-            "node_score": node_score_paths,
-        },
+        result_dict=result_dict,
         G=bundle.nx_graph,
         k_list=k_list,
+        mode=eval_mode,
+    )
+
+    fixed_node_budget_comparison = evaluator.compare_methods_fixed_node_budget(
+        result_dict=result_dict,
+        G=bundle.nx_graph,
+        node_budget_list=output_cfg.get("fixed_node_budget_list", [5, 10, 20, 30, 50]),
+        mode=eval_mode,
     )
 
     _log_dataset_info(
@@ -518,6 +579,7 @@ def main() -> None:
                 for t in tasks[: min(20, len(tasks))]
             ],
         },
+        "fixed_node_budget_comparison": fixed_node_budget_comparison,
         "rl_eval": {
             "num_sampled_paths": num_sampled_total,
             "num_success_sampled_paths": num_success_sampled,

@@ -65,6 +65,45 @@ class Plotter:
         plt.close()
 
     @staticmethod
+    def plot_budget_curve(
+            df: pd.DataFrame,
+            dataset: str,
+            metric: str,
+            save_path: str | Path,
+            methods: Optional[Iterable[str]] = None,
+            title: Optional[str] = None,
+    ) -> None:
+        """
+        df columns required:
+            dataset, method, budget, metric
+        """
+        if metric not in df.columns:
+            raise ValueError(f"metric '{metric}' not found in dataframe columns.")
+
+        sub = df[df["dataset"] == dataset].copy()
+        if methods is not None:
+            methods = list(methods)
+            sub = sub[sub["method"].isin(methods)]
+
+        if sub.empty:
+            raise ValueError(f"No rows found for dataset={dataset}, metric={metric}")
+
+        plt.figure(figsize=(7, 4.5))
+
+        for method in sorted(sub["method"].unique()):
+            one = sub[sub["method"] == method].sort_values(by="budget")
+            plt.plot(one["budget"], one[metric], marker="o", label=method)
+
+        plt.xlabel("Removed internal-node budget")
+        plt.ylabel(metric)
+        plt.title(title or f"{dataset} - {metric} under fixed node budget")
+        plt.legend()
+        plt.tight_layout()
+
+        save_path = Plotter._ensure_parent(save_path)
+        plt.savefig(save_path, dpi=220)
+        plt.close()
+    @staticmethod
     def plot_training_curve(
         y,
         ylabel: str,

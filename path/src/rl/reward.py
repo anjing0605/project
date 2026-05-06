@@ -54,29 +54,51 @@ class RewardCalculator:
             "gain_temp": 0.10,
         },
 
-        # Stage C: set-level top-k alignment
         "stage_c": {
-            "distance_weight": 0.15,
-            "importance_weight": 0.05,
-            "edge_bc_weight": 0.12,
-            "cross_comm_weight": 0.08,
-            "step_cost": 0.02,
-            "repeat_penalty": 0.40,
-            "reach_bonus": 0.50,
-            "fail_penalty": 1.00,
-            "single_frag_weight": 0.50,
-            "marginal_gain_weight": 3.00,
+            "distance_weight": 0.35,
+            "importance_weight": 0.03,
+            "edge_bc_weight": 0.18,
+            "cross_comm_weight": 0.12,
+            "step_cost": 0.05,
+            "repeat_penalty": 0.60,
+            "reach_bonus": 1.20,
+            "fail_penalty": 1.20,
+
+            "single_frag_weight": 0.25,
+            "marginal_gain_weight": 5.00,
+            "budget_eff_weight": 3.00,
+            "node_cost_weight": 0.02,
+
             "overlap_penalty_weight": 1.00,
+            "node_overlap_penalty_weight": 2.00,
+            "negative_gain_penalty_weight": 1.00,
+            "low_new_node_penalty_weight": 0.50,
+            "min_new_internal_nodes": 1.00,
             "gain_temp": 0.10,
+
+            "selection_single_path_weight": 0.10,
+            "new_node_bonus_weight": 0.02,
+            "new_node_bonus_cap": 3.00,
         },
     }
 
     LEGACY_STAGE_ALIAS = {
+        # stage A
         "reachability": "stage_a",
-        "fragility_finetune": "stage_b",
-        "fragility_topk_align": "stage_c",
         "stage_a": "stage_a",
+
+        # stage B
+        "fragility": "stage_b",
+        "surrogate": "stage_b",
+        "single": "stage_b",
+        "fragility_finetune": "stage_b",
         "stage_b": "stage_b",
+
+        # stage C
+        "hybrid": "stage_c",
+        "topk": "stage_c",
+        "set": "stage_c",
+        "fragility_topk_align": "stage_c",
         "stage_c": "stage_c",
     }
 
@@ -94,13 +116,33 @@ class RewardCalculator:
 
     @staticmethod
     def get_stage_weights(
-        stage: str,
-        overrides: Dict[str, float] | None = None,
+            stage: str,
+            overrides: Dict[str, Any] | None = None,
     ) -> Dict[str, float]:
         stage = RewardCalculator.normalize_stage_name(stage)
         cfg = dict(RewardCalculator.DEFAULT_STAGE_WEIGHTS[stage])
-        if overrides is not None:
-            cfg.update({k: float(v) for k, v in overrides.items()})
+
+        if overrides is None:
+            return cfg
+
+        key_alias = {
+            "node_bonus_weight": "importance_weight",
+            "bridge_bonus_weight": "edge_bc_weight",
+            "cross_comm_bonus_weight": "cross_comm_weight",
+            "fragility_weight": "single_frag_weight",
+        }
+
+        for k, v in overrides.items():
+            kk = key_alias.get(k, k)
+
+            # surrogate_weights 是 dict，不能 float(v)
+            # normalize_fragility / normalize_surrogate 这类布尔控制项也不要混入 reward 权重
+            if kk not in cfg:
+                continue
+
+            if isinstance(v, (int, float, bool, np.integer, np.floating)):
+                cfg[kk] = float(v)
+
         return cfg
 
     @staticmethod
@@ -188,7 +230,8 @@ class RewardCalculator:
         reward_kwargs: Dict[str, Any] | None = None,
     ) -> float:
         cfg = RewardCalculator.get_stage_weights(stage, reward_kwargs)
-        return -float(cfg["fail_penalty"])
+        fail_penalty = float(cfg.get("fail_penalty", 1.0))
+        return -abs(fail_penalty)
 
     # -----------------------------
     # unified terminal reward: single-path
@@ -211,13 +254,14 @@ class RewardCalculator:
         cfg = RewardCalculator.get_stage_weights(stage, reward_kwargs)
 
         if not success:
-            return RewardCalculator.terminal_fail_reward(stage, reward_kwargs), {
+            fail_reward = RewardCalculator.terminal_fail_reward(stage, reward_kwargs)
+            return fail_reward, {
                 "delta_E": 0.0,
                 "delta_LCC": 0.0,
                 "delta_ASP": 0.0,
                 "avg_edge_bc": 0.0,
                 "single_path_score": 0.0,
-                "terminal_reward": -float(cfg["fail_penalty"]),
+                "terminal_reward": float(fail_reward),
             }
 
         frag = fragility_evaluator.compute_fragility(
@@ -255,24 +299,28 @@ class RewardCalculator:
     # -----------------------------
     @staticmethod
     def terminal_topk_reward(
-        path: List[int],
-        success: bool,
-        single_path_damage: Dict[str, float],
-        current_set_score: float,
-        new_set_score: float,
-        max_overlap: float,
-        overlap_threshold: float,
-        edge_bc: Dict[Tuple[int, int], float],
-        stage: str,
-        reward_kwargs: Dict[str, Any] | None = None,
-        lambda_E: float = 0.55,
-        lambda_ASP: float = 0.30,
-        lambda_LCC: float = 0.00,
+            path: List[int],
+            success: bool,
+            single_path_damage: Dict[str, float],
+            current_set_score: float,
+            new_set_score: float,
+            max_overlap: float,
+            overlap_threshold: float,
+            edge_bc: Dict[Tuple[int, int], float],
+            stage: str,
+            reward_kwargs: Dict[str, Any] | None = None,
+            lambda_E: float = 0.55,
+            lambda_ASP: float = 0.30,
+            lambda_LCC: float = 0.00,
+            max_node_overlap: float = 0.0,
+            new_internal_nodes: int = 0,
+            internal_node_count: int = 0,
     ) -> Tuple[float, Dict[str, float]]:
         cfg = RewardCalculator.get_stage_weights(stage, reward_kwargs)
 
         if not success:
-            return RewardCalculator.terminal_fail_reward(stage, reward_kwargs), {
+            fail_reward = RewardCalculator.terminal_fail_reward(stage, reward_kwargs)
+            return fail_reward, {
                 "single_delta_E": 0.0,
                 "single_delta_LCC": 0.0,
                 "single_delta_ASP": 0.0,
@@ -282,9 +330,17 @@ class RewardCalculator:
                 "marginal_gain": 0.0,
                 "compressed_marginal_gain": 0.0,
                 "max_overlap": 0.0,
+                "max_edge_overlap": 0.0,
+                "max_node_overlap": 0.0,
+                "new_internal_nodes": 0.0,
+                "internal_node_count": 0.0,
                 "overlap_penalty": 0.0,
+                "node_overlap_penalty": 0.0,
+                "negative_gain_penalty": 0.0,
+                "low_new_node_penalty": 0.0,
+                "selection_score": 0.0,
                 "avg_edge_bc": 0.0,
-                "terminal_reward": -float(cfg["fail_penalty"]),
+                "terminal_reward": float(fail_reward),
             }
 
         single_path_damage = dict(single_path_damage)
@@ -300,10 +356,37 @@ class RewardCalculator:
             gain=marginal_gain,
             gain_temp=cfg["gain_temp"],
         )
+        new_node_count = max(1, int(new_internal_nodes))
+        gain_per_new_node = float(marginal_gain) / float(new_node_count)
+        compressed_gain_per_node = RewardCalculator._compress_gain(
+            gain=gain_per_new_node,
+            gain_temp=cfg["gain_temp"],
+        )
 
-        overlap_penalty = (
-            float(cfg["overlap_penalty_weight"])
-            * max(0.0, float(max_overlap) - float(overlap_threshold))
+        node_cost_penalty = (
+                float(cfg.get("node_cost_weight", 0.0))
+                * float(new_node_count)
+        )
+
+        edge_overlap_penalty = (
+                float(cfg["overlap_penalty_weight"])
+                * max(0.0, float(max_overlap) - float(overlap_threshold))
+        )
+
+        node_overlap_penalty = (
+                float(cfg.get("node_overlap_penalty_weight", 0.0))
+                * max(0.0, float(max_node_overlap) - float(overlap_threshold))
+        )
+
+        negative_gain_penalty = (
+                float(cfg.get("negative_gain_penalty_weight", 0.0))
+                * max(0.0, -float(marginal_gain))
+        )
+
+        min_new_internal_nodes = int(cfg.get("min_new_internal_nodes", 0))
+        low_new_node_penalty = (
+                float(cfg.get("low_new_node_penalty_weight", 0.0))
+                * max(0, min_new_internal_nodes - int(new_internal_nodes))
         )
 
         avg_bc = 0.0
@@ -311,11 +394,46 @@ class RewardCalculator:
             edges = PathFeatureExtractor.path_to_edges(path)
             avg_bc = PathFeatureExtractor.avg_edge_betweenness(edges, edge_bc)
 
+        selection_single_path_weight = float(
+            cfg.get("selection_single_path_weight", 0.10)
+        )
+
+        new_node_bonus_weight = float(
+            cfg.get("new_node_bonus_weight", 0.0)
+        )
+        new_node_bonus_cap = max(
+            1,
+            int(cfg.get("new_node_bonus_cap", 5))
+        )
+        new_node_bonus = (
+                new_node_bonus_weight
+                * min(int(new_internal_nodes), new_node_bonus_cap)
+                / float(new_node_bonus_cap)
+        )
+
+        selection_score = (
+                float(marginal_gain)
+                + float(cfg.get("budget_eff_weight", 0.0)) * float(gain_per_new_node)
+                + selection_single_path_weight * float(single_path_score)
+                + float(new_node_bonus)
+                - float(node_cost_penalty)
+                - float(edge_overlap_penalty)
+                - float(node_overlap_penalty)
+                - float(negative_gain_penalty)
+                - float(low_new_node_penalty)
+        )
+
         terminal_reward = (
-            float(cfg["reach_bonus"])
-            + float(cfg["single_frag_weight"]) * float(single_path_score)
-            + float(cfg["marginal_gain_weight"]) * float(compressed_gain)
-            - float(overlap_penalty)
+                float(cfg["reach_bonus"])
+                + float(cfg["single_frag_weight"]) * float(single_path_score)
+                + float(cfg["marginal_gain_weight"]) * float(compressed_gain)
+                + float(cfg.get("budget_eff_weight", 0.0)) * float(compressed_gain_per_node)
+                + float(new_node_bonus)
+                - float(node_cost_penalty)
+                - float(edge_overlap_penalty)
+                - float(node_overlap_penalty)
+                - float(negative_gain_penalty)
+                - float(low_new_node_penalty)
         )
 
         info = {
@@ -328,12 +446,26 @@ class RewardCalculator:
             "marginal_gain": float(marginal_gain),
             "compressed_marginal_gain": float(compressed_gain),
             "max_overlap": float(max_overlap),
-            "overlap_penalty": float(overlap_penalty),
+            "max_edge_overlap": float(max_overlap),
+            "max_node_overlap": float(max_node_overlap),
+            "new_internal_nodes": float(new_internal_nodes),
+            "internal_node_count": float(internal_node_count),
+            "overlap_penalty": float(edge_overlap_penalty),
+            "node_overlap_penalty": float(node_overlap_penalty),
+            "negative_gain_penalty": float(negative_gain_penalty),
+            "low_new_node_penalty": float(low_new_node_penalty),
+            "selection_score": float(selection_score),
             "avg_edge_bc": float(avg_bc),
             "terminal_reward": float(terminal_reward),
+            "new_node_bonus": float(new_node_bonus),
+            "selection_single_path_weight": float(selection_single_path_weight),
+            "gain_per_new_node": float(gain_per_new_node),
+            "compressed_gain_per_node": float(compressed_gain_per_node),
+            "node_cost_penalty": float(node_cost_penalty),
+            "budget_eff_weight": float(cfg.get("budget_eff_weight", 0.0)),
+            "node_cost_weight": float(cfg.get("node_cost_weight", 0.0)),
         }
         return float(terminal_reward), info
-
     # -----------------------------
     # backward-compatible wrappers
     # -----------------------------

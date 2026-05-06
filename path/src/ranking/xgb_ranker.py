@@ -11,69 +11,91 @@ from path.src.core.path_features import PathFeatureExtractor
 from path.src.core.types import PathRecord
 
 try:
-    from xgboost import XGBRegressor
-except Exception:  # pragma: no cover
-    XGBRegressor = None
-
-try:
-    from sklearn.ensemble import GradientBoostingRegressor #pip install scikit-learn
-except Exception:  # pragma: no cover
-    GradientBoostingRegressor = None
+    from xgboost import XGBRanker
+except ImportError:  # pragma: no cover
+    XGBRanker = None
 
 
 class XGBPathRanker:
     """
     Learn a path score from handcrafted features and rank candidate paths per task pair.
-
-    Primary backend: xgboost.XGBRegressor
-    Fallback backend: sklearn.GradientBoostingRegressor
+    Backend: xgboost.XGBRanker (Learning-to-Rank)
     """
 
     DEFAULT_PARAMS = {
         "n_estimators": 300,
-        "max_depth": 4,
+        "max_depth": 5,  # 加深以捕获特征交叉
         "learning_rate": 0.05,
         "subsample": 0.9,
         "colsample_bytree": 0.9,
-        "reg_alpha": 0.0,
-        "reg_lambda": 1.0,
+        "reg_alpha": 0.1,  # L1 正则化
+        "reg_lambda": 1.0,  # L2 正则化
         "random_state": 42,
-        "objective": "reg:squarederror",
+        "objective": "rank:ndcg",  # 使用 NDCG 排序损失
+        "eval_metric": "ndcg@10"  # 重点关注 Top-10 排序质量
     }
 
     def __init__(
-        self,
-        feature_cols: Optional[List[str]] = None,
-        params: Optional[Dict[str, object]] = None,
+            self,
+            feature_cols: Optional[List[str]] = None,
+            params: Optional[Dict[str, object]] = None,
     ) -> None:
         self.feature_cols = feature_cols or []
         self.params = dict(self.DEFAULT_PARAMS)
         if params:
             self.params.update(params)
-        self.model = None
-        self.backend = None
 
-    def _build_model(self):
-        if XGBRegressor is not None:
-            self.backend = "xgboost"
-            return XGBRegressor(**self.params)
-        if GradientBoostingRegressor is not None:
-            self.backend = "sklearn_gbr"
-            return GradientBoostingRegressor(random_state=int(self.params.get("random_state", 42)))
-        raise ImportError("Neither xgboost nor scikit-learn GradientBoostingRegressor is available.")
+        if XGBRanker is None:
+            raise ImportError("xgboost is not installed. Please install it using 'pip install xgboost'.")
 
-    def fit(self, train_df: pd.DataFrame) -> None:
+        self.model = XGBRanker(**self.params)
+        self.is_trained = False
+        self.backend = "xgboost"
+
+    def fit(self, train_df: pd.DataFrame, val_df: Optional[pd.DataFrame] = None) -> None:
+        """
+        训练排序模型。注意：DataFrame 必须按 Query 分组，这里通过 source 和 target 分组。
+        """
         if train_df.empty:
             raise ValueError("train_df is empty; cannot train ranker.")
         if not self.feature_cols:
             raise ValueError("feature_cols is empty; please pass explicit feature columns.")
-        X = train_df[self.feature_cols].to_numpy(dtype=float)
-        y = train_df["y_fragility"].to_numpy(dtype=float)
-        self.model = self._build_model()
-        self.model.fit(X, y)
+
+        # 1. 强制按 Query Group (即 source, target) 排序，这是 XGBRanker 的硬性要求
+        train_df = train_df.sort_values(by=["source", "target"]).reset_index(drop=True)
+
+        # 2. 计算训练集的 Group 数组
+        group_train = train_df.groupby(["source", "target"], sort=False).size().values
+
+        # 3. 确定标签列：如果之前在 dataset.py 做了相关度分档就用 relevance，否则退化用 y_fragility
+        target_col = "relevance" if "relevance" in train_df.columns else "y"
+
+        X_train = train_df[self.feature_cols].to_numpy(dtype=float)
+        y_train = train_df[target_col].to_numpy(dtype=float)
+
+        # 4. 如果有验证集，同样处理
+        eval_set = None
+        eval_group = None
+        if val_df is not None and not val_df.empty:
+            val_df = val_df.sort_values(by=["source", "target"]).reset_index(drop=True)
+            group_val = val_df.groupby(["source", "target"], sort=False).size().values
+            X_val = val_df[self.feature_cols].to_numpy(dtype=float)
+            y_val = val_df[target_col].to_numpy(dtype=float)
+            eval_set = [(X_train, y_train), (X_val, y_val)]
+            eval_group = [group_train, group_val]
+
+        # 5. 开始训练 (必须传入 group)
+        self.model.fit(
+            X_train, y_train,
+            group=group_train,
+            eval_set=eval_set,
+            eval_group=eval_group,
+            verbose=10
+        )
+        self.is_trained = True
 
     def predict_score(self, test_df: pd.DataFrame) -> np.ndarray:
-        if self.model is None:
+        if not self.is_trained:
             raise RuntimeError("Ranker has not been fitted.")
         X = test_df[self.feature_cols].to_numpy(dtype=float)
         pred = self.model.predict(X)
@@ -84,8 +106,10 @@ class XGBPathRanker:
             return df.copy()
         out = df.copy()
         out["pred_score"] = self.predict_score(df)
+        tie_col = "y" if "y" in out.columns else "y_fragility"
+
         out = out.sort_values(
-            by=["source", "target", "pred_score", "y_fragility"],
+            by=["source", "target", "pred_score", tie_col],
             ascending=[True, True, False, False],
         ).reset_index(drop=True)
         return out
@@ -103,14 +127,35 @@ class XGBPathRanker:
             return []
         records: List[PathRecord] = []
         for (src, tgt), g in df.groupby(["source", "target"], sort=True):
-            g = g.sort_values(by=["pred_score", "y_fragility"], ascending=[False, False]).head(top_per_task)
+            tie_col = "y" if "y" in g.columns else "y_fragility"
+            g = g.sort_values(
+                by=["pred_score", tie_col],
+                ascending=[False, False],
+            ).head(top_per_task)
             for _, row in g.iterrows():
                 nodes = json.loads(row["path_nodes"])
                 features = {
                     c: float(row[c])
                     for c in row.index
-                    if c not in {"source", "target", "path_nodes", "pred_score", "method"}
-                    and pd.api.types.is_number(row[c])
+                    if c not in {
+                        "source",
+                        "target",
+                        "path_nodes",
+                        "pred_score",
+                        "method",
+                        "backend",
+                        "relevance",
+                        "y",
+                        "y_single",
+                        "y_marginal",
+                        "y_fragility",
+                        "y_gain",
+                        "delta_E",
+                        "delta_LCC",
+                        "delta_ASP",
+                        "fragility_score",
+                    }
+                       and pd.api.types.is_number(row[c])
                 }
                 fragility = {
                     "delta_E": float(row.get("delta_E", 0.0)),
@@ -131,6 +176,11 @@ class XGBPathRanker:
                     metadata={
                         "candidate_rank": int(row.get("candidate_rank", 0)),
                         "backend": row.get("backend", "xgboost"),
+                        "pred_score": float(row.get("pred_score", 0.0)),
+                        "y": float(row.get("y", 0.0)),
+                        "y_single": float(row.get("y_single", row.get("y_fragility", 0.0))),
+                        "y_marginal": float(row.get("y_marginal", row.get("y_gain", 0.0))),
+                        "relevance": float(row.get("relevance", 0.0)),
                     },
                 )
                 records.append(rec)

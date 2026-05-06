@@ -40,8 +40,9 @@ def summarize_candidate_coverage(
             "task_rows": [...]
         }
     """
+    fragility_evaluator = FragilityEvaluator()
     if shared_base_metrics is None and with_fragility:
-        shared_base_metrics = FragilityEvaluator.compute_base_metrics(bundle.nx_graph)
+        shared_base_metrics = fragility_evaluator.compute_base_metrics(bundle.nx_graph)
 
     task_rows: List[Dict[str, Any]] = []
     global_path_lengths: List[int] = []
@@ -86,6 +87,9 @@ def summarize_candidate_coverage(
                 importance=bundle.importance,
                 community=bundle.community,
                 edge_bc=bundle.edge_bc,
+                shortest_len=task.shortest_len,
+                source=task.source,
+                target=task.target,
             )
 
             feat_avg_node.append(float(feats["avg_node_importance"]))
@@ -94,7 +98,7 @@ def summarize_candidate_coverage(
             feat_path_length.append(float(feats["path_length"]))
 
             if with_fragility:
-                frag = FragilityEvaluator.compute_fragility(
+                frag = fragility_evaluator.compute_fragility(
                     G=bundle.nx_graph,
                     path=path,
                     base_metrics=shared_base_metrics,

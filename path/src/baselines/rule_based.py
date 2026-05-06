@@ -373,21 +373,28 @@ class RuleBasedCriticalPath:
         return selected
     @classmethod
     def run(
-        cls,
-        bundle: GraphDataBundle,
-        tasks: List[TaskPair],
-        path_k: int = 3,
-        max_hops: int = 8,
-        delta: int = 2,
-        weights: Dict[str, float] | None = None,
-        top_q: int = 10,
-        overlap_threshold: float = 0.6,
-        fragility_weights: Dict[str, float] | None = None,
-        top_m_for_fragility: int = 3,
-        fragility_gate: float = 0.50,
-        gate_penalty: float = 0.08,
-        shared_base_metrics: Dict[str, float] | None = None,
-        candidate_stats: Dict[str, Any] | None = None,
+            cls,
+            bundle: GraphDataBundle,
+            tasks: List[TaskPair],
+            path_k: int = 3,
+            max_hops: int = 8,
+            delta: int = 2,
+            weights: Dict[str, float] | None = None,
+            top_q: int = 10,
+            overlap_threshold: float = 0.6,
+            fragility_weights: Dict[str, float] | None = None,
+            top_m_for_fragility: int = 3,
+            fragility_gate: float = 0.50,
+            gate_penalty: float = 0.08,
+            shared_base_metrics: Dict[str, float] | None = None,
+            candidate_stats: Dict[str, Any] | None = None,
+
+            raw_k_multiplier: int = 3,
+            raw_k_min_extra: int = 10,
+            final_k: int | None = None,
+            max_internal_overlap: float = 0.60,
+            fallback_relax_overlap: float = 0.95,
+            fallback_extra_hops: int = 2,
     ) -> List[PathRecord]:
         weights = weights or dict(cls.DEFAULT_WEIGHTS)
         fragility_weights = fragility_weights or {
@@ -449,18 +456,42 @@ class RuleBasedCriticalPath:
             # 1) generate candidate paths
             t_gen0 = time.perf_counter()
             try:
-                raw_k = max(path_k * 3, path_k + 10)
+                effective_final_k = int(final_k or path_k)
+                effective_raw_k = max(
+                    effective_final_k * int(raw_k_multiplier),
+                    effective_final_k + int(raw_k_min_extra),
+                )
 
                 paths = PathGenerator.diversified_k_shortest_simple_paths(
                     G=bundle.nx_graph,
                     source=task.source,
                     target=task.target,
-                    raw_k=raw_k,
-                    final_k=path_k,
+                    raw_k=effective_raw_k,
+                    final_k=effective_final_k,
                     max_hops=max_hops,
                     delta=delta,
-                    max_internal_overlap=0.60,
+                    max_internal_overlap=float(max_internal_overlap),
                 )
+
+                if len(paths) < effective_final_k:
+                    relaxed_paths = PathGenerator.diversified_k_shortest_simple_paths(
+                        G=bundle.nx_graph,
+                        source=task.source,
+                        target=task.target,
+                        raw_k=max(effective_raw_k * 2, effective_final_k + 30),
+                        final_k=effective_final_k,
+                        max_hops=max_hops + int(fallback_extra_hops),
+                        delta=delta + int(fallback_extra_hops),
+                        max_internal_overlap=float(fallback_relax_overlap),
+                    )
+
+                    seen = {tuple(p) for p in paths}
+                    for p in relaxed_paths:
+                        if tuple(p) not in seen:
+                            paths.append(p)
+                            seen.add(tuple(p))
+                        if len(paths) >= effective_final_k:
+                            break
             except (nx.NetworkXNoPath, nx.NodeNotFound):
                 continue
 
@@ -494,6 +525,9 @@ class RuleBasedCriticalPath:
                     importance=bundle.importance,
                     community=bundle.community,
                     edge_bc=bundle.edge_bc,
+                    shortest_len=task.shortest_len,
+                    source=task.source,
+                    target=task.target,
                 )
                 t_feat = time.perf_counter() - t_feat0
                 total_feat_time += t_feat

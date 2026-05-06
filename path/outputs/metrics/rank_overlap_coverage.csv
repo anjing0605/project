@@ -1,0 +1,4 @@
+﻿dataset,method,method_label,top_n,avg_edge_overlap,avg_internal_node_overlap,unique_edge_coverage,unique_internal_node_coverage,total_edges,total_internal_nodes,edge_coverage_ratio,internal_node_coverage_ratio
+Cora,rank_pure,PureRank,10,0.266984126984127,0.7866666666666668,21,6,46,36,0.45652173913043476,0.16666666666666666
+Cora,rank_set_pred_score_selector,RankSet-Pred,10,0.04186067019400352,0.15035273368606702,37,21,44,34,0.8409090909090909,0.6176470588235294
+Cora,rank_set_submodular_greedy,RankSet-Submod,10,0.013968253968253968,0.0810405643738977,38,22,42,32,0.9047619047619048,0.6875

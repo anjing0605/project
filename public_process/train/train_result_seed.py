@@ -19,6 +19,12 @@ import networkx as nx
 from baseline import run_all_baselines, print_results
 torch.serialization.add_safe_globals([torch_geometric.data.data.DataEdgeAttr])
 import copy
+'''
+优化策略（Pairwise Learning-to-Rank）：
+识别关键节点的本质不是预测绝对影响力分值，而是学习节点重要性的相对顺序。
+可将 train_gat.py 中的均方误差 (MSE) 替换为 Pairwise Margin Ranking Loss 或 ListMLE 损失。
+通过优化节点间的相对对数似然概率，模型不仅能更稳健地排序，还能显著降低对底层 SIR 精确标量值的敏感度约束。
+'''
 config = {
     "w_rank": 1.0,
     "w_reg": 0.3,

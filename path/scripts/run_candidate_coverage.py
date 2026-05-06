@@ -8,7 +8,7 @@ from path.src.core.keynode import KeyNodeSelector
 from path.src.core.task_sampler import TaskPairBuilder
 from path.src.core.fragility import FragilityEvaluator
 from path.src.analysis.candidate_coverage import summarize_candidate_coverage
-
+#候选路径覆盖率分析”。
 
 def main() -> None:
     bundle = GraphPreprocessor.build_graph_bundle(
@@ -27,7 +27,8 @@ def main() -> None:
         min_shortest_len=2,
     )
 
-    shared_base_metrics = FragilityEvaluator.compute_base_metrics(bundle.nx_graph)
+    fragility_evaluator = FragilityEvaluator()
+    shared_base_metrics = fragility_evaluator.compute_base_metrics(bundle.nx_graph)
 
     stats = summarize_candidate_coverage(
         bundle=bundle,

@@ -105,71 +105,83 @@ class PathFeatureExtractor:
 
     @staticmethod
     def extract_features(
-        path: List[int],
-        importance: np.ndarray,
-        community: np.ndarray,
-        edge_bc: Dict[Tuple[int, int], float],
-        shortest_len: int,                  # ⭐ 新增（必须传入）
-        source: int,
-        target: int,
+            path: List[int],
+            importance: np.ndarray,
+            community: np.ndarray,
+            edge_bc: Dict[Tuple[int, int], float],
+            shortest_len: int | None = None,
+            source: int | None = None,
+            target: int | None = None,
     ) -> Dict[str, float]:
 
         edges = PathFeatureExtractor.path_to_edges(path)
         path_len = len(edges)
 
-        # =============================
-        # 原有特征（保留）
-        # =============================
+        if not path:
+            return {
+                "avg_node_importance": 0.0,
+                "internal_node_importance": 0.0,
+                "avg_edge_bc": 0.0,
+                "cross_comm_ratio": 0.0,
+                "path_length": 0.0,
+                "path_length_int": 0,
+                "shortest_len": 0.0,
+                "same_community": 0.0,
+                "pair_score": 0.0,
+                "stretch_ratio": 0.0,
+                "efficiency_ratio": 0.0,
+                "max_edge_bc": 0.0,
+                "node_importance_entropy": 0.0,
+                "community_diversity": 0.0,
+            }
+
+        if source is None:
+            source = int(path[0])
+        if target is None:
+            target = int(path[-1])
+        if shortest_len is None:
+            shortest_len = path_len
+
         avg_imp = PathFeatureExtractor.avg_node_importance(path, importance)
         internal_imp = PathFeatureExtractor.internal_node_importance(path, importance)
         avg_bc = PathFeatureExtractor.avg_edge_betweenness(edges, edge_bc)
         cross_ratio = PathFeatureExtractor.cross_community_ratio(path, community)
 
-        # =============================
-        # ⭐ 新增：结构核心特征（必须）
-        # =============================
         same_comm = float(community[source] == community[target])
         pair_score = float(importance[source] + importance[target])
 
-        # =============================
-        # ⭐ 新增：长度相关（关键）
-        # =============================
-        stretch_ratio = float(path_len / max(shortest_len, 1))
-        efficiency_ratio = float(shortest_len / max(path_len, 1))
+        stretch_ratio = float(path_len / max(int(shortest_len), 1))
+        efficiency_ratio = float(int(shortest_len) / max(path_len, 1))
 
-        # =============================
-        # ⭐ 新增：edge bridge 强度
-        # =============================
-        max_bc = float(max([edge_bc.get((u, v), edge_bc.get((v, u), 0.0)) for u, v in edges], default=0.0))
+        max_bc = float(
+            max(
+                [edge_bc.get((u, v), edge_bc.get((v, u), 0.0)) for u, v in edges],
+                default=0.0,
+            )
+        )
 
-        # =============================
-        # ⭐ 新增：node entropy（论文常用）
-        # =============================
-        scores = np.array([importance[v] for v in path]) + 1e-8
-        probs = scores / scores.sum()
+        scores = np.asarray([float(importance[v]) for v in path], dtype=float)
+
+        # 防止 importance 中存在负值或全 0 时 entropy 异常
+        scores = scores - scores.min() + 1e-8
+        probs = scores / max(float(scores.sum()), 1e-12)
         entropy = float(-np.sum(probs * np.log(probs)))
 
-        # =============================
-        # ⭐ 新增：community diversity
-        # =============================
-        comms = [community[v] for v in path]
-        comm_div = float(len(set(comms)) / len(comms))
+        comms = [int(community[v]) for v in path]
+        comm_div = float(len(set(comms)) / max(len(comms), 1))
 
         return {
-            # ===== 原有 =====
             "avg_node_importance": avg_imp,
             "internal_node_importance": internal_imp,
             "avg_edge_bc": avg_bc,
             "cross_comm_ratio": cross_ratio,
             "path_length": float(path_len),
 
-            # ===== 必须补齐 =====
             "path_length_int": int(path_len),
             "shortest_len": float(shortest_len),
             "same_community": same_comm,
             "pair_score": pair_score,
 
-            # ===== 新增增强 =====
             "stretch_ratio": stretch_ratio,
             "efficiency_ratio": efficiency_ratio,
             "max_edge_bc": max_bc,
